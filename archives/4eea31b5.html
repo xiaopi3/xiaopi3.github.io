@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+
+<html lang="zh_CN">
+
+<head>
+  
+  <title>Javase基础（一）——概述 - 天落枫阁</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="this is a personal blog, about java javascript python and other compute tech">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  
+  
+
+  <link rel="shortcut icon" href="/img/avatar.jpg" type="image/png" />
+  <meta name="description" content="Javase基础（一）——概述A:Java语言发展史 詹姆斯?高斯林（James Gosling）1977年获得了加拿大卡尔加里大学计算机科学学士学位，1983年获得了美国卡内基梅隆大学计算机科学博士学位，毕业后到IBM工作，设计IBM第一代工作站NeWS系统，但不受重视。后来转至Sun公司，1990年，与Patrick，Naughton和Mike Sheridan等人合作“绿色计划”，后来发展一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javase基础（一）——概述">
+<meta property="og:url" content="https://xiaopi3.gitee.io/archives/4eea31b5.html">
+<meta property="og:site_name" content="天落枫阁">
+<meta property="og:description" content="Javase基础（一）——概述A:Java语言发展史 詹姆斯?高斯林（James Gosling）1977年获得了加拿大卡尔加里大学计算机科学学士学位，1983年获得了美国卡内基梅隆大学计算机科学博士学位，毕业后到IBM工作，设计IBM第一代工作站NeWS系统，但不受重视。后来转至Sun公司，1990年，与Patrick，Naughton和Mike Sheridan等人合作“绿色计划”，后来发展一">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-03-15T02:28:45.000Z">
+<meta property="article:modified_time" content="2020-03-15T02:28:45.000Z">
+<meta property="article:author" content="xiaopi3">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/gh/nexmoe/nexmoe.github.io@latest/css/style.css,npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css" crossorigin>
+  
+  <!--<link rel="stylesheet" href="/css/style.css?v=1584628063064">-->
+
+   
+    <style>
+      .nexmoe-avatar img:hover {
+        -webkit-transform: rotateZ(360deg);
+        -moz-transform: rotateZ(360deg);
+        transform: rotateZ(360deg);
+      }	
+    </style>
+  
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(/img/985.jpg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="xiaopi3" class="mdui-btn mdui-btn-icon"><img src="/img/avatar.jpg" alt="xiaopi3"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="xiaopi3">
+            <img src="/img/avatar.jpg" alt="xiaopi3" alt="xiaopi3">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>Articles</span>14</div>
+        <div><span>Tags</span>10</div>
+        <div><span>Categories</span>0</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/archives" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=" onsubmit="return search();">
+            <label><input id="search_value" name="q" type="search" placeholder="Search"></label>
+        </form>
+    </div>
+</div>
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Social</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/8391083" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/xiaopi3/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a><a class="mdui-ripple" href="mailto:447560484@qq.com" target="_blank" mdui-tooltip="{content: 'Email'}" style="color: rgb(34, 184, 221);background-color: rgba(34, 184, 221, .15);">
+            <i class="nexmoefont icon-mail-fill"></i>
+        </a><a class="mdui-ripple" href="https://weibo.com/u/1500580691" target="_blank" mdui-tooltip="{content: '微博'}" style="color: rgb(255, 165, 76);background-color: rgba(255, 165, 76, .15);">
+            <i class="nexmoefont icon-weibo"></i>
+        </a><a class="mdui-ripple" href="http://wpa.qq.com/msgrd?v=3&uin=447560484&site=qq&menu=yes" target="_blank" mdui-tooltip="{content: 'QQ'}" style="color: rgb(0, 82, 217);background-color: rgba(0, 82, 217, .15);">
+            <i class="nexmoefont icon-QQ"></i>
+        </a><a class="mdui-ripple" href="https://blog.csdn.net/xiapi3" target="_blank" mdui-tooltip="{content: 'CSDN'}" style="color: rgb(217, 46, 46);background-color: rgba(217, 46, 46, .15);">
+            <i class="nexmoefont icon-rss"></i>
+        </a>
+    </div>
+</div>
+  
+  
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Tagcloud</h3>
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud">
+      <a href="/tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="/tags/Guide/" style="font-size: 15px;">Guide</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/RPC/" style="font-size: 10px;">RPC</a> <a href="/tags/mobx/" style="font-size: 10px;">mobx</a> <a href="/tags/nodejs/" style="font-size: 15px;">nodejs</a> <a href="/tags/npm/" style="font-size: 15px;">npm</a> <a href="/tags/springboot/" style="font-size: 15px;">springboot</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">测试</a>
+    </div>
+    
+  </div>
+  <style>
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+1) {
+    background-color: rgba(255,78,106,0.15);
+    color: rgba(255,78,106,0.8);
+    }
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+2) {
+    background-color: rgba(255,170,115,0.15);
+    color: #ffaa73;
+    }
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+3) {
+    background-color: rgba(254,212,102,0.15);
+    color: #fed466;
+    }
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+4) {
+    background-color: rgba(60,220,130,0.15);
+    color: #3cdc82;
+    }
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+5) {
+    background-color: rgba(100,220,240,0.15);
+    color: #64dcf0;
+    }
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+6) {
+    background-color: rgba(100,185,255,0.15);
+    color: #64b9ff;
+    }
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+7) {
+    background-color: rgba(180,180,255,0.15);
+    color: #b4b4ff;
+    }
+
+    
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta {
+    margin: 25px 0px;
+    font-size: 0;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a {
+    border-radius: 20px;
+    padding: 10px 18px;
+    color: #fff;
+    font-size: 14px;
+    display: inline-block;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a .nexmoefont {
+    font-size: 14px;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:before,
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta i:before {
+    margin-right: 5px;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+1) {
+    background-color: rgba(255,78,106,0.15);
+    color: #ff4e6a;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+2) {
+    background-color: rgba(255,170,115,0.15);
+    color: #ffaa73;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+3) {
+    background-color: rgba(254,212,102,0.15);
+    color: #fed466;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+4) {
+    background-color: rgba(60,220,130,0.15);
+    color: #3cdc82;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+5) {
+    background-color: rgba(100,220,240,0.15);
+    color: #64dcf0;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+6) {
+    background-color: rgba(100,185,255,0.15);
+    color: #64b9ff;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+7) {
+    background-color: rgba(180,180,255,0.15);
+    color: #b4b4ff;
+    }
+  </style>
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Archive</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2020 xiaopi3
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+  
+      <div class="nexmoe-post-cover" style="padding-bottom: 66.63157894736842%;"> 
+          <img data-src="/img/0008.jpg" data-sizes="auto" alt="Javase基础（一）——概述" class="lazyload">
+          <h1>Javase基础（一）——概述</h1>
+      </div>
+  
+  
+  <div class="nexmoe-post-meta" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2020年03月15日</a>
+    <a><i class="nexmoefont icon-areachart"></i>2.4k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 10 分钟</a>
+</div>
+
+  <div class="nexmoe-post-right">
+    
+      <div class="nexmoe-fixed">
+        <div class="nexmoe-valign">
+            <div class="nexmoe-toc">
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Javase基础（一）——概述"><span class="toc-number">1.</span> <span class="toc-text">Javase基础（一）——概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#A-Java语言发展史"><span class="toc-number">1.1.</span> <span class="toc-text">A:Java语言发展史</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#B-Java语言版本"><span class="toc-number">1.2.</span> <span class="toc-text">B:Java语言版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C-Java语言平台"><span class="toc-number">1.3.</span> <span class="toc-text">C:Java语言平台</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Java语言特点"><span class="toc-number">1.3.1.</span> <span class="toc-text">Java语言特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java语言跨平台原理"><span class="toc-number">1.3.2.</span> <span class="toc-text">Java语言跨平台原理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JRE和JDK的概述"><span class="toc-number">1.4.</span> <span class="toc-text">JRE和JDK的概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JDK的下载和安装"><span class="toc-number">1.4.1.</span> <span class="toc-text">JDK的下载和安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JDK安装路径下的目录解释"><span class="toc-number">1.4.2.</span> <span class="toc-text">JDK安装路径下的目录解释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#path环境变量的作用及配置"><span class="toc-number">1.4.3.</span> <span class="toc-text">path环境变量的作用及配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#方式1"><span class="toc-number">1.4.3.1.</span> <span class="toc-text">方式1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方式2"><span class="toc-number">1.4.3.2.</span> <span class="toc-text">方式2</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#classpath环境变量的作用"><span class="toc-number">1.4.4.</span> <span class="toc-text">classpath环境变量的作用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Java开发工具"><span class="toc-number">2.</span> <span class="toc-text">Java开发工具</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HelloWorld"><span class="toc-number">3.</span> <span class="toc-text">HelloWorld</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#HelloWorld常见问题"><span class="toc-number">3.1.</span> <span class="toc-text">HelloWorld常见问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Java语言的书写规范"><span class="toc-number">4.</span> <span class="toc-text">Java语言的书写规范</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#注释的分类"><span class="toc-number">4.1.</span> <span class="toc-text">注释的分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关键字"><span class="toc-number">4.2.</span> <span class="toc-text">关键字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#标识符"><span class="toc-number">4.3.</span> <span class="toc-text">标识符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命名规则"><span class="toc-number">4.4.</span> <span class="toc-text">命名规则</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li></ol>
+            </div>
+        </div>
+      </div>
+    
+  </div>
+
+  <article>
+    <h1 id="Javase基础（一）——概述"><a href="#Javase基础（一）——概述" class="headerlink" title="Javase基础（一）——概述"></a>Javase基础（一）——概述</h1><h2 id="A-Java语言发展史"><a href="#A-Java语言发展史" class="headerlink" title="A:Java语言发展史"></a>A:Java语言发展史</h2><ul>
+<li>詹姆斯?高斯林（James Gosling）1977年获得了加拿大卡尔加里大学计算机科学学士学位，1983年获得了美国卡内基梅隆大学计算机科学博士学位，毕业后到IBM工作，设计IBM第一代工作站NeWS系统，但不受重视。后来转至Sun公司，1990年，与Patrick，Naughton和Mike Sheridan等人合作“绿色计划”，后来发展一套语言叫做“Oak”，后改名为Java。</li>
+<li>SUN(Stanford University Network，斯坦福大学网络公司)</li>
+</ul>
+<a id="more"></a>
+
+<h2 id="B-Java语言版本"><a href="#B-Java语言版本" class="headerlink" title="B:Java语言版本"></a>B:Java语言版本</h2><h2 id="C-Java语言平台"><a href="#C-Java语言平台" class="headerlink" title="C:Java语言平台"></a>C:Java语言平台</h2><ul>
+<li>J2SE(Java 2 Platform Standard Edition)标准版<ul>
+<li>是为开发普通桌面和商务应用程序提供的解决方案,该技术体系是其他两者的基础，可以完成一些桌面应用程序的开发</li>
+</ul>
+</li>
+<li>J2ME(Java 2 Platform Micro Edition)小型版<ul>
+<li>是为开发电子消费产品和嵌入式设备提供的解决方案</li>
+</ul>
+</li>
+<li>J2EE(Java 2 Platform Enterprise Edition)企业版<ul>
+<li>是为开发企业环境下的应用程序提供的一套解决方案,该技术体系中包含的技术如 Servlet、Jsp等，主要针对于Web应用程序开发</li>
+</ul>
+</li>
+</ul>
+<h3 id="Java语言特点"><a href="#Java语言特点" class="headerlink" title="Java语言特点"></a>Java语言特点</h3><ul>
+<li>简单性       </li>
+<li>解释性</li>
+<li>面向对象       </li>
+<li>高性能</li>
+<li>分布式处理   </li>
+<li>多线程</li>
+<li>健壮性       </li>
+<li>动态</li>
+<li>结构中立       </li>
+<li>安全性</li>
+<li>开源</li>
+<li>跨平台</li>
+</ul>
+<h3 id="Java语言跨平台原理"><a href="#Java语言跨平台原理" class="headerlink" title="Java语言跨平台原理"></a>Java语言跨平台原理</h3><p>只要在需要运行java应用程序的操作系统上，先安装一个Java虚拟机(JVM Java Virtual Machine)即可。由JVM来负责Java程序在该系统中的运行。</p>
+<h2 id="JRE和JDK的概述"><a href="#JRE和JDK的概述" class="headerlink" title="JRE和JDK的概述"></a>JRE和JDK的概述</h2><ul>
+<li><p>A:什么是JRE</p>
+<p>  包括Java虚拟机(JVM Java Virtual Machine)和Java程序所需的核心类库等，如果想要运行一个开发好的Java程序，计算机中只需要安装JRE即可。</p>
+<p>  JRE:JVM+类库。</p>
+</li>
+<li><p>B:什么是JDK</p>
+<p>  JDK是提供给Java开发人员使用的，其中包含了java的开发工具，也包括了JRE。所以安装了JDK，就不用在单独安装JRE了。</p>
+<p>  其中的开发工具：编译工具(javac.exe)  打包工具(jar.exe)等</p>
+<p>  JDK:JRE+JAVA的开发工具。</p>
+</li>
+<li><p>C:为什么JDK中包含一个JRE</p>
+<p>  开发完的程序，需要运行一下看看效果。</p>
+</li>
+<li><p>D:JDK,JRE,JVM的作用和关系<br>JDK=JRE+开发工具包；JRE=JVM+核心类库</p>
+</li>
+</ul>
+<h3 id="JDK的下载和安装"><a href="#JDK的下载和安装" class="headerlink" title="JDK的下载和安装"></a>JDK的下载和安装</h3><ul>
+<li><p>A:JDK的下载：官网 <a href="http://www.oracle.com" target="_blank" rel="noopener">http://www.oracle.com</a></p>
+</li>
+<li><p>B:JDK的安装</p>
+<ul>
+<li>安装路径不要有中文或者特殊符号如空格等。</li>
+<li>所有和开发相关的软件最好安装目录统一。</li>
+<li>举例：我的JDK安装路径</li>
+<li>D:\develop\Java\jdk1.7.0_72</li>
+<li>当提示安装JRE时，可以选择不安装。建议还是安装上。</li>
+</ul>
+</li>
+<li><p>C:验证安装是否成功</p>
+<ul>
+<li>a:通过DOS命令，切换到JDK安装的bin目录下。<ul>
+<li>D:\develop\Java\jdk1.7.0_72\bin</li>
+</ul>
+</li>
+<li>b:然后分别输入javac和java，如果正常显示一些内容，说明安装成功</li>
+</ul>
+</li>
+</ul>
+<h3 id="JDK安装路径下的目录解释"><a href="#JDK安装路径下的目录解释" class="headerlink" title="JDK安装路径下的目录解释"></a>JDK安装路径下的目录解释</h3><ul>
+<li><p>a:bin目录：该目录用于存放一些可执行程序。</p>
+<p>  如javac.exe（java编译器）、java.exe(java运行工具)，jar.exe(打包工具)和* javadoc.exe(文档生成工具)等。</p>
+</li>
+<li><p>b:db目录：db目录是一个小型的数据库。</p>
+<p>  从JDK 6.0开始，Java中引用了一个新的成员JavaDB，这是一个纯Java实现、开源的数据库管理系统。这个数据库不仅轻便，而且支持JDBC 4.0所有的规范，在学习JDBC 时，不再需要额外地安装一个数据库软件，选择直接使用JavaDB即可。</p>
+</li>
+<li><p>c:jre目录：”jre”是 Java Runtime Environment 的缩写，意为Java程序运行时环境。</p>
+<p>  此目录是Java运行时环境的根目录，它包括Java虚拟机，运行时的类包，Java应用启动器以及一个bin目录，但不包含开发环境中的开发工具。</p>
+</li>
+<li><p>d:include目录：由于JDK是通过C和C++实现的，因此在启动时需要引入一些C语言的头文件，该目录就是用于存放这些头文件的。</p>
+</li>
+<li><p>e:lib目录：lib是library的缩写，意为 Java 类库或库文件，是开发工具使用的归档包文件。</p>
+</li>
+<li><p>f:src.zip文件：src.zip为src文件夹的压缩文件，src中放置的是JDK核心类的源代码，通过该文件可以查看Java基础类的源代码。</p>
+</li>
+</ul>
+<h3 id="path环境变量的作用及配置"><a href="#path环境变量的作用及配置" class="headerlink" title="path环境变量的作用及配置"></a>path环境变量的作用及配置</h3><h4 id="方式1"><a href="#方式1" class="headerlink" title="方式1"></a>方式1</h4><ul>
+<li><p>A:在JDK的bin目录下开发程序容易产生的问题</p>
+<ul>
+<li>a:如果文件过多，不方便管理</li>
+<li>b:删除自己写过的不需要的文件，可能不小心把JDK自带的工具给删除了</li>
+</ul>
+</li>
+<li><p>B:如何解决问题：配置path环境变量</p>
+</li>
+<li><p>C:配置方式</p>
+<ul>
+<li><p>a:xp系统</p>
+<p>右键点击桌面计算机→选择属性→选择高级选项卡→点击环境变量→下方系统变量中查找path→双击path→将jdk安装目录下的bin目录添加到最左边并添加分号。</p>
+</li>
+<li><p>b:win7/win8系统</p>
+<p>右键点击桌面计算机→选择属性→选择高级系统设置→选择高级选项卡→点击环境变量→下方系统变量中查找path→双击path→将jdk安装目录下的bin目录添加到最左边并添加分号。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>path配置的是可执行的文件.exe,配置后可以在不同的盘符下访问path路径下的可执行文件</strong></p>
+<h4 id="方式2"><a href="#方式2" class="headerlink" title="方式2"></a>方式2</h4><ul>
+<li>A:先配置JAVA_HOME：相当于多加一级目录</li>
+<li>B:再修改path</li>
+</ul>
+<h3 id="classpath环境变量的作用"><a href="#classpath环境变量的作用" class="headerlink" title="classpath环境变量的作用"></a>classpath环境变量的作用</h3><p><strong>目前已经不用配置该项了</strong></p>
+<p>path和classpath的区别</p>
+<ul>
+<li>path配置的是可执行的文件.exe,配置后可以在不同的盘符下访问path路径下的可执行文件</li>
+<li>classpath配置的java的类文件,就是.class文件</li>
+</ul>
+<h1 id="Java开发工具"><a href="#Java开发工具" class="headerlink" title="Java开发工具"></a>Java开发工具</h1><ul>
+<li>A:notepad(微软操作系统自带)</li>
+<li>B:Editplus/Notepad++</li>
+<li>C:Eclipse</li>
+<li>D:MyEclipse</li>
+</ul>
+<p><strong>先notepad，然后Editplus，再Eclipse</strong></p>
+<h1 id="HelloWorld"><a href="#HelloWorld" class="headerlink" title="HelloWorld"></a>HelloWorld</h1><p>编写顺序：</p>
+<ul>
+<li><p>A:定义类</p>
+</li>
+<li><p>B:写main方法</p>
+</li>
+<li><p>C:写输出语句</p>
+</li>
+<li><p>D:Java程序开发运行与工作原理</p>
+</li>
+<li><p>E:编译和运行程序</p>
+<pre><code class="java">  class HelloWorld {
+      public static void main(String[] args) {
+          System.out.println(&quot;HelloWorld&quot;);
+      }
+  }</code></pre>
+</li>
+</ul>
+<h2 id="HelloWorld常见问题"><a href="#HelloWorld常见问题" class="headerlink" title="HelloWorld常见问题"></a>HelloWorld常见问题</h2><ul>
+<li>A:找不到文件(都演示一下，让学生看看出现的都是什么问题)<ul>
+<li>a:文件扩展名隐藏导致编译失败</li>
+<li>b:文件名写错了</li>
+</ul>
+</li>
+<li>B:单词拼写问题(都演示一下，让学生看看出现的都是什么问题)<ul>
+<li>a:class写成Class</li>
+<li>b:String写成string</li>
+<li>c:System写成system</li>
+<li>d:main写成mian</li>
+</ul>
+</li>
+<li>C:括号匹配问题(都演示一下，让学生看看出现的都是什么问题)<ul>
+<li>a:把类体的那对大括号弄掉一个</li>
+<li>b:把方法体的那对大括号弄掉一个</li>
+<li>c:把输出语句的那对小括号弄掉一个</li>
+</ul>
+</li>
+<li>D:中英文问题(都演示一下，让学生看看出现的都是什么问题)<ul>
+<li>a:提示信息：错误: 非法字符: ????的格式</li>
+<li>注意：java编程中需要的基本上都是英文字符</li>
+</ul>
+</li>
+</ul>
+<h1 id="Java语言的书写规范"><a href="#Java语言的书写规范" class="headerlink" title="Java语言的书写规范"></a>Java语言的书写规范</h1><ol>
+<li><p>大括号要对齐,并且成对写</p>
+</li>
+<li><p>左大括号前面有空格</p>
+</li>
+<li><p>遇到左大括号要缩进,Tab</p>
+</li>
+<li><p>方法和程序块之间加空行让程序看起来清晰</p>
+</li>
+<li><p>并排语句之间加空格,例如for语句</p>
+</li>
+<li><p>运算符两侧加空格</p>
+</li>
+</ol>
+<h2 id="注释的分类"><a href="#注释的分类" class="headerlink" title="注释的分类"></a>注释的分类</h2><ul>
+<li><p>单行注释(//  )，多行注释(/*  <em>/)，文档注释(/*</em>  */)</p>
+</li>
+<li><p>注释的作用</p>
+<ul>
+<li>A:解释说明程序</li>
+<li>B:帮助我们调试错误</li>
+</ul>
+</li>
+</ul>
+<p>01.21_Java语言基础(关键字的概述和使用)(掌握)</p>
+<h2 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h2><ul>
+<li><p>被Java语言赋予特定含义的单词都是英文小写</p>
+</li>
+<li><p>关键字的特点：组成关键字的字母全部小写</p>
+</li>
+<li><p>常见关键字</p>
+<ul>
+<li>public static void class boolean int protected private等 （main不是关键字）</li>
+</ul>
+</li>
+<li><p>关键字的注意事项</p>
+<ul>
+<li>goto和const作为保留字存在,目前并不使用,类似Editplus这样的高级记事本,针对关键字有特殊的颜色标记，非常直观</li>
+</ul>
+</li>
+</ul>
+<h2 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h2><ul>
+<li><p>就是给类,接口,方法,变量等起名字时使用的字符序列</p>
+</li>
+<li><p>B:标识符的组成规则</p>
+<ul>
+<li>英文大小写字母</li>
+<li>数字字符</li>
+<li>$和_</li>
+</ul>
+</li>
+<li><p>C:标识符注意事项</p>
+<ul>
+<li>不能使用关键字</li>
+<li>不能数字开头</li>
+</ul>
+</li>
+</ul>
+<h2 id="命名规则"><a href="#命名规则" class="headerlink" title="命名规则"></a>命名规则</h2><p><strong>见名知意</strong></p>
+<ul>
+<li>包：最好是域名倒过来,要求所有的字母小写，如：<code>com.heima.包名</code></li>
+<li>类或者接口<ul>
+<li>如果是一个单词首字母大写</li>
+<li>如果是多个单词每个单词首字母大写(驼峰命名)</li>
+</ul>
+</li>
+<li>方法或者变量<ul>
+<li>如果是一个单词全部小写</li>
+<li>如果是多个单词,从第二个单词首字母大写</li>
+</ul>
+</li>
+<li>常量<ul>
+<li>如果是一个单词,所有字母大写</li>
+<li>如果是多个单词,所有的单词大写,用下划线区分每个单词</li>
+</ul>
+</li>
+</ul>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ol>
+<li><p>第一个HelloWorld敲10遍(10遍是个概数背下来为止)</p>
+<pre><code>class HelloWorld{
+    public static void main(String [] args){
+        System.out.println(&quot;Hello World!&quot;);
+    }
+}</code></pre></li>
+</ol>
+<ol start="2">
+<li><p>System.out.print();和System.out.println();的区别是什么</p>
+<blockquote>
+<p>前者是输出后没有回车换行，后者输出后回车换行</p>
+</blockquote>
+</li>
+<li><p>标识符的命名规则注意事项?</p>
+<blockquote>
+<p>标识符：类名，变量名，方法名，常量<br>类名：每个首字母大写<br>变量名，方法名：第一个首字母小写后面首字母大写<br>常量：每个字母都大写不同单词用下划线隔开</p>
+</blockquote>
+</li>
+</ol>
+
+  </article>
+
+  <div class="nexmoe-post-meta">
+    
+    
+        <a class="nexmoefont icon-tag-fill -link" href="/tags/Java/" rel="tag">Java</a>
+    
+</div>
+
+  <div class="nexmoe-post-footer">
+    
+      
+  <div class="nexmoe-post-copyright">
+    <strong>Author：</strong>xiaopi3<br>
+    <strong>Link：</strong><a href="https://xiaopi3.gitee.io/archives/4eea31b5.html" title="https:&#x2F;&#x2F;xiaopi3.gitee.io&#x2F;archives&#x2F;4eea31b5.html" target="_blank" rel="noopener">https:&#x2F;&#x2F;xiaopi3.gitee.io&#x2F;archives&#x2F;4eea31b5.html</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
+
+
+    
+    <section class="nexmoe-comment">
+    <div class="valine"></div>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js'></script>
+<script>
+    // 使用方法 https://valine.js.org/quickstart.html
+    new Valine({
+        el: '.valine',
+        appId: 'rRk6BFhmQH4vssFy1nmrAk4q-gzGzoHsz',
+        appKey: 'VAePGgqfPCi9xvsBz7DRzxrk'
+    })
+</script>
+</section>
+  </div>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js,gh/nexmoe/nexmoe.github.io@latest/js/app.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<!--<script src="/js/app.js?v=1584628063069"></script>-->
+
+
+    <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+
+
+ 
+<script> 
+!function(e,t,a){function n(){c(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"),o(),r()}function r(){for(var e=0;e<d.length;e++)d[e].alpha<=0?(t.body.removeChild(d[e].el),d.splice(e,1)):(d[e].y--,d[e].scale+=.004,d[e].alpha-=.013,d[e].el.style.cssText="left:"+d[e].x+"px;top:"+d[e].y+"px;opacity:"+d[e].alpha+";transform:scale("+d[e].scale+","+d[e].scale+") rotate(45deg);background:"+d[e].color+";z-index:99999");requestAnimationFrame(r)}function o(){var t="function"==typeof e.onclick&&e.onclick;e.onclick=function(e){t&&t(),i(e)}}function i(e){var a=t.createElement("div");a.className="heart",d.push({el:a,x:e.clientX-5,y:e.clientY-5,scale:1,alpha:1,color:s()}),t.body.appendChild(a)}function c(e){var a=t.createElement("style");a.type="text/css";try{a.appendChild(t.createTextNode(e))}catch(t){a.styleSheet.cssText=e}t.getElementsByTagName("head")[0].appendChild(a)}function s(){return"rgb("+~~(255*Math.random())+","+~~(255*Math.random())+","+~~(255*Math.random())+")"}var d=[];e.requestAnimationFrame=function(){return e.requestAnimationFrame||e.webkitRequestAnimationFrame||e.mozRequestAnimationFrame||e.oRequestAnimationFrame||e.msRequestAnimationFrame||function(e){setTimeout(e,1e3/60)}}(),n()}(window,document);
+</script>
+
+  
+
+
+
+
+
+</body>
+
+</html>

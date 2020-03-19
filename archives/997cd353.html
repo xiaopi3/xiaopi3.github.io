@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+
+<html lang="zh_CN">
+
+<head>
+  
+  <title>SpringBoot-尚硅谷笔记 - 天落枫阁</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="this is a personal blog, about java javascript python and other compute tech">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  
+  
+
+  <link rel="shortcut icon" href="/img/avatar.jpg" type="image/png" />
+  <meta name="description" content="一、hello world目的：简化spring开发 技术栈：spring全家桶 J2EE一站式解决方案 优点：  与主流框架集成 嵌入tomcat，直接生成jar包 starters启动器，自动配置依赖和版本管理 无需xml，开箱即用 提供准生产环境的应用监控 与云计算集成">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot-尚硅谷笔记">
+<meta property="og:url" content="https://xiaopi3.gitee.io/archives/997cd353.html">
+<meta property="og:site_name" content="天落枫阁">
+<meta property="og:description" content="一、hello world目的：简化spring开发 技术栈：spring全家桶 J2EE一站式解决方案 优点：  与主流框架集成 嵌入tomcat，直接生成jar包 starters启动器，自动配置依赖和版本管理 无需xml，开箱即用 提供准生产环境的应用监控 与云计算集成">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiaopi3.gitee.io/archives/997cd353/ssbd.jpg">
+<meta property="article:published_time" content="2020-03-14T16:35:17.000Z">
+<meta property="article:modified_time" content="2020-03-14T16:35:17.000Z">
+<meta property="article:author" content="xiaopi3">
+<meta property="article:tag" content="springboot">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaopi3.gitee.io/archives/997cd353/ssbd.jpg">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/gh/nexmoe/nexmoe.github.io@latest/css/style.css,npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css" crossorigin>
+  
+  <!--<link rel="stylesheet" href="/css/style.css?v=1584628063081">-->
+
+   
+    <style>
+      .nexmoe-avatar img:hover {
+        -webkit-transform: rotateZ(360deg);
+        -moz-transform: rotateZ(360deg);
+        transform: rotateZ(360deg);
+      }	
+    </style>
+  
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(/img/985.jpg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="xiaopi3" class="mdui-btn mdui-btn-icon"><img src="/img/avatar.jpg" alt="xiaopi3"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="xiaopi3">
+            <img src="/img/avatar.jpg" alt="xiaopi3" alt="xiaopi3">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>Articles</span>14</div>
+        <div><span>Tags</span>10</div>
+        <div><span>Categories</span>0</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/archives" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=" onsubmit="return search();">
+            <label><input id="search_value" name="q" type="search" placeholder="Search"></label>
+        </form>
+    </div>
+</div>
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Social</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/8391083" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/xiaopi3/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a><a class="mdui-ripple" href="mailto:447560484@qq.com" target="_blank" mdui-tooltip="{content: 'Email'}" style="color: rgb(34, 184, 221);background-color: rgba(34, 184, 221, .15);">
+            <i class="nexmoefont icon-mail-fill"></i>
+        </a><a class="mdui-ripple" href="https://weibo.com/u/1500580691" target="_blank" mdui-tooltip="{content: '微博'}" style="color: rgb(255, 165, 76);background-color: rgba(255, 165, 76, .15);">
+            <i class="nexmoefont icon-weibo"></i>
+        </a><a class="mdui-ripple" href="http://wpa.qq.com/msgrd?v=3&uin=447560484&site=qq&menu=yes" target="_blank" mdui-tooltip="{content: 'QQ'}" style="color: rgb(0, 82, 217);background-color: rgba(0, 82, 217, .15);">
+            <i class="nexmoefont icon-QQ"></i>
+        </a><a class="mdui-ripple" href="https://blog.csdn.net/xiapi3" target="_blank" mdui-tooltip="{content: 'CSDN'}" style="color: rgb(217, 46, 46);background-color: rgba(217, 46, 46, .15);">
+            <i class="nexmoefont icon-rss"></i>
+        </a>
+    </div>
+</div>
+  
+  
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Tagcloud</h3>
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud">
+      <a href="/tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="/tags/Guide/" style="font-size: 15px;">Guide</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/RPC/" style="font-size: 10px;">RPC</a> <a href="/tags/mobx/" style="font-size: 10px;">mobx</a> <a href="/tags/nodejs/" style="font-size: 15px;">nodejs</a> <a href="/tags/npm/" style="font-size: 15px;">npm</a> <a href="/tags/springboot/" style="font-size: 15px;">springboot</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">测试</a>
+    </div>
+    
+  </div>
+  <style>
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+1) {
+    background-color: rgba(255,78,106,0.15);
+    color: rgba(255,78,106,0.8);
+    }
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+2) {
+    background-color: rgba(255,170,115,0.15);
+    color: #ffaa73;
+    }
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+3) {
+    background-color: rgba(254,212,102,0.15);
+    color: #fed466;
+    }
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+4) {
+    background-color: rgba(60,220,130,0.15);
+    color: #3cdc82;
+    }
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+5) {
+    background-color: rgba(100,220,240,0.15);
+    color: #64dcf0;
+    }
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+6) {
+    background-color: rgba(100,185,255,0.15);
+    color: #64b9ff;
+    }
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+7) {
+    background-color: rgba(180,180,255,0.15);
+    color: #b4b4ff;
+    }
+
+    
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta {
+    margin: 25px 0px;
+    font-size: 0;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a {
+    border-radius: 20px;
+    padding: 10px 18px;
+    color: #fff;
+    font-size: 14px;
+    display: inline-block;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a .nexmoefont {
+    font-size: 14px;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:before,
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta i:before {
+    margin-right: 5px;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+1) {
+    background-color: rgba(255,78,106,0.15);
+    color: #ff4e6a;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+2) {
+    background-color: rgba(255,170,115,0.15);
+    color: #ffaa73;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+3) {
+    background-color: rgba(254,212,102,0.15);
+    color: #fed466;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+4) {
+    background-color: rgba(60,220,130,0.15);
+    color: #3cdc82;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+5) {
+    background-color: rgba(100,220,240,0.15);
+    color: #64dcf0;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+6) {
+    background-color: rgba(100,185,255,0.15);
+    color: #64b9ff;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+7) {
+    background-color: rgba(180,180,255,0.15);
+    color: #b4b4ff;
+    }
+  </style>
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Archive</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2020 xiaopi3
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+  
+      <div class="nexmoe-post-cover" style="padding-bottom: 47.25%;"> 
+          <img data-src="/img/0004.jpeg" data-sizes="auto" alt="SpringBoot-尚硅谷笔记" class="lazyload">
+          <h1>SpringBoot-尚硅谷笔记</h1>
+      </div>
+  
+  
+  <div class="nexmoe-post-meta" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2020年03月15日</a>
+    <a><i class="nexmoefont icon-areachart"></i>1.6k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 7 分钟</a>
+</div>
+
+  <div class="nexmoe-post-right">
+    
+      <div class="nexmoe-fixed">
+        <div class="nexmoe-valign">
+            <div class="nexmoe-toc">
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、hello-world"><span class="toc-number">1.</span> <span class="toc-text">一、hello world</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#配置"><span class="toc-number">1.1.</span> <span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#maven添加配置"><span class="toc-number">1.1.1.</span> <span class="toc-text">maven添加配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IDEA配置"><span class="toc-number">1.1.2.</span> <span class="toc-text">IDEA配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hello-world"><span class="toc-number">1.2.</span> <span class="toc-text">hello world</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-创建普通maven工程，无骨架"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.创建普通maven工程，无骨架</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-添加maven依赖"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.添加maven依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-编写主程序"><span class="toc-number">1.2.3.</span> <span class="toc-text">3.编写主程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-编写controller文件"><span class="toc-number">1.2.4.</span> <span class="toc-text">4.编写controller文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-看效果"><span class="toc-number">1.2.5.</span> <span class="toc-text">5.看效果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#细节一二"><span class="toc-number">1.2.6.</span> <span class="toc-text">细节一二</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用spring-initializer快速生成springboot项目"><span class="toc-number">1.3.</span> <span class="toc-text">使用spring initializer快速生成springboot项目</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、springboot配置"><span class="toc-number">2.</span> <span class="toc-text">二、springboot配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#配置文件"><span class="toc-number">2.1.</span> <span class="toc-text">配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#yml语法"><span class="toc-number">2.2.</span> <span class="toc-text">yml语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本语法"><span class="toc-number">2.2.1.</span> <span class="toc-text">基本语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置文件注入javabean"><span class="toc-number">2.2.2.</span> <span class="toc-text">配置文件注入javabean</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#验证注入情况"><span class="toc-number">2.2.3.</span> <span class="toc-text">验证注入情况</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#properties语法"><span class="toc-number">2.3.</span> <span class="toc-text">properties语法</span></a></li></ol></li></ol>
+            </div>
+        </div>
+      </div>
+    
+  </div>
+
+  <article>
+    <h1 id="一、hello-world"><a href="#一、hello-world" class="headerlink" title="一、hello world"></a>一、hello world</h1><p>目的：简化spring开发</p>
+<p>技术栈：spring全家桶</p>
+<p>J2EE一站式解决方案</p>
+<p><strong>优点</strong>：</p>
+<ul>
+<li>与主流框架集成</li>
+<li>嵌入tomcat，直接生成jar包</li>
+<li>starters启动器，自动配置依赖和版本管理</li>
+<li>无需xml，开箱即用</li>
+<li>提供准生产环境的应用监控</li>
+<li>与云计算集成</li>
+</ul>
+<a id="more"></a>
+
+<p>发展过程：</p>
+<ol>
+<li>单体应用：所有的都写在一个应用里，牵一发动全身</li>
+<li>微服务：独立功能元素，动态组合，节省资源，服务耦合降低</li>
+</ol>
+<blockquote>
+<p>课程学习：谷粒学院、博学谷</p>
+</blockquote>
+<p>知识前提：</p>
+<ol>
+<li>Spring框架掌握</li>
+<li>Maven掌握</li>
+<li>IDEA掌握</li>
+</ol>
+<p>环境约束：</p>
+<ol>
+<li>jdk1.8</li>
+<li>maven3.x</li>
+<li>IDEA2017以上</li>
+<li>springboot 1.5.9 release</li>
+</ol>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="maven添加配置"><a href="#maven添加配置" class="headerlink" title="maven添加配置"></a>maven添加配置</h3><pre><code class="xml">    &lt;profile&gt;
+      &lt;id&gt;jdk-1.8&lt;/id&gt;
+      &lt;activation&gt;
+        &lt;activeByDefault&gt;true&lt;/activeByDefault&gt;
+        &lt;jdk&gt;1.8&lt;/jdk&gt;
+      &lt;/activation&gt;
+      &lt;properties&gt;
+        &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;
+        &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;
+        &lt;maven.compiler.compilerVersion&gt;1.8&lt;/maven.compiler.compilerVersion&gt;
+        &lt;maven.compiler.encoding&gt;utf-8&lt;/maven.compiler.encoding&gt;
+      &lt;/properties&gt;
+    &lt;/profile&gt;</code></pre>
+<h3 id="IDEA配置"><a href="#IDEA配置" class="headerlink" title="IDEA配置"></a>IDEA配置</h3><p>配置默认maven为指定maven</p>
+<h2 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world"></a>hello world</h2><p>需求：浏览器发送hello请求，服务器返回处理结果</p>
+<h3 id="1-创建普通maven工程，无骨架"><a href="#1-创建普通maven工程，无骨架" class="headerlink" title="1.创建普通maven工程，无骨架"></a>1.创建普通maven工程，无骨架</h3><h3 id="2-添加maven依赖"><a href="#2-添加maven依赖" class="headerlink" title="2.添加maven依赖"></a>2.添加maven依赖</h3><p>包括父工程依赖和springweb依赖，此处打包为jar</p>
+<pre><code class="xml">    &lt;!-- Inherit defaults from Spring Boot --&gt;
+    &lt;parent&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+        &lt;version&gt;2.2.5.RELEASE&lt;/version&gt;
+    &lt;/parent&gt;
+    &lt;!-- Add typical dependencies for a web application --&gt;
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+
+    &lt;!-- Package as an executable jar --&gt;
+    &lt;build&gt;
+        &lt;plugins&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+                &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+            &lt;/plugin&gt;
+        &lt;/plugins&gt;
+    &lt;/build&gt;</code></pre>
+<h3 id="3-编写主程序"><a href="#3-编写主程序" class="headerlink" title="3.编写主程序"></a>3.编写主程序</h3><blockquote>
+<p>要掌握的注解：<code>@SpringBootApplication</code>。标志这是一个Springboot的应用，此时注解在主函数类外</p>
+</blockquote>
+<p>main方法中：</p>
+<blockquote>
+<p>SpringApplication.run(main类字节码文件,args)</p>
+</blockquote>
+<h3 id="4-编写controller文件"><a href="#4-编写controller文件" class="headerlink" title="4.编写controller文件"></a>4.编写controller文件</h3><blockquote>
+<p>要掌握的注解:<code>@Controller</code>。表示这个类为控制类，映射请求</p>
+</blockquote>
+<blockquote>
+<p>要掌握的注解：<code>@RequestMapping</code>。表示这个方法所映射的请求</p>
+</blockquote>
+<blockquote>
+<p>要掌握的注解：<code>@ResponseBody</code>。表示这个方法会返回一个值给response</p>
+</blockquote>
+<p><strong><em>细代码可以参考springboot环境配置日志</em></strong></p>
+<h3 id="5-看效果"><a href="#5-看效果" class="headerlink" title="5.看效果"></a>5.看效果</h3><p>可以直接工程中点击运行查看，然后去浏览器访问查看效果，也可以maven package打包成jar，然后：</p>
+<blockquote>
+<p>java -jar xxx</p>
+</blockquote>
+<p>然后浏览器访问即可</p>
+<h3 id="细节一二"><a href="#细节一二" class="headerlink" title="细节一二"></a>细节一二</h3><ul>
+<li>RESTAPI解释<br>  服务器请求，处理后不是跳转页面，而是返回内容</li>
+</ul>
+<p>如果某个controller类的所有mapping方法都是返回一个内容（字符串或者json），那么可以将<code>@ResponseBody</code>加到类上面。</p>
+<blockquote>
+<p>要掌握的注解：<code>@RestController</code>。这个为：<code>@ResponseBody</code>+<code>@Controller</code></p>
+</blockquote>
+<h2 id="使用spring-initializer快速生成springboot项目"><a href="#使用spring-initializer快速生成springboot项目" class="headerlink" title="使用spring initializer快速生成springboot项目"></a>使用spring initializer快速生成springboot项目</h2><p>生成项目的目录结构：</p>
+<ul>
+<li>主程序已经生成好</li>
+<li>resources文件夹：<ul>
+<li>static：保存静态资源：js css images</li>
+<li>templates：存放模板引擎，默认jar包使用嵌入式tomcat，不支持jsp页面</li>
+<li>application.properties：springboot应用配置文件，用来改变默认配置</li>
+</ul>
+</li>
+</ul>
+<h1 id="二、springboot配置"><a href="#二、springboot配置" class="headerlink" title="二、springboot配置"></a>二、springboot配置</h1><h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><ul>
+<li>applicatin.properties</li>
+<li>application.yml</li>
+</ul>
+<p>用来改变springboot默认配置，路径：<code>src/main/resource</code>或者<code>类路径/config</code></p>
+<p>yml配置实例：</p>
+<pre><code class="yml">server:
+    port: 8081</code></pre>
+<h2 id="yml语法"><a href="#yml语法" class="headerlink" title="yml语法"></a>yml语法</h2><h3 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h3><p>key: value<br><strong>注意：key和value之间严格【空格】约定！同一缩进下的kv属于同一层级</strong></p>
+<p><strong>==不能是tab，只能是空格==</strong></p>
+<p>注意事项：</p>
+<ul>
+<li>属性值中单引号中可以转义，双引号不会转移，字符串默认不用加引号</li>
+<li>对象表示可以用行内写法：friends: {lastname: ddd,age: 18}</li>
+<li>数组使用<code>横杠空格</code>表示元素<pre><code class="yml">  #普通写法
+  pets:
+    - cat
+    - dog
+    - pig
+  #行内写法
+  pets: [cat,dog,pig]</code></pre>
+</li>
+</ul>
+<h3 id="配置文件注入javabean"><a href="#配置文件注入javabean" class="headerlink" title="配置文件注入javabean"></a>配置文件注入javabean</h3><p>配置文件内容：</p>
+<pre><code class="yml">person:
+    name: abc
+    age: 18
+    dog:
+      name: gaga
+      age: 2
+    lists:
+      - abc
+      - gaga</code></pre>
+<p>其中，person下的第一个层级都与javabean中的属性一一对应。</p>
+<p>在Person类中，需要加上注解：<code>@Component</code>和<code>@ConfigurationProperties(prefix=&quot;person&quot;)</code></p>
+<blockquote>
+<p>要掌握的注解：<code>@ConfigurationProperties(prefix=&quot;person&quot;)</code>。用于将配置文件内的对应属性映射到javabean上，其中prefix表示选定的<strong>配置文件字段</strong>，默认从全局配置文件中获取值</p>
+</blockquote>
+<blockquote>
+<p>要掌握的注解：<code>@PropertySource(...)</code>。用于指定配置文件路径，可以指定多个，当需要获取其他文件里的配置需要加该注解</p>
+</blockquote>
+<blockquote>
+<p>要掌握的注解：：<code>@Component</code>。该注解将当前类加入容器管理，标识为spring的组件，这样才能使用第六个注解的功能</p>
+</blockquote>
+<p>注意事项：</p>
+<ul>
+<li>使用上面的注解后会提示导入配置文件注解处理器包：<pre><code class="xml">  &lt;!--导入配置文件处理器后，配置文件中写绑定信息会有提示--&gt;</code></pre>
+<h3 id="验证注入情况"><a href="#验证注入情况" class="headerlink" title="验证注入情况"></a>验证注入情况</h3>采用spring的测试类来查看注入情况</li>
+</ul>
+<p>在test-java-包下有个测试类，包含两个注解：<code>@RunWith(SpringRunner.class)</code>和<code>@SpringBootTest</code>，在测试类中写上<code>Person person;</code>并注解：<code>@Autowired</code>，然后定义一个方法输出该字段，并给该方法注解<code>@Test</code></p>
+<blockquote>
+<p>要掌握的注解：<code>@RunWith(SpringRunner.class)</code>。表示当前测试类使用的测试驱动器为springrunner，当然也可以指定为junit等</p>
+</blockquote>
+<blockquote>
+<p>要掌握的注解：<code>@SpringBootTest</code>。表示当前类为springboot的测试类</p>
+</blockquote>
+<blockquote>
+<p>要掌握的注解：<code>@Autowired</code>。表示当前类字段自动从spring容器中注入匹配的javabean</p>
+</blockquote>
+<blockquote>
+<p>要掌握的注解：<code>@Test</code>。表示当前方法为需要测试的方法，必须注解在测试类中</p>
+</blockquote>
+<h2 id="properties语法"><a href="#properties语法" class="headerlink" title="properties语法"></a>properties语法</h2><p>直接看：</p>
+<pre><code class="properties">#由于idea默认properties使用utf-8编码，
+#而程序运行时默认采用ascii编码，
+#所以输出中文会乱码，在idea的file encoding中设置运行时转码为ascii
+person.last-name=abc
+person.age=18
+person.dog.name=gaga
+person.dog.age=1
+person.maps.k1=v1
+person.map.k2=v2</code></pre>
+<blockquote>
+<p>要掌握的注解：<code>@Value(&quot;${person.last-name})</code>。该注解放在javabean类中的属性上，表示从spring容器中取出哪个值注入到当前属性中，value中也支持el表达式：<code>@Value(&quot;#{11*2})</code>会将22注入</p>
+</blockquote>
+<p>注意：@ConfigurationProperties和@Value</p>
+<ul>
+<li><p>松散绑定：</p>
+<p><img data-sizes="auto" data-src="/archives/997cd353/ssbd.jpg" alt="松散绑定" class="lazyload"></p>
+<p>只用configurationproperties支持松散绑定</p>
+</li>
+<li><p>spel语法：只有Value支持，毕竟另一个是统一注入的</p>
+</li>
+<li><p>jsr303校验：ConfigurationProperties支持，如类上加：<code>@Validated</code>，字段上加：<code>@Email</code>，则当前字段必须为邮箱格式，Value不支持</p>
+</li>
+<li><p>Value注解在复杂类型封装时不支持，只能注入基本数据类型</p>
+</li>
+</ul>
+
+  </article>
+
+  <div class="nexmoe-post-meta">
+    
+    
+        <a class="nexmoefont icon-tag-fill -link" href="/tags/springboot/" rel="tag">springboot</a>
+    
+</div>
+
+  <div class="nexmoe-post-footer">
+    
+      
+  <div class="nexmoe-post-copyright">
+    <strong>Author：</strong>xiaopi3<br>
+    <strong>Link：</strong><a href="https://xiaopi3.gitee.io/archives/997cd353.html" title="https:&#x2F;&#x2F;xiaopi3.gitee.io&#x2F;archives&#x2F;997cd353.html" target="_blank" rel="noopener">https:&#x2F;&#x2F;xiaopi3.gitee.io&#x2F;archives&#x2F;997cd353.html</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
+
+
+    
+    <section class="nexmoe-comment">
+    <div class="valine"></div>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js'></script>
+<script>
+    // 使用方法 https://valine.js.org/quickstart.html
+    new Valine({
+        el: '.valine',
+        appId: 'rRk6BFhmQH4vssFy1nmrAk4q-gzGzoHsz',
+        appKey: 'VAePGgqfPCi9xvsBz7DRzxrk'
+    })
+</script>
+</section>
+  </div>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js,gh/nexmoe/nexmoe.github.io@latest/js/app.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<!--<script src="/js/app.js?v=1584628063086"></script>-->
+
+
+    <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+
+
+ 
+<script> 
+!function(e,t,a){function n(){c(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"),o(),r()}function r(){for(var e=0;e<d.length;e++)d[e].alpha<=0?(t.body.removeChild(d[e].el),d.splice(e,1)):(d[e].y--,d[e].scale+=.004,d[e].alpha-=.013,d[e].el.style.cssText="left:"+d[e].x+"px;top:"+d[e].y+"px;opacity:"+d[e].alpha+";transform:scale("+d[e].scale+","+d[e].scale+") rotate(45deg);background:"+d[e].color+";z-index:99999");requestAnimationFrame(r)}function o(){var t="function"==typeof e.onclick&&e.onclick;e.onclick=function(e){t&&t(),i(e)}}function i(e){var a=t.createElement("div");a.className="heart",d.push({el:a,x:e.clientX-5,y:e.clientY-5,scale:1,alpha:1,color:s()}),t.body.appendChild(a)}function c(e){var a=t.createElement("style");a.type="text/css";try{a.appendChild(t.createTextNode(e))}catch(t){a.styleSheet.cssText=e}t.getElementsByTagName("head")[0].appendChild(a)}function s(){return"rgb("+~~(255*Math.random())+","+~~(255*Math.random())+","+~~(255*Math.random())+")"}var d=[];e.requestAnimationFrame=function(){return e.requestAnimationFrame||e.webkitRequestAnimationFrame||e.mozRequestAnimationFrame||e.oRequestAnimationFrame||e.msRequestAnimationFrame||function(e){setTimeout(e,1e3/60)}}(),n()}(window,document);
+</script>
+
+  
+
+
+
+
+
+</body>
+
+</html>

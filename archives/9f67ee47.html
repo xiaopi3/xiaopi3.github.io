@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+
+<html lang="zh_CN">
+
+<head>
+  
+  <title>Javase基础（二）——数据类型 - 天落枫阁</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="this is a personal blog, about java javascript python and other compute tech">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  
+  
+
+  <link rel="shortcut icon" href="/img/avatar.jpg" type="image/png" />
+  <meta name="description" content="Javase基础（二）——数据类型和运算常量什么是常量：在程序执行的过程中其值不可以发生改变 常量的分类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javase基础（二）——数据类型">
+<meta property="og:url" content="https://xiaopi3.gitee.io/archives/9f67ee47.html">
+<meta property="og:site_name" content="天落枫阁">
+<meta property="og:description" content="Javase基础（二）——数据类型和运算常量什么是常量：在程序执行的过程中其值不可以发生改变 常量的分类">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-03-15T03:06:01.000Z">
+<meta property="article:modified_time" content="2020-03-15T03:06:01.000Z">
+<meta property="article:author" content="xiaopi3">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/gh/nexmoe/nexmoe.github.io@latest/css/style.css,npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css" crossorigin>
+  
+  <!--<link rel="stylesheet" href="/css/style.css?v=1584628063057">-->
+
+   
+    <style>
+      .nexmoe-avatar img:hover {
+        -webkit-transform: rotateZ(360deg);
+        -moz-transform: rotateZ(360deg);
+        transform: rotateZ(360deg);
+      }	
+    </style>
+  
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(/img/985.jpg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="xiaopi3" class="mdui-btn mdui-btn-icon"><img src="/img/avatar.jpg" alt="xiaopi3"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="xiaopi3">
+            <img src="/img/avatar.jpg" alt="xiaopi3" alt="xiaopi3">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>Articles</span>14</div>
+        <div><span>Tags</span>10</div>
+        <div><span>Categories</span>0</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/archives" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=" onsubmit="return search();">
+            <label><input id="search_value" name="q" type="search" placeholder="Search"></label>
+        </form>
+    </div>
+</div>
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Social</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/8391083" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/xiaopi3/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a><a class="mdui-ripple" href="mailto:447560484@qq.com" target="_blank" mdui-tooltip="{content: 'Email'}" style="color: rgb(34, 184, 221);background-color: rgba(34, 184, 221, .15);">
+            <i class="nexmoefont icon-mail-fill"></i>
+        </a><a class="mdui-ripple" href="https://weibo.com/u/1500580691" target="_blank" mdui-tooltip="{content: '微博'}" style="color: rgb(255, 165, 76);background-color: rgba(255, 165, 76, .15);">
+            <i class="nexmoefont icon-weibo"></i>
+        </a><a class="mdui-ripple" href="http://wpa.qq.com/msgrd?v=3&uin=447560484&site=qq&menu=yes" target="_blank" mdui-tooltip="{content: 'QQ'}" style="color: rgb(0, 82, 217);background-color: rgba(0, 82, 217, .15);">
+            <i class="nexmoefont icon-QQ"></i>
+        </a><a class="mdui-ripple" href="https://blog.csdn.net/xiapi3" target="_blank" mdui-tooltip="{content: 'CSDN'}" style="color: rgb(217, 46, 46);background-color: rgba(217, 46, 46, .15);">
+            <i class="nexmoefont icon-rss"></i>
+        </a>
+    </div>
+</div>
+  
+  
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Tagcloud</h3>
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud">
+      <a href="/tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="/tags/Guide/" style="font-size: 15px;">Guide</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/RPC/" style="font-size: 10px;">RPC</a> <a href="/tags/mobx/" style="font-size: 10px;">mobx</a> <a href="/tags/nodejs/" style="font-size: 15px;">nodejs</a> <a href="/tags/npm/" style="font-size: 15px;">npm</a> <a href="/tags/springboot/" style="font-size: 15px;">springboot</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">测试</a>
+    </div>
+    
+  </div>
+  <style>
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+1) {
+    background-color: rgba(255,78,106,0.15);
+    color: rgba(255,78,106,0.8);
+    }
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+2) {
+    background-color: rgba(255,170,115,0.15);
+    color: #ffaa73;
+    }
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+3) {
+    background-color: rgba(254,212,102,0.15);
+    color: #fed466;
+    }
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+4) {
+    background-color: rgba(60,220,130,0.15);
+    color: #3cdc82;
+    }
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+5) {
+    background-color: rgba(100,220,240,0.15);
+    color: #64dcf0;
+    }
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+6) {
+    background-color: rgba(100,185,255,0.15);
+    color: #64b9ff;
+    }
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+7) {
+    background-color: rgba(180,180,255,0.15);
+    color: #b4b4ff;
+    }
+
+    
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta {
+    margin: 25px 0px;
+    font-size: 0;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a {
+    border-radius: 20px;
+    padding: 10px 18px;
+    color: #fff;
+    font-size: 14px;
+    display: inline-block;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a .nexmoefont {
+    font-size: 14px;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:before,
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta i:before {
+    margin-right: 5px;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+1) {
+    background-color: rgba(255,78,106,0.15);
+    color: #ff4e6a;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+2) {
+    background-color: rgba(255,170,115,0.15);
+    color: #ffaa73;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+3) {
+    background-color: rgba(254,212,102,0.15);
+    color: #fed466;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+4) {
+    background-color: rgba(60,220,130,0.15);
+    color: #3cdc82;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+5) {
+    background-color: rgba(100,220,240,0.15);
+    color: #64dcf0;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+6) {
+    background-color: rgba(100,185,255,0.15);
+    color: #64b9ff;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+7) {
+    background-color: rgba(180,180,255,0.15);
+    color: #b4b4ff;
+    }
+  </style>
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Archive</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2020 xiaopi3
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+  
+      <div class="nexmoe-post-cover" style="padding-bottom: 62.5%;"> 
+          <img data-src="/img/0009.png" data-sizes="auto" alt="Javase基础（二）——数据类型" class="lazyload">
+          <h1>Javase基础（二）——数据类型</h1>
+      </div>
+  
+  
+  <div class="nexmoe-post-meta" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2020年03月15日</a>
+    <a><i class="nexmoefont icon-areachart"></i>5.5k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 25 分钟</a>
+</div>
+
+  <div class="nexmoe-post-right">
+    
+      <div class="nexmoe-fixed">
+        <div class="nexmoe-valign">
+            <div class="nexmoe-toc">
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Javase基础（二）——数据类型和运算"><span class="toc-number">1.</span> <span class="toc-text">Javase基础（二）——数据类型和运算</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#常量"><span class="toc-number">1.1.</span> <span class="toc-text">常量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#进制概述和二-八-十六进制"><span class="toc-number">1.2.</span> <span class="toc-text">进制概述和二,八,十六进制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#进制转换"><span class="toc-number">1.2.1.</span> <span class="toc-text">进制转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#源码、反码、补码"><span class="toc-number">1.3.</span> <span class="toc-text">源码、反码、补码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原码"><span class="toc-number">1.3.1.</span> <span class="toc-text">原码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#反码"><span class="toc-number">1.3.2.</span> <span class="toc-text">反码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#补码"><span class="toc-number">1.3.3.</span> <span class="toc-text">补码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#变量的概述及格式"><span class="toc-number">1.4.</span> <span class="toc-text">变量的概述及格式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#变量相加和常量相加的区别"><span class="toc-number">1.4.1.</span> <span class="toc-text">变量相加和常量相加的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据类型"><span class="toc-number">1.5.</span> <span class="toc-text">数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本数据类型分类-4类8种"><span class="toc-number">1.5.1.</span> <span class="toc-text">基本数据类型分类(4类8种)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#字符和字符串"><span class="toc-number">1.5.1.1.</span> <span class="toc-text">字符和字符串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#char数据类型"><span class="toc-number">1.5.1.2.</span> <span class="toc-text">char数据类型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#占用空间"><span class="toc-number">1.5.2.</span> <span class="toc-text">占用空间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#转义字符"><span class="toc-number">1.5.3.</span> <span class="toc-text">转义字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自动类型转换"><span class="toc-number">1.5.4.</span> <span class="toc-text">自动类型转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字符串与基本类型转换"><span class="toc-number">1.5.5.</span> <span class="toc-text">字符串与基本类型转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小数准确运算"><span class="toc-number">1.5.6.</span> <span class="toc-text">小数准确运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意事项"><span class="toc-number">1.5.7.</span> <span class="toc-text">注意事项</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#隐式转换"><span class="toc-number">1.6.</span> <span class="toc-text">隐式转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#强制转换"><span class="toc-number">1.7.</span> <span class="toc-text">强制转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#算术运算符"><span class="toc-number">1.8.</span> <span class="toc-text">算术运算符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#算术运算符-和–"><span class="toc-number">1.8.1.</span> <span class="toc-text">算术运算符++和–</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#赋值运算符"><span class="toc-number">1.9.</span> <span class="toc-text">赋值运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关系运算符"><span class="toc-number">1.10.</span> <span class="toc-text">关系运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#逻辑运算符"><span class="toc-number">1.11.</span> <span class="toc-text">逻辑运算符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#短路运算区别"><span class="toc-number">1.11.1.</span> <span class="toc-text">短路运算区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#位运算符"><span class="toc-number">1.12.</span> <span class="toc-text">位运算符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#位异或运算符的特点"><span class="toc-number">1.12.1.</span> <span class="toc-text">位异或运算符的特点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三元运算符"><span class="toc-number">1.13.</span> <span class="toc-text">三元运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#键盘录入"><span class="toc-number">1.14.</span> <span class="toc-text">键盘录入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#选择结构"><span class="toc-number">1.15.</span> <span class="toc-text">选择结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#循环结构"><span class="toc-number">1.16.</span> <span class="toc-text">循环结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#转义字符-1"><span class="toc-number">1.17.</span> <span class="toc-text">转义字符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法"><span class="toc-number">1.18.</span> <span class="toc-text">方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#方法重载"><span class="toc-number">1.18.1.</span> <span class="toc-text">方法重载</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数组"><span class="toc-number">1.19.</span> <span class="toc-text">数组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数组动态初始化"><span class="toc-number">1.19.1.</span> <span class="toc-text">数组动态初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组遍历"><span class="toc-number">1.19.2.</span> <span class="toc-text">数组遍历</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据类型参数传递"><span class="toc-number">1.19.3.</span> <span class="toc-text">数据类型参数传递</span></a></li></ol></li></ol></li></ol>
+            </div>
+        </div>
+      </div>
+    
+  </div>
+
+  <article>
+    <h1 id="Javase基础（二）——数据类型和运算"><a href="#Javase基础（二）——数据类型和运算" class="headerlink" title="Javase基础（二）——数据类型和运算"></a>Javase基础（二）——数据类型和运算</h1><h2 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h2><p>什么是常量：在程序执行的过程中其值不可以发生改变</p>
+<p>常量的分类</p>
+<a id="more"></a>
+
+<ul>
+<li>字面值常量        5， 10 ，99 之类的</li>
+<li>自定义常量(面向对象部分讲)     final PI=3.14159</li>
+<li>字面值常量的分类<ul>
+<li>字符串常量    用双引号括起来的内容 <code>&quot;avadsfasdfasdf&quot;</code></li>
+<li>整数常量        所有整数</li>
+<li>小数常量        所有小数</li>
+<li>字符常量        用单引号括起来的内容,里面只能放单个数字,单个字母或单个符号(注意，单引号里面什么也不放是不行的)</li>
+<li>布尔常量        较为特殊，只有true和false</li>
+<li>空常量            null(当数组引用属于局部变量且未初始化时候)</li>
+</ul>
+</li>
+</ul>
+<h2 id="进制概述和二-八-十六进制"><a href="#进制概述和二-八-十六进制" class="headerlink" title="进制概述和二,八,十六进制"></a>进制概述和二,八,十六进制</h2><p>进制：就是进位制，是人们规定的一种进位方法。 对于任何一种进制–X进制，就表示某一位置上的数运算时是逢X进一位。二进制就是逢二进一，八进制是逢八进一，十进制是逢十进一，十六进制是逢十六进一。</p>
+<p>不同进制表现同一个数据的形式特点：进制越大，表现形式越短</p>
+<ul>
+<li><p>二进制的数据表现形式</p>
+<p>  由0,1组成。以0b(b可以大写也可以小写)开头(JDK1.7版本可以表示二进制了)</p>
+</li>
+<li><p>八进制的数据表现形式</p>
+<p>  由0,1,…7组成。以0开头</p>
+</li>
+<li><p>十进制的数据表现形式</p>
+<p>  由0,1,…9组成。整数默认是十进制的</p>
+</li>
+<li><p>十六进制的数据表现形式</p>
+<p>  由0,1,…9,a,b,c,d,e,f(大小写均可)。以0x开头</p>
+</li>
+</ul>
+<h3 id="进制转换"><a href="#进制转换" class="headerlink" title="进制转换"></a>进制转换</h3><ul>
+<li><p>任意进制到十进制的转换原理</p>
+<ul>
+<li>系数：就是每一位上的数据。</li>
+<li>基数：X进制，基数就是X。</li>
+<li>权：在右边，从0开始编号，对应位上的编号即为该位的权。</li>
+<li>结果：把系数*基数的权次幂相加即可。</li>
+</ul>
+</li>
+<li><p>十进制到任意进制的转换</p>
+<ul>
+<li><p>除积倒取余法</p>
+</li>
+<li><p>8421码</p>
+<blockquote>
+<p>8421码是中国大陆的叫法，8421码是BCD代码中最常用的一种。在这种编码方式中每一位二值代码的1都是代表一个固定数值，把每一位的1代表的十进制数加起来，得到的结果就是它所代表的十进制数码。</p>
+<p>通过8421码的方式进行二进制和十进制的相互转换</p>
+<p>二进制到八进制的简易方式：三个二进制数为一组</p>
+<p>二进制到十六进制的简易方式：四个二进制数为一组</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="源码、反码、补码"><a href="#源码、反码、补码" class="headerlink" title="源码、反码、补码"></a>源码、反码、补码</h2><h3 id="原码"><a href="#原码" class="headerlink" title="原码"></a>原码</h3><ul>
+<li>就是二进制定点表示法，即最高位为符号位，“0”表示正，“1”表示负，其余位表示数值的大小。</li>
+<li>通过一个字节,也就是8个二进制位表示+7和-7</li>
+<li>0(符号位)    0000111</li>
+<li>1(符号位)    0000111</li>
+</ul>
+<h3 id="反码"><a href="#反码" class="headerlink" title="反码"></a>反码</h3><ul>
+<li>正数的反码与其原码相同；负数的反码是对其原码逐位取反，但符号位除外。</li>
+</ul>
+<h3 id="补码"><a href="#补码" class="headerlink" title="补码"></a>补码</h3><p>计算机计算时候都是以补码形式运算的</p>
+<ul>
+<li>正数的补码与其原码相同；负数的补码是在其反码的末位加1。</li>
+</ul>
+<p>例子：</p>
+<p>已知原码求补码</p>
+<pre><code>0b10110100 原
+0b11001011 反//符号位不变
+0b11001100 补</code></pre><p>已知补码求原</p>
+<pre><code>0b11101110 补
+0b11101101 反
+0b10010010 原</code></pre><h2 id="变量的概述及格式"><a href="#变量的概述及格式" class="headerlink" title="变量的概述及格式"></a>变量的概述及格式</h2><p>变量：在程序执行的过程中，在某个范围内其值可以发生改变的量，用来不断的存放同一类型的常量，并可以重复使用</p>
+<p>格式：数据类型 变量名 = 变量值;</p>
+<p><strong><font color="red">基本数据类型占用字节数</font></strong></p>
+<pre><code class="java">boolean 1
+byte    1
+char    2
+short   2
+int     4
+float   4
+long    8
+double  8</code></pre>
+<h3 id="变量相加和常量相加的区别"><a href="#变量相加和常量相加的区别" class="headerlink" title="变量相加和常量相加的区别"></a>变量相加和常量相加的区别</h3><ul>
+<li>面试题:看下面的程序是否有问题，如果有问题，请指出并说明理由。</li>
+</ul>
+<pre><code class="java">byte b1 = 3;
+byte b2 = 4;
+byte b3 = b1 + b2;</code></pre>
+<p>从两方面去回答这个题</p>
+<ul>
+<li>b1和b2是两个变量,变量里面存储的值都是变化的,所以在程序运行中JVM是无法判断里面具体的值</li>
+<li>byte类型的变量在进行运算的时候,会自动类型提升为int类型</li>
+</ul>
+<pre><code class="java">byte b4 = 3 + 4;</code></pre>
+<ul>
+<li>3和4都是常量,java有常量优化机制,就是在编译的的时候直接把3和4的结果赋值给b4了</li>
+</ul>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>Java语言是强类型语言，对于每一种数据都定义了明确的具体数据类型，在内存中分配了不同大小的内存空间</p>
+<p>分类</p>
+<ul>
+<li><p>基本数据类型</p>
+</li>
+<li><p>引用数据类型</p>
+</li>
+<li><p>其他</p>
+</li>
+</ul>
+<h3 id="基本数据类型分类-4类8种"><a href="#基本数据类型分类-4类8种" class="headerlink" title="基本数据类型分类(4类8种)"></a>基本数据类型分类(4类8种)</h3><ul>
+<li><p>整数型</p>
+<ul>
+<li>byte 占一个字节  -128到127</li>
+<li>short 占两个字  -2^15~2^15-1</li>
+<li>int 占四个字节 -2^31~2^31-1</li>
+<li>long 占八个字节 -2^63~2^63-1</li>
+</ul>
+</li>
+<li><p>浮点型</p>
+<ul>
+<li>float 占四个字节 -3.403E38~3.403E38  单精度(输入浮点型数值末尾需要加上f/F)</li>
+<li>double 占八个字节-1.798E308~1.798E308 双精度（小数类型默认为double）</li>
+</ul>
+</li>
+<li><p>字符型</p>
+<ul>
+<li>char 占两个字节 0~65535（char类型数据参与运算会自动提升为int）</li>
+</ul>
+</li>
+<li><p>布尔型</p>
+<ul>
+<li><p>boolean  </p>
+<p>  boolean理论上是占八分之一个字节,因为一个开关就可以决定是true和false了,但是java中boolean类型没有明确指定他的大小<br>  <strong>不参与运算</strong>   </p>
+</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>整型</td>
+<td>byte</td>
+<td>short</td>
+<td>int</td>
+<td>long</td>
+</tr>
+<tr>
+<td>浮点</td>
+<td>float</td>
+<td>double</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>布尔</td>
+<td>boolean</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>字符</td>
+<td>char</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="字符和字符串"><a href="#字符和字符串" class="headerlink" title="字符和字符串"></a>字符和字符串</h4><p>ASCII输出：<code>System.out.println(&#39;a&#39;);</code></p>
+<p>字符类型与整数相加为ASCII字符号加整数：<code>System.out.println(&#39;a&#39;+1);</code></p>
+<p>ASCII码表，记住三个值：</p>
+<ul>
+<li>‘0’  48</li>
+<li>‘A’  65</li>
+<li>‘a’  97</li>
+</ul>
+<p>字符串与其他类型相加等于在字符串后加上字符</p>
+<pre><code class="java">System.out.println(&quot;hello&quot;+&#39;a&#39;+1);
+System.out.println(&#39;a&#39;+1+&quot;hello&quot;);</code></pre>
+<p>在有字符串参与中被称为字符串连接符</p>
+<pre><code class="java">System.out.println(&quot;5+5=&quot;+5+5);
+System.out.println(5+5+&quot;=5+5&quot;);</code></pre>
+<h4 id="char数据类型"><a href="#char数据类型" class="headerlink" title="char数据类型"></a>char数据类型</h4><p>char c = 97;    0到65535</p>
+<blockquote>
+<p>Java语言中的字符char可以存储一个中文汉字。因为Java语言采用的是Unicode编码。Unicode编码中的每个字符占用两个字节。中文也是占的两个字节。</p>
+</blockquote>
+<h3 id="占用空间"><a href="#占用空间" class="headerlink" title="占用空间"></a>占用空间</h3><pre><code>类型    字节数  数据位   默认值    范围
+boolean 1      8       false     [true,false]
+byte    1      8       0         [-128,127]
+char    2      16      &#39;\u0000&#39;  [0,2^16]或[&#39;\u0000&#39;,&#39;\uffff&#39;]
+short   2      16      0         [-2^15,2^15-1]
+int     4      32      0         [-2^31,2^31-1]
+float   4      32      0.0f      [-3.4*10^38,-1.4*10^-45]U[1.4*10^-45,3.4*10^38]
+long    8      64      0         [-2^63,2^63-1]
+double  8      64      0.0d      ...</code></pre><p><strong>long与float的取值范围谁大谁小</strong></p>
+<p>进行混合运算的时候,byte,short,char不会相互转换,都会自动类型提升为int类型,其他类型进行混合运算的是小的数据类型提升为大的</p>
+<ul>
+<li>byte,short,char（这三个混合运算也是转换为int） – int – long – float – double</li>
+<li>long: 8个字节</li>
+<li>float：4个字节</li>
+<li>IEEE754： 4个字节是32个二进制位，1位是符号位， 8位是指数位，00000000   11111111，0到255，1到254，-126到127，23位是尾数位，每个指数位减去127</li>
+</ul>
+<p>结论：</p>
+<ul>
+<li><p>它们底层的存储结构不同。</p>
+</li>
+<li><p>float表示的数据范围比long的范围要大</p>
+<p>long：2^63-1</p>
+<p>float：3.4<em>10^38 &gt; 2</em>10^38 &gt; 2<em>8^38 = 2</em>2^3^38 = 2*2^114 &gt; 2^63-1</p>
+</li>
+</ul>
+<h3 id="转义字符"><a href="#转义字符" class="headerlink" title="转义字符"></a>转义字符</h3><pre><code>\f      下一页
+\b      退格
+\r      回车
+\n      换行
+\t      制表
+\uxxxx  十六进制unicode字符
+\ddd    八进制unicode字符</code></pre><h3 id="自动类型转换"><a href="#自动类型转换" class="headerlink" title="自动类型转换"></a>自动类型转换</h3><pre><code>byte--&gt;short--&gt;char--&gt;int--&gt;long--&gt;float--&gt;double</code></pre><p><strong><code>boolean</code>类型不能自动类型转换</strong></p>
+<h3 id="字符串与基本类型转换"><a href="#字符串与基本类型转换" class="headerlink" title="字符串与基本类型转换"></a>字符串与基本类型转换</h3><pre><code class="java">XXX.parseXXX(String s)  //实现将字符串类型转为任意基本类型</code></pre>
+<h3 id="小数准确运算"><a href="#小数准确运算" class="headerlink" title="小数准确运算"></a>小数准确运算</h3><pre><code class="java">import java.math.BigDecimal;
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(0.05+0.01);          //0.060000000000000005
+        BigDecimal bd1=new BigDecimal(0.05);
+        BigDecimal bd2=new BigDecimal(0.01);
+        System.out.println(bd1.add(bd2));       //0.06000000000000000298372437868010820238851010799407958984375
+        BigDecimal bd3=new BigDecimal(&quot;0.05&quot;);
+        BigDecimal bd4=new BigDecimal(&quot;0.01&quot;);
+        System.out.println(bd3.add(bd4));       //0.06
+    }
+} </code></pre>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>作用域问题：同一个区域不能使用相同的变量名</li>
+<li>初始化值问题：局部变量在使用之前必须赋值（方法内）</li>
+<li>一条语句可以定义几个变量：int a,b,c…;</li>
+</ul>
+<h2 id="隐式转换"><a href="#隐式转换" class="headerlink" title="隐式转换"></a>隐式转换</h2><ul>
+<li>int + int    结果为int</li>
+<li>byte + int 结果为int</li>
+</ul>
+<p>Java中的默认转换规则：取值范围小的数据类型与取值范围大的数据类型进行运算,会先将小的数据类型提升为大的,再运算</p>
+<h2 id="强制转换"><a href="#强制转换" class="headerlink" title="强制转换"></a>强制转换</h2><p>强制转换问题</p>
+<ul>
+<li>int a = 10;</li>
+<li>byte b = 20;</li>
+<li>b = a + b;</li>
+</ul>
+<p>强制转换的格式，括号不能省略</p>
+<ul>
+<li>b = (byte)(a + b); (强转后的二进制都是按照补码来计算)</li>
+</ul>
+<p>强制转换的注意事项：如果超出了被赋值的数据类型的取值范围得到的结果会与你期望的结果不同（<strong>环形数值圈</strong>）而强转相当于截取，两种是不同</p>
+<h2 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h2><p>算术运算符，赋值运算符，比较(关系或条件)运算符，逻辑运算符，位运算符，三目(元)运算符</p>
+<ul>
+<li>+,-,*,/,%,++,–</li>
+</ul>
+<p><strong>注意事项：</strong></p>
+<ul>
+<li>+号在java中有三种作用,代表正号,做加法运算,字符串的连接符</li>
+<li>整数相除只能得到整数。如果想得到小数，必须把数据变化为浮点数类型</li>
+<li>/获取的是除法操作的商，%获取的是除法操作的余数</li>
+<li>%运算符<ul>
+<li>当左边的绝对值小于右边绝对值时,结果是左边</li>
+<li>当左边的绝对值等于右边或是右边的倍数时,结果是0</li>
+<li>当左边的绝对值大于右边绝对值时,结果是余数</li>
+<li>%运算符结果的符号只和左边有关系,与右边无关</li>
+<li>任何一个正整数%2结果不是0就是1可以用来当作切换条件</li>
+</ul>
+</li>
+</ul>
+<h3 id="算术运算符-和–"><a href="#算术运算符-和–" class="headerlink" title="算术运算符++和–"></a>算术运算符++和–</h3><ul>
+<li>++,–运算符的作用<ul>
+<li>自加（++）自减（–）运算</li>
+<li>++:自加。对原有的数据进行+1</li>
+<li>–:自减。对原有的数据进行-1</li>
+</ul>
+</li>
+</ul>
+<p>eg:</p>
+<pre><code class="java">  int a = 10;
+  int b = 10;
+  int c = 10;
+
+  a = b++;        //a=10,b=11
+  c = --a;        //c=9,a=9
+  b = ++a;        //b=10,a=10
+  a = c--;        //a=9,c=8</code></pre>
+<p>eg:</p>
+<pre><code class="java">int x = 4;
+int y = (x++)+(++x)+(x*10);
+//x=6,y=70</code></pre>
+<p>eg:</p>
+<pre><code class="java">byte b = 10;
+b++;            //有机制
+b = b + 1;      //报错，b是byte不能接收int</code></pre>
+<h2 id="赋值运算符"><a href="#赋值运算符" class="headerlink" title="赋值运算符"></a>赋值运算符</h2><ul>
+<li><p>基本的赋值运算符：=</p>
+<ul>
+<li>把=右边的数据赋值给左边。</li>
+</ul>
+</li>
+<li><p>扩展的赋值运算符：+=,-=,*=,/=,%=</p>
+<ul>
+<li>+= 把左边和右边做加法，然后赋值给左边。</li>
+</ul>
+</li>
+</ul>
+<p>eg:</p>
+<pre><code class="java">short s=1;s = s+1;     //int赋值给short，溢出错误
+short s=1;s+=1;        //有机质</code></pre>
+<h2 id="关系运算符"><a href="#关系运算符" class="headerlink" title="关系运算符"></a>关系运算符</h2><p>==,!=,&gt;,&gt;=,&lt;,&lt;=</p>
+<p><strong>注意事项：</strong></p>
+<ul>
+<li><p>无论你的操作是简单还是复杂，结果是boolean类型。</p>
+</li>
+<li><p>“==”不能写成”=”。</p>
+</li>
+</ul>
+<h2 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h2><ul>
+<li>&amp; | ^ !</li>
+<li>&amp;&amp; || （短路运算符）</li>
+</ul>
+<p>注意事项：</p>
+<ul>
+<li>逻辑运算符一般用于连接boolean类型的表达式或者值。</li>
+<li>表达式：就是用运算符把常量或者变量连接起来的符合java语法的式子。<ul>
+<li>算术表达式：a + b</li>
+<li>比较表达式：a == b(条件表达式)</li>
+</ul>
+</li>
+</ul>
+<p>&amp;逻辑与:有false则false。</p>
+<p>|逻辑或:有true则true。</p>
+<p>^逻辑异或:相同为false，不同为true。</p>
+<p>!逻辑非:非false则true，非true则false。特点：偶数个不改变本身。</p>
+<h3 id="短路运算区别"><a href="#短路运算区别" class="headerlink" title="短路运算区别"></a>短路运算区别</h3><p>最终结果一样。&amp;&amp;具有短路效果。左边是false，右边不执行。&amp;是无论左边是false还是true,右边都会执行，同理||和|的区别同上。开发中使用短路运算比较好，但是还是要看情况而定。</p>
+<h2 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h2><p>&amp; | ^ ~  &gt;&gt; &gt;&gt;&gt; &lt;&lt;</p>
+<ul>
+<li>&amp;:有0则0</li>
+<li>|:有1则1</li>
+<li>^:相同则0，不同则1</li>
+<li><del>:按位取反（求一个数x的相反数格式：</del>X+1）</li>
+</ul>
+<h3 id="位异或运算符的特点"><a href="#位异或运算符的特点" class="headerlink" title="位异或运算符的特点"></a>位异或运算符的特点</h3><p>一个数据对另一个数据位异或两次，该数本身不变。</p>
+<p>逻辑运算符：运算布尔量</p>
+<p>位运算符：运算数值量</p>
+<p>可以用来实现两个数的交换</p>
+<pre><code class="java">int x,y;
+x=x^y;
+y=x^y;
+x=x^y;</code></pre>
+<p><code>&lt;&lt;</code>：左移    左边最高位丢弃，右边补齐0，相当于×2</p>
+<p><code>&gt;&gt;</code>：右移    最高位是0，左边补齐0;最高为是1，左边补齐1，相当于÷2</p>
+<p><code>&gt;&gt;&gt;</code>：无符号右移 无论最高位是0还是1，左边补齐0</p>
+<p>eg：最有效率的算出2 * 8的结果（2&lt;&lt;3）</p>
+<h2 id="三元运算符"><a href="#三元运算符" class="headerlink" title="三元运算符"></a>三元运算符</h2><p>三元运算符的格式：(关系表达式) ? 表达式1 : 表达式2;</p>
+<pre><code class="java">max=a&gt;b?b;
+Boolean x=a==b?trufalse;
+max=a&gt;b?(a&gt;c?c):(b&gt;c?c);</code></pre>
+<h2 id="键盘录入"><a href="#键盘录入" class="headerlink" title="键盘录入"></a>键盘录入</h2><p>键盘录入练习：键盘录入两个数据，获取这两个数据中的最大值03.10_Java语言基础(键盘录入的练习2)(掌握)<br>03.11_Java语言基础(顺序结构语句)(了解)</p>
+<pre><code class="java">import java.util.Scanner;
+class  LuRuDemo1
+{
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        System.out.println(&quot;请分别输入两个整数!&quot;);
+        int x=sc.nextInt();
+        int y=sc.nextInt();
+        int max;
+        max=(x&gt;y)? x:y;
+        System.out.println(&quot;最大的数是&quot;+max);
+    }
+}</code></pre>
+<p>流程控制语句：可以控制程序的执行流程。</p>
+<p>流程控制语句的分类</p>
+<ul>
+<li>顺序结构</li>
+<li>选择结构</li>
+<li>循环结构</li>
+</ul>
+<p>执行流程：</p>
+<ul>
+<li>从上往下，依次执行。</li>
+</ul>
+<h2 id="选择结构"><a href="#选择结构" class="headerlink" title="选择结构"></a>选择结构</h2><p>if语句。。。balabala我就不介绍了</p>
+<pre><code class="java">import java.util.Scanner;
+class If_Else {
+    public static void main(String[] args) {
+        int x;
+        Scanner sc=new Scanner(System.in);
+        System.out.println(&quot;输入一个一百以内数字&quot;);
+        x=sc.nextInt();
+        if (x&gt;100|x&lt;0) {
+            System.out.println(&quot;成绩输入错误&quot;);
+        }else if (x&gt;=90) {
+            System.out.println(&quot;优&quot;);
+        }else if (x&gt;=80) {
+            System.out.println(&quot;良&quot;);
+        }else if (x&gt;=70) {
+            System.out.println(&quot;中&quot;);
+        }else if (x&gt;=60) {
+            System.out.println(&quot;及&quot;);
+        }else
+            System.out.println(&quot;差&quot;);
+    }
+}</code></pre>
+<p>switch语句：</p>
+<p>switch表达式：能自动类型提升为int的都可以作为其表达式内容，long不可以，String可以。</p>
+<p>default一定是最后执行。</p>
+<pre><code class="java">import java.util.Scanner;
+class Day {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        System.out.println(&quot;请输入1-7的一个数字&quot;);
+        int x=sc.nextInt();
+        switch(x){
+            case 1:
+                System.out.println(&quot;星期一&quot;);
+                break;
+            case 2:
+                System.out.println(&quot;星期二&quot;);
+                break;
+            case 3:
+                System.out.println(&quot;星期三&quot;);
+                break;
+            case 4:
+                System.out.println(&quot;星期四&quot;);
+                break;
+            case 5:
+                System.out.println(&quot;星期五&quot;);
+                break;
+            case 6:
+                System.out.println(&quot;星期六&quot;);
+                break;
+            case 7:
+                System.out.println(&quot;星期日&quot;);
+                break;
+            default:
+                System.out.println(&quot;格式错误&quot;);
+        }
+    }
+}</code></pre>
+<p>注意：</p>
+<ul>
+<li>case后面只能是常量，不能是变量，而且，多个case后面的值不能出现相同的</li>
+<li>default可以省略，但是不建议</li>
+<li>break漏写会出现一个现象：case穿透。（case 穿透和default穿透）</li>
+<li>default可以在任意位置。但是建议在最后。依然是最后执行。</li>
+<li>switch语句的结束条件<ul>
+<li>遇到break就结束了</li>
+<li>执行到switch的右大括号就结束了</li>
+</ul>
+</li>
+</ul>
+<h2 id="循环结构"><a href="#循环结构" class="headerlink" title="循环结构"></a>循环结构</h2><p>for,while,do…while</p>
+<p>输出10次helloworld</p>
+<pre><code class="java">class HelloWorld {
+    public static void main(String[] args){
+        for(int i=1;i&lt;=10;i++) {
+            System.out.println(“helloworld”);
+        }
+    }
+}</code></pre>
+<p>需求：在控制台输出所有的”水仙花数”，所谓的水仙花数是指一个三位数，其各位数字的立方和等于该数本身。举例：153就是一个水仙花数。153 = 1<em>1</em>1 + 5<em>5</em>5 + 3<em>3</em>3 = 1 + 125 + 27 = 153</p>
+<pre><code class="java">class Flower {
+    public static void main(String[] args) {
+        int a1,a2,a3,count=0;
+        for (int i=100;i&lt;1000 ;i++ ) {
+            a1=i%10;               //个
+            a2=i/10%10;            //十
+            a3=i/100;              //百
+            if (i==a1*a1*a1+a2*a2*a2+a3*a3*a3) {
+                System.out.println(i);
+                count++;
+            }
+        }
+        System.out.println(count);
+    }
+}</code></pre>
+<pre><code class="java">初始化语句;
+while(判断条件语句) { // 条件满足执行循环体，不满足退出
+     循环体语句;
+     控制条件语句;
+}
+do {    // 先执行循环体，再判断条件，满足继续执行
+    循环体语句;
+    控制条件语句;
+}while(判断条件语句);</code></pre>
+<p>死循环：</p>
+<pre><code class="java">while(true){...}
+for(;;){...}</code></pre>
+<p>循环控制语句：</p>
+<p>break：退出循环</p>
+<p>continue：退出本次循环</p>
+<pre><code>for(int x=1;x&lt;=10;x++){
+   if(x%3==0){
+      //在此处填写代码
+   }
+   System.out.println(&quot;Java基础班&quot;);
+}
+ // 我想在控制台输出2次:&quot;Java基础班&quot; break;
+ // 我想在控制台输出7次:&quot;Java基础班&quot; continue;
+ // 我想在控制台输出13次:&quot;Java基础班&quot; System.out.pintln(“Java基础班”);</code></pre><p>注意：<code>System.out.println(&quot;*&quot;);和System.out.print(&quot;*&quot;);</code>的区别</p>
+<p>需求：请输出下列的形状</p>
+<pre><code class="java">//        *
+//        **
+//        ***
+//        ****
+//        *****
+
+class Day04_7 {
+    public static void main(String[] args) {
+        for (int i=5;i&gt;0 ;i-- ) {
+            for (int j=i;j&gt;0 ;j-- ) {
+                System.out.print(&quot;*&quot;);
+            }
+            System.out.println();
+        }
+    }
+}</code></pre>
+<p>需求：在控制台输出九九乘法表。</p>
+<pre><code class="java">class JiuJiuBiao
+{
+    public static void main(String[] args)
+    {
+        for (int i=1;i&lt;=9 ;i++ )
+        {
+            for (int j=1;j&lt;=i ;j++ )
+            {
+                System.out.print(j+&quot;x&quot;+i+&quot;=&quot;+i*j+&#39; &#39;);
+            }
+            System.out.println();
+        }
+        System.out.println(&quot;by pp&quot;);
+    }
+}</code></pre>
+<h2 id="转义字符-1"><a href="#转义字符-1" class="headerlink" title="转义字符"></a>转义字符</h2><p>写在字符串中的字符</p>
+<pre><code>&#39;\t&#39;    tab键的位置
+&#39;\r&#39;    回车
+&#39;\n&#39;    换行
+&#39;\&quot;&#39;    转意字符”
+&#39;\&#39;&#39;    转意字符’</code></pre><p>return的作用</p>
+<ul>
+<li>返回</li>
+<li>其实它的作用不是结束循环的，而是结束方法的。</li>
+</ul>
+<p>return和break以及continue的区别：</p>
+<ul>
+<li>return是结束方法（写在主方法里面时候，结束主方法，程序停止运行）</li>
+<li>break是跳出循环</li>
+<li>continue是终止本次循环继续下次循环<br>标号：break a；跳到a这个标号处。标号也必须是合法标识符。</li>
+</ul>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>提高代码的复用性，完成特定功能的代码块。</p>
+<p>方法的格式(写在主方法外，类中方法外)</p>
+<pre><code class="java">修饰符 返回值类型 方法名(参数类型 参数名1,参数类型 参数名2...) {
+  方法体语句;
+  return 返回值;
+}</code></pre>
+<ul>
+<li>修饰符：</li>
+<li>返回值类型：就是功能结果的数据类型。</li>
+<li>方法名：符合命名规则即可。方便我们的调用。</li>
+<li>参数：<ul>
+<li>实际参数：就是实际参与运算的。</li>
+<li>形式参数；就是方法定义上的，用于接收实际参数的。</li>
+</ul>
+</li>
+<li>参数类型：就是参数的数据类型</li>
+<li>参数名：就是变量名</li>
+<li>方法体语句：就是完成功能的代码。</li>
+<li>return：结束方法的。</li>
+<li>返回值：就是功能的结果，由return带给调用者。</li>
+</ul>
+<p>需求：求两个数据之和的案例</p>
+<pre><code class="java">public static int add(int a,int b){
+  return a+b;
+}</code></pre>
+<p>注意：</p>
+<ul>
+<li>方法不调用不执行</li>
+<li>方法与方法是平级关系，不能嵌套定义</li>
+<li>方法定义的时候参数之间用逗号隔开</li>
+<li>方法调用的时候不用再传递数据类型</li>
+<li>如果方法有明确的返回值，一定要有return带回一个值<br>方法重载概述和基本使用)</li>
+</ul>
+<h3 id="方法重载"><a href="#方法重载" class="headerlink" title="方法重载"></a>方法重载</h3><p>在同一个类中，方法名相同，参数列表不同。与返回值类型无关。</p>
+<p>参数列表不同：</p>
+<ul>
+<li>参数个数不同</li>
+<li>参数类型不同</li>
+<li>参数的顺序不同(算重载,但是在开发中不用)</li>
+</ul>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>数组(容器)：为了存储同种数据类型的多个值</p>
+<p>数组是存储同一种数据类型多个元素的集合。也可以看成是一个容器。数组既可以存储基本数据类型，也可以存储引用数据类型。</p>
+<p>数组定义格式:</p>
+<p>数据类型[] 数组名 = new 数据类型[数组的长度];</p>
+<h3 id="数组动态初始化"><a href="#数组动态初始化" class="headerlink" title="数组动态初始化"></a>数组动态初始化</h3><p>动态初始化 只指定长度，由系统给出初始化值<code>int[] arr = new int[5];</code></p>
+<p>静态初始化 给出初始化值，由系统决定长度   </p>
+<ul>
+<li>动态初始化的格式：<code>数据类型[] 数组名 = new 数据类型[数组长度];</code></li>
+</ul>
+<p>初始化：整数类型：byte,short,int,long都是0；</p>
+<p>浮点：float,double都是0.0；</p>
+<p>布尔：false</p>
+<p>字符：’\u0000’</p>
+<p>静态初始化的格式：（不允许动静结合，有元素就不写个数）</p>
+<ul>
+<li>格式：<code>数据类型[] 数组名 = new 数据类型[]{元素1,元素2,…};</code></li>
+<li>简化格式：<code>数据类型[] 数组名 = {元素1,元素2,…};</code></li>
+</ul>
+<p>区别：上一种可以先声明，再赋值。简写形式只能声明赋值在同一行。</p>
+<p>输出数组名称和数组元素</p>
+<p>打印数组名：[I@19bba45a：前面[代表一维数组（[[二维），I代表int类型，后面@符号代表地址值。</p>
+<p>注意：两个异常</p>
+<ul>
+<li>ArrayIndexOutOfBoundsException:数组索引越界异常<ul>
+<li>原因：你访问了不存在的索引。</li>
+</ul>
+</li>
+<li>NullPointerException:空指针异常<ul>
+<li>原因：数组已经不在指向堆内存了。而你还用数组名去访问元素。</li>
+<li>int[] arr = {1,2,3};</li>
+<li>arr = null;</li>
+<li>System.out.println(arr[0]);</li>
+</ul>
+</li>
+</ul>
+<h3 id="数组遍历"><a href="#数组遍历" class="headerlink" title="数组遍历"></a>数组遍历</h3><pre><code class="java">public static void print(int[] arr) {
+    for (int i = 0;i &lt; arr.length ;i++ ) {
+        System.out.print(arr[i] + &quot; &quot;);
+    }
+}</code></pre>
+<p>eg：求最大值</p>
+<pre><code class="java">public static int getMax(int[] arr) {
+   int max = arr[0];
+   for (int i = 1;i &lt; arr.length ;i++ ) {         //从数组的第二个元素开始遍历
+      if (max &lt; arr[i]) {                         //如果max记录的值小于的数组中的元素
+         max = arr[i];                            //max记录住较大的
+      }
+   }
+   return max;
+}</code></pre>
+<p>二维数组概述</p>
+<ul>
+<li><p>二维数组格式：<code>int[][] arr = new int[3][2];</code></p>
+<p>  注意事项：</p>
+<p>  以下格式也可以表示二维数组</p>
+<ul>
+<li><p>1：<code>数据类型 数组名[][] = new 数据类型[m][n];</code></p>
+</li>
+<li><p>2：<code>数据类型[] 数组名[] = new 数据类型[m][n];</code></p>
+</li>
+<li><p>注意下面定义的区别</p>
+<pre><code class="java">int x;
+int y;
+int x,y;
+int[] x;
+int[] y[];
+int[] x,y[];    x是一维数组,y是二维数组</code></pre>
+
+* 二维数组格式：`int[][] arr = new int[3][];`
+
+* 二维数组格式：`int[][] arr = {{1,2,3},{4,5},{6,7,8,9}};`
+
+
+</li>
+</ul>
+</li>
+</ul>
+<p>需求：二维数组遍历</p>
+<ul>
+<li><p>外循环控制的是二维数组的长度，其实就是一维数组的个数。</p>
+</li>
+<li><p>内循环控制的是一维数组的长度。</p>
+<pre><code class="java">  int[][] arr = {{1,2,3},{4,5},{6,7,8,9}};
+      for (int i = 0;i &lt; arr.length ;i++ ) {           //获取到每个二维数组中的一维数组
+          for (int j = 0;j &lt; arr[i].length ;j++ ) {    //获取每个一维数组中的元素
+              System.out.print(arr[i][j] + &quot; &quot;);
+          }
+          System.out.println();
+      }</code></pre>
+</li>
+</ul>
+<h3 id="数据类型参数传递"><a href="#数据类型参数传递" class="headerlink" title="数据类型参数传递"></a>数据类型参数传递</h3><p>基本数据类型传递过程不改变原值，因为调用完会弹栈，局部变量消失。</p>
+<p>引用数据类型传递改变原值，即使方法弹栈，堆内存数组还在，可以通过地址访问</p>
+
+  </article>
+
+  <div class="nexmoe-post-meta">
+    
+    
+        <a class="nexmoefont icon-tag-fill -link" href="/tags/Java/" rel="tag">Java</a>
+    
+</div>
+
+  <div class="nexmoe-post-footer">
+    
+      
+  <div class="nexmoe-post-copyright">
+    <strong>Author：</strong>xiaopi3<br>
+    <strong>Link：</strong><a href="https://xiaopi3.gitee.io/archives/9f67ee47.html" title="https:&#x2F;&#x2F;xiaopi3.gitee.io&#x2F;archives&#x2F;9f67ee47.html" target="_blank" rel="noopener">https:&#x2F;&#x2F;xiaopi3.gitee.io&#x2F;archives&#x2F;9f67ee47.html</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
+
+
+    
+    <section class="nexmoe-comment">
+    <div class="valine"></div>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js'></script>
+<script>
+    // 使用方法 https://valine.js.org/quickstart.html
+    new Valine({
+        el: '.valine',
+        appId: 'rRk6BFhmQH4vssFy1nmrAk4q-gzGzoHsz',
+        appKey: 'VAePGgqfPCi9xvsBz7DRzxrk'
+    })
+</script>
+</section>
+  </div>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js,gh/nexmoe/nexmoe.github.io@latest/js/app.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<!--<script src="/js/app.js?v=1584628063064"></script>-->
+
+
+    <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+
+
+ 
+<script> 
+!function(e,t,a){function n(){c(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"),o(),r()}function r(){for(var e=0;e<d.length;e++)d[e].alpha<=0?(t.body.removeChild(d[e].el),d.splice(e,1)):(d[e].y--,d[e].scale+=.004,d[e].alpha-=.013,d[e].el.style.cssText="left:"+d[e].x+"px;top:"+d[e].y+"px;opacity:"+d[e].alpha+";transform:scale("+d[e].scale+","+d[e].scale+") rotate(45deg);background:"+d[e].color+";z-index:99999");requestAnimationFrame(r)}function o(){var t="function"==typeof e.onclick&&e.onclick;e.onclick=function(e){t&&t(),i(e)}}function i(e){var a=t.createElement("div");a.className="heart",d.push({el:a,x:e.clientX-5,y:e.clientY-5,scale:1,alpha:1,color:s()}),t.body.appendChild(a)}function c(e){var a=t.createElement("style");a.type="text/css";try{a.appendChild(t.createTextNode(e))}catch(t){a.styleSheet.cssText=e}t.getElementsByTagName("head")[0].appendChild(a)}function s(){return"rgb("+~~(255*Math.random())+","+~~(255*Math.random())+","+~~(255*Math.random())+")"}var d=[];e.requestAnimationFrame=function(){return e.requestAnimationFrame||e.webkitRequestAnimationFrame||e.mozRequestAnimationFrame||e.oRequestAnimationFrame||e.msRequestAnimationFrame||function(e){setTimeout(e,1e3/60)}}(),n()}(window,document);
+</script>
+
+  
+
+
+
+
+
+</body>
+
+</html>

@@ -4,7 +4,7 @@
 
 <head>
   
-  <title>Hexo-Nexmon主题安装和配置流程 - 天落枫阁</title>
+  <title>分布式服务之间的通讯-RPC实战 - 天落枫阁</title>
   <meta charset="UTF-8">
   <meta name="description" content="this is a personal blog, about java javascript python and other compute tech">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
@@ -12,21 +12,25 @@
   
 
   <link rel="shortcut icon" href="/img/avatar.jpg" type="image/png" />
-  <meta name="description" content="1. nexmon参考网址：  https:&#x2F;&#x2F;docs.nexmoe.com&#x2F;  安装cd themes # 载入主题目录 git clone https:&#x2F;&#x2F;github.com&#x2F;nexmoe&#x2F;hexo-theme-nexmoe.git nexmoe # 安装 cd nexmoe # 进入 Nexmoe 主题目录 npm i --save hexo-wordcount # Node 版本 7.">
+  <meta name="description" content="前提：在会议发布后，需要提供依据会议id查询发布该会议的员工信息  provider：员工信息模块  consumer：会议模块   注意：由于是两个模块的进程间通信，所以必须实现Serializable">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo-Nexmon主题安装和配置流程">
-<meta property="og:url" content="https://xiaopi3.gitee.io/archives/85d6a244.html">
+<meta property="og:title" content="分布式服务之间的通讯-RPC实战">
+<meta property="og:url" content="https://xiaopi3.gitee.io/archives/2d865e10.html">
 <meta property="og:site_name" content="天落枫阁">
-<meta property="og:description" content="1. nexmon参考网址：  https:&#x2F;&#x2F;docs.nexmoe.com&#x2F;  安装cd themes # 载入主题目录 git clone https:&#x2F;&#x2F;github.com&#x2F;nexmoe&#x2F;hexo-theme-nexmoe.git nexmoe # 安装 cd nexmoe # 进入 Nexmoe 主题目录 npm i --save hexo-wordcount # Node 版本 7.">
+<meta property="og:description" content="前提：在会议发布后，需要提供依据会议id查询发布该会议的员工信息  provider：员工信息模块  consumer：会议模块   注意：由于是两个模块的进程间通信，所以必须实现Serializable">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-03-12T10:48:59.000Z">
-<meta property="article:modified_time" content="2020-03-12T10:48:59.000Z">
+<meta property="og:image" content="https://xiaopi3.gitee.io/archives/2d865e10/1.jpg">
+<meta property="og:image" content="https://xiaopi3.gitee.io/archives/2d865e10/2.jpg">
+<meta property="og:image" content="https://xiaopi3.gitee.io/archives/2d865e10/3.jpg">
+<meta property="article:published_time" content="2020-03-14T16:48:10.000Z">
+<meta property="article:modified_time" content="2020-03-14T16:48:10.000Z">
 <meta property="article:author" content="xiaopi3">
-<meta property="article:tag" content="Guide">
+<meta property="article:tag" content="RPC">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaopi3.gitee.io/archives/2d865e10/1.jpg">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/gh/nexmoe/nexmoe.github.io@latest/css/style.css,npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css" crossorigin>
   
-  <!--<link rel="stylesheet" href="/css/style.css?v=1584628063086">-->
+  <!--<link rel="stylesheet" href="/css/style.css?v=1584628063070">-->
 
    
     <style>
@@ -239,16 +243,16 @@
     <div class="nexmoe-primary">
         <div class="nexmoe-post">
   
-      <div class="nexmoe-post-cover" style="padding-bottom: 56.25%;"> 
-          <img data-src="/img/0003.jpg" data-sizes="auto" alt="Hexo-Nexmon主题安装和配置流程" class="lazyload">
-          <h1>Hexo-Nexmon主题安装和配置流程</h1>
+      <div class="nexmoe-post-cover" style="padding-bottom: 56.2037037037037%;"> 
+          <img data-src="/img/0011.jpg" data-sizes="auto" alt="分布式服务之间的通讯-RPC实战" class="lazyload">
+          <h1>分布式服务之间的通讯-RPC实战</h1>
       </div>
   
   
   <div class="nexmoe-post-meta" style="margin:10px 0!important;">
-    <a><i class="nexmoefont icon-calendar-fill"></i>2020年03月12日</a>
-    <a><i class="nexmoefont icon-areachart"></i>1k 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 5 分钟</a>
+    <a><i class="nexmoefont icon-calendar-fill"></i>2020年03月15日</a>
+    <a><i class="nexmoefont icon-areachart"></i>1.4k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 6 分钟</a>
 </div>
 
   <div class="nexmoe-post-right">
@@ -256,7 +260,7 @@
       <div class="nexmoe-fixed">
         <div class="nexmoe-valign">
             <div class="nexmoe-toc">
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-nexmon"><span class="toc-number">1.</span> <span class="toc-text">1. nexmon</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">1.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启用"><span class="toc-number">1.2.</span> <span class="toc-text">启用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置"><span class="toc-number">1.3.</span> <span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#友情链接的页面"><span class="toc-number">1.3.1.</span> <span class="toc-text">友情链接的页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于我页面"><span class="toc-number">1.3.2.</span> <span class="toc-text">关于我页面</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-坑"><span class="toc-number">2.</span> <span class="toc-text">2. 坑</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#依据服务最佳实践"><span class="toc-number">1.</span> <span class="toc-text">依据服务最佳实践</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#分包"><span class="toc-number">1.1.</span> <span class="toc-text">分包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#粒度"><span class="toc-number">1.2.</span> <span class="toc-text">粒度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#序列化"><span class="toc-number">1.3.</span> <span class="toc-text">序列化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现步骤"><span class="toc-number">2.</span> <span class="toc-text">实现步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、-定义两个服务模块"><span class="toc-number">2.1.</span> <span class="toc-text">一、 定义两个服务模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、提取共同的api模块"><span class="toc-number">2.2.</span> <span class="toc-text">二、提取共同的api模块</span></a></li></ol></li></ol>
             </div>
         </div>
       </div>
@@ -264,165 +268,114 @@
   </div>
 
   <article>
-    <h1 id="1-nexmon"><a href="#1-nexmon" class="headerlink" title="1. nexmon"></a>1. nexmon</h1><p>参考网址：</p>
-<blockquote>
-<p><a href="https://docs.nexmoe.com/" target="_blank" rel="noopener">https://docs.nexmoe.com/</a></p>
-</blockquote>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><pre><code class="shell">cd themes # 载入主题目录
-git clone https://github.com/nexmoe/hexo-theme-nexmoe.git nexmoe # 安装
-cd nexmoe # 进入 Nexmoe 主题目录
-npm i --save hexo-wordcount
-# Node 版本 7.6.0 之前,请安装 2.x 版本 (Node.js v7.6.0 and previous) 
-# npm install hexo-wordcount@2 --save
-cp -i _config.example.yml _config.yml</code></pre>
-<a id="more"></a>
-<div style="color:red;font-weight:bold">此处只记录踩坑点!!!</div><br>
-
-<p>主题默认开启了字数统计，所以必须要安装插件：</p>
-<blockquote>
-<p>npm i –save hexo-wordcount</p>
-</blockquote>
-<p><strong>尽量使用最新版的nodejs</strong></p>
-<p>进入主题文件夹：</p>
-<blockquote>
-<p>cp _config.example.yml _config.yml</p>
-</blockquote>
-<h2 id="启用"><a href="#启用" class="headerlink" title="启用"></a>启用</h2><p>进入hexo的config配置文件，将theme值改为nexmon（和主题文件夹名一致即可）</p>
-<blockquote>
-<p>hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</p>
-</blockquote>
-<p>打开浏览器进入：</p>
-<blockquote>
-<p>localhost:4000</p>
-</blockquote>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>大多数配置参考主题config文件自带注释</p>
-<h3 id="友情链接的页面"><a href="#友情链接的页面" class="headerlink" title="友情链接的页面"></a>友情链接的页面</h3><p>启用友情链接后，需要在博客根目录下的source文件夹内建立py.md文件，并在文件头写入：</p>
-<pre><code>---
-title: links
-date: 2013/7/13 20:46:25
-layout: py
-permalink: PY.html
----</code></pre><p>友链格式：</p>
-<pre><code> - [![标题](https://example.com/logo.png)](https://example.com/ &quot;标题&quot;)</code></pre><h3 id="关于我页面"><a href="#关于我页面" class="headerlink" title="关于我页面"></a>关于我页面</h3><p>启用关于我页面后，需要在博客根目录下的source文件夹内建立me.md文件，然后在主题config文件中配置about页面的名字即可，此处为me</p>
-<h1 id="2-坑"><a href="#2-坑" class="headerlink" title="2. 坑"></a>2. 坑</h1><p>坑比较多，这里排一下雷：</p>
+    <p><strong>前提：在会议发布后，需要提供依据会议id查询发布该会议的员工信息</strong></p>
 <ul>
-<li>文章中引用图片格式为<code>![avatar](xxx.jpg)</code>，图片放在资源文件夹下，资源文件夹为md文件同级的同名文件夹，需要在hexo配置中启用assets选项</li>
-<li>给文章添加图头，格式为：<pre><code>  ---
-  cover: /img/xxx.xxx
-  coverWidth: 1200
-  coverHeight: 750
-  ---</code></pre>  图片放置在主题文件夹下的source目录下的img内，图片大小格式与图片一致</li>
-<li>主题bug：tagCloud高亮没有显示，解决办法:直接把css加在index文件里面： 在 <code>nexmoe\layout\_widget\tagcloud.ejs</code>里面，和div标签平行加上内容，最终修改结果如：<pre><code>  &lt;% if (site.tags.length){ %&gt;
-    &lt;div class=&quot;nexmoe-widget-wrap&quot;&gt;
-      &lt;h3 class=&quot;nexmoe-widget-title&quot;&gt;&lt;%= __(&#39;tagcloud&#39;) %&gt;&lt;/h3&gt;
-      &lt;div id=&quot;randomtagcloud&quot; class=&quot;nexmoe-widget tagcloud&quot;&gt;
-        &lt;%- tagcloud() %&gt;
-      &lt;/div&gt;
-      &lt;% if (theme.maxTagcloud){ %&gt;
-        &lt;script&gt;
-          var maxTagcloud = parseInt(&lt;%= theme.maxTagcloud %&gt;);
-          var tags_length = parseInt(&lt;%= site.tags.length %&gt;);
-          var tags_arr = [];
-          for(var i = 0; i &lt; tags_length; i++){
-            tags_arr.push(i);
-          }
-          tags_arr.sort(function (l, r) {
-            return Math.random() &gt; 0.5 ? -1 : 1;
-          });
-          tags_arr = tags_arr.slice(0, maxTagcloud &lt; tags_length ? tags_length - maxTagcloud : 0);
-          for(var tag_i = 0; tag_i &lt; tags_arr.length; tag_i++){
-            document.getElementById(&quot;randomtagcloud&quot;).children[tags_arr[tag_i]].style.display = &#39;none&#39;;
-          }
-        &lt;/script&gt;
-      &lt;% } %&gt;
-    &lt;/div&gt;
-    &lt;style&gt;
-      #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+1) {
-      background-color: rgba(255,78,106,0.15);
-      color: rgba(255,78,106,0.8);
-      }
-      #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+2) {
-      background-color: rgba(255,170,115,0.15);
-      color: #ffaa73;
-      }
-      #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+3) {
-      background-color: rgba(254,212,102,0.15);
-      color: #fed466;
-      }
-      #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+4) {
-      background-color: rgba(60,220,130,0.15);
-      color: #3cdc82;
-      }
-      #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+5) {
-      background-color: rgba(100,220,240,0.15);
-      color: #64dcf0;
-      }
-      #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+6) {
-      background-color: rgba(100,185,255,0.15);
-      color: #64b9ff;
-      }
-      #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+7) {
-      background-color: rgba(180,180,255,0.15);
-      color: #b4b4ff;
-      }
-      #nexmoe-content .nexmoe-post .nexmoe-post-meta {
-      margin: 25px 0px;
-      font-size: 0;
-      }
-      #nexmoe-content .nexmoe-post .nexmoe-post-meta a {
-      border-radius: 20px;
-      padding: 10px 18px;
-      color: #fff;
-      font-size: 14px;
-      display: inline-block;
-      margin-bottom: 5px;
-      margin-right: 10px;
-      }
-      #nexmoe-content .nexmoe-post .nexmoe-post-meta a .nexmoefont {
-      font-size: 14px;
-      }
-      #nexmoe-content .nexmoe-post .nexmoe-post-meta a:before,
-      #nexmoe-content .nexmoe-post .nexmoe-post-meta i:before {
-      margin-right: 5px;
-      }
-      #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+1) {
-      background-color: rgba(255,78,106,0.15);
-      color: #ff4e6a;
-      }
-      #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+2) {
-      background-color: rgba(255,170,115,0.15);
-      color: #ffaa73;
-      }
-      #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+3) {
-      background-color: rgba(254,212,102,0.15);
-      color: #fed466;
-      }
-      #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+4) {
-      background-color: rgba(60,220,130,0.15);
-      color: #3cdc82;
-      }
-      #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+5) {
-      background-color: rgba(100,220,240,0.15);
-      color: #64dcf0;
-      }
-      #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+6) {
-      background-color: rgba(100,185,255,0.15);
-      color: #64b9ff;
-      }
-      #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+7) {
-      background-color: rgba(180,180,255,0.15);
-      color: #b4b4ff;
-      }
-    &lt;/style&gt;
-  &lt;% } %&gt;</code></pre></li>
+<li><p>provider：员工信息模块</p>
+</li>
+<li><p>consumer：会议模块</p>
+</li>
 </ul>
+<p><strong>注意</strong>：由于是两个模块的进程间通信，所以必须实现<strong>Serializable</strong></p>
+<a id="more"></a>
+
+<h2 id="依据服务最佳实践"><a href="#依据服务最佳实践" class="headerlink" title="依据服务最佳实践"></a>依据服务最佳实践</h2><p><a href="http://dubbo.apache.org/zh-cn/docs/user/best-practice.html" target="_blank" rel="noopener">http://dubbo.apache.org/zh-cn/docs/user/best-practice.html</a></p>
+<h3 id="分包"><a href="#分包" class="headerlink" title="分包"></a>分包</h3><p>建议将服务接口、服务模型、服务异常等均放在 API 包中，因为服务模型和异常也是 API 的一部分，这样做也符合分包原则：重用发布等价原则(REP)，共同重用原则(CRP)。</p>
+<p>如果需要，也可以考虑在 API 包中放置一份 Spring 的引用配置，这样使用方只需在 Spring 加载过程中引用此配置即可。配置建议放在模块的包目录下，以免冲突，如：<code>com/alibaba/china/xxx/dubbo-reference.xml</code></p>
+<h3 id="粒度"><a href="#粒度" class="headerlink" title="粒度"></a>粒度</h3><p>服务接口尽可能大粒度，每个服务方法应代表一个功能，而不是某功能的一个步骤，否则将面临分布式事务问题，Dubbo 暂未提供分布式事务支持。</p>
+<p>服务接口建议以业务场景为单位划分，并对相近业务做抽象，防止接口数量爆炸。</p>
+<p>不建议使用过于抽象的通用接口，如：</p>
+<p>Map query(Map)</p>
+<p>这样的接口没有明确语义，会给后期维护带来不便。</p>
+<h3 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h3><p>……</p>
+<p>按照普通类定义好这两个类后，需要启动注册中心：zookeeper和monitor</p>
+<p>此时，将provider服务注册到注册中心——使用spring配置声明暴露服务</p>
+<p>然后，让consumer订阅注册中心即可。</p>
+<h2 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h2><h3 id="一、-定义两个服务模块"><a href="#一、-定义两个服务模块" class="headerlink" title="一、 定义两个服务模块"></a>一、 定义两个服务模块</h3><p>直接选择新建工程-maven项目，建立两个普通maven项目</p>
+<p>导入微服务依赖：</p>
+<pre><code class="xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.dubbo&lt;/groupId&gt;
+    &lt;artifactId&gt;dubbo&lt;/artifactId&gt;
+    &lt;version&gt;${dubbo.version}&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.dubbo&lt;/groupId&gt;
+    &lt;artifactId&gt;dubbo-dependencies-zookeeper&lt;/artifactId&gt;
+    &lt;version&gt;${dubbo.version}&lt;/version&gt;
+    &lt;type&gt;pom&lt;/type&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+    &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+    &lt;version&gt;1.18.10&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+<p>lombok插件为自动生成get和set方法，需要在pojo类上注解<code>@Data</code></p>
+<h3 id="二、提取共同的api模块"><a href="#二、提取共同的api模块" class="headerlink" title="二、提取共同的api模块"></a>二、提取共同的api模块</h3><p>此处api模块为：服务接口、服务模型、服务异常</p>
+<p><em>（注意：由于每个类都可以作为provider也可以作为consumer，此处为了简化，只将user模块的pojo和service提取出来了，也可以将有可能的全部提取出来）</em></p>
+<p>api模块目录结构：meeting-interface-api：</p>
+<p><img data-sizes="auto" data-src="/archives/2d865e10/1.jpg" alt="img" class="lazyload"></p>
+<p>三、编写各自的业务实现类</p>
+<p>实现类中在需要调用RPC方法时，需要使用spring的自动注入功能，然后引用api包：</p>
+<ol>
+<li>将本类标志为@Service，将需要注入的变量标志为@Autowired</li>
+<li>pom.xml文件中引入api的jar包</li>
+</ol>
+<pre><code class="xml">&lt;dependency&gt;
+    &lt;groupId&gt;com.pp&lt;/groupId&gt;
+    &lt;artifactId&gt;meeting-interface-api&lt;/artifactId&gt;
+    &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+<p>下图是生产者和消费者的目录结构：</p>
+<p>生产者类：</p>
+<p><img data-sizes="auto" data-src="/archives/2d865e10/2.jpg" alt="img" class="lazyload"></p>
+<p>消费者类：</p>
+<p><img data-sizes="auto" data-src="/archives/2d865e10/3.jpg" alt="img" class="lazyload"></p>
+<p>四、编写各自的注册订阅配置</p>
+<p><em>建议放在resources资源目录下</em></p>
+<p>生产者：provider.xml</p>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:dubbo=&quot;http://dubbo.apache.org/schema/dubbo&quot; xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans               http://www.springframework.org/schema/beans/spring-beans-4.3.xsd               http://dubbo.apache.org/schema/dubbo               http://dubbo.apache.org/schema/dubbo/dubbo.xsd&quot;&gt;
+    &lt;!-- 提供方应用信息，用于计算依赖关系 最好和服务应用名称一样！且唯一--&gt;
+    &lt;dubbo:application name=&quot;user-service-provider&quot; /&gt; &lt;!-- 使用zookeeper广播注册中心暴露服务地址 --&gt;
+    &lt;dubbo:registry address=&quot;zookeeper://127.0.0.1:2181&quot; /&gt; &lt;!-- 用dubbo协议在20880端口暴露服务 --&gt;
+    &lt;dubbo:protocol name=&quot;dubbo&quot; port=&quot;20880&quot; /&gt; &lt;!-- 声明需要暴露的服务接口 --&gt;
+    &lt;dubbo:service interface=&quot;com.pp.service.UserService&quot; ref=&quot;userServiceImpl&quot; /&gt; &lt;!-- 和本地bean一样实现服务 --&gt;
+    &lt;bean id=&quot;userServiceImpl&quot; class=&quot;com.pp.service.impl.UserServiceImpl&quot; /&gt;
+&lt;/beans&gt;</code></pre>
+<p>消费者：consumer.xml</p>
+<p>消费者由于引用了api包中的类，需要使用spring注入该类，需要<strong>配置自动注入功能</strong></p>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:dubbo=&quot;http://dubbo.apache.org/schema/dubbo&quot; xmlns:context=&quot;http://www.springframework.org/schema/context&quot; xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans       http://www.springframework.org/schema/beans/spring-beans-4.3.xsd       http://dubbo.apache.org/schema/dubbo       http://dubbo.apache.org/schema/dubbo/dubbo.xsd              http://www.springframework.org/schema/context    http://www.springframework.org/schema/context/spring-context-3.0.xsd&quot;&gt;
+    &lt;context:component-scan base-package=&quot;com.pp&quot; /&gt; &lt;!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 --&gt;
+    &lt;dubbo:application name=&quot;meeting-service-consumer&quot; /&gt; &lt;!-- 使用zookeeper广播注册中心暴露发现服务地址 --&gt;
+    &lt;dubbo:registry address=&quot;zookeeper://127.0.0.1:2181&quot; /&gt; &lt;!-- 生成远程服务代理，可以和本地bean一样使用demoService --&gt;
+    &lt;dubbo:reference id=&quot;userService&quot; interface=&quot;com.pp.service.UserService&quot; /&gt;
+&lt;/beans&gt;</code></pre>
+<p>五、启动服务</p>
+<p>提供者启动类：</p>
+<pre><code class="java">public static void main( String[] args ) throws IOException {    
+    ClassPathXmlApplicationContext context =            
+    new ClassPathXmlApplicationContext(                    
+        new String[] {&quot;classpath:provider.xml&quot;}
+    );    
+    context.start();    
+    System.in.read(); // 按任意键退出 
+}</code></pre>
+<p>消费者启动类:</p>
+<pre><code class="java">public static void main( String[] args ) throws IOException {    
+    ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[] {&quot;classpath:consumer.xml&quot;});    
+    context.start();    
+    MeetingPubService meetingPubService = context.getBean(MeetingPubService.class);     
+    MeetingPub meetingPub = meetingPubService.selectByPcode(&quot;999&quot;);    
+    System.out.println( meetingPub ); // 显示调用结果    
+    System.in.read(); 
+}</code></pre>
 
   </article>
 
   <div class="nexmoe-post-meta">
     
     
-        <a class="nexmoefont icon-tag-fill -link" href="/tags/Guide/" rel="tag">Guide</a>
+        <a class="nexmoefont icon-tag-fill -link" href="/tags/RPC/" rel="tag">RPC</a>
     
 </div>
 
@@ -431,7 +384,7 @@ permalink: PY.html
       
   <div class="nexmoe-post-copyright">
     <strong>Author：</strong>xiaopi3<br>
-    <strong>Link：</strong><a href="https://xiaopi3.gitee.io/archives/85d6a244.html" title="https:&#x2F;&#x2F;xiaopi3.gitee.io&#x2F;archives&#x2F;85d6a244.html" target="_blank" rel="noopener">https:&#x2F;&#x2F;xiaopi3.gitee.io&#x2F;archives&#x2F;85d6a244.html</a><br>
+    <strong>Link：</strong><a href="https://xiaopi3.gitee.io/archives/2d865e10.html" title="https:&#x2F;&#x2F;xiaopi3.gitee.io&#x2F;archives&#x2F;2d865e10.html" target="_blank" rel="noopener">https:&#x2F;&#x2F;xiaopi3.gitee.io&#x2F;archives&#x2F;2d865e10.html</a><br>
     
       <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
     
@@ -457,7 +410,7 @@ permalink: PY.html
   </div>
   <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js,gh/nexmoe/nexmoe.github.io@latest/js/app.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-<!--<script src="/js/app.js?v=1584628063090"></script>-->
+<!--<script src="/js/app.js?v=1584628063075"></script>-->
 
 
     <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>

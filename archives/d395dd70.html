@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+
+<html lang="zh_CN">
+
+<head>
+  
+  <title>mobx快速入门 - 天落枫阁</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="this is a personal blog, about java javascript python and other compute tech">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  
+  
+
+  <link rel="shortcut icon" href="/img/avatar.jpg" type="image/png" />
+  <meta name="description" content="mobxmobx是啥：是一个用来管理状态的库，如果被观测组件发生改变，会自动渲染有关页面，告别setState。 mbox编程的3个重点：  observer观测器：带有观测器的react组件或者属性被mobx实时观测 observable可观测对象：由mobx建立的可观测对象 action更新事件：标识观测对象的改变事件   Actions：一段可以改变观测变量状态的代码，类似于setState">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mobx快速入门">
+<meta property="og:url" content="https://xiaopi3.gitee.io/archives/d395dd70.html">
+<meta property="og:site_name" content="天落枫阁">
+<meta property="og:description" content="mobxmobx是啥：是一个用来管理状态的库，如果被观测组件发生改变，会自动渲染有关页面，告别setState。 mbox编程的3个重点：  observer观测器：带有观测器的react组件或者属性被mobx实时观测 observable可观测对象：由mobx建立的可观测对象 action更新事件：标识观测对象的改变事件   Actions：一段可以改变观测变量状态的代码，类似于setState">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiaopi3.gitee.io/archives/d395dd70/001.jpg">
+<meta property="article:published_time" content="2020-03-15T07:29:32.000Z">
+<meta property="article:modified_time" content="2020-03-15T07:29:32.000Z">
+<meta property="article:author" content="xiaopi3">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="mobx">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaopi3.gitee.io/archives/d395dd70/001.jpg">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/gh/nexmoe/nexmoe.github.io@latest/css/style.css,npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css" crossorigin>
+  
+  <!--<link rel="stylesheet" href="/css/style.css?v=1584628063051">-->
+
+   
+    <style>
+      .nexmoe-avatar img:hover {
+        -webkit-transform: rotateZ(360deg);
+        -moz-transform: rotateZ(360deg);
+        transform: rotateZ(360deg);
+      }	
+    </style>
+  
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(/img/985.jpg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="xiaopi3" class="mdui-btn mdui-btn-icon"><img src="/img/avatar.jpg" alt="xiaopi3"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="xiaopi3">
+            <img src="/img/avatar.jpg" alt="xiaopi3" alt="xiaopi3">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>Articles</span>14</div>
+        <div><span>Tags</span>10</div>
+        <div><span>Categories</span>0</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/archives" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=" onsubmit="return search();">
+            <label><input id="search_value" name="q" type="search" placeholder="Search"></label>
+        </form>
+    </div>
+</div>
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Social</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/8391083" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/xiaopi3/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a><a class="mdui-ripple" href="mailto:447560484@qq.com" target="_blank" mdui-tooltip="{content: 'Email'}" style="color: rgb(34, 184, 221);background-color: rgba(34, 184, 221, .15);">
+            <i class="nexmoefont icon-mail-fill"></i>
+        </a><a class="mdui-ripple" href="https://weibo.com/u/1500580691" target="_blank" mdui-tooltip="{content: '微博'}" style="color: rgb(255, 165, 76);background-color: rgba(255, 165, 76, .15);">
+            <i class="nexmoefont icon-weibo"></i>
+        </a><a class="mdui-ripple" href="http://wpa.qq.com/msgrd?v=3&uin=447560484&site=qq&menu=yes" target="_blank" mdui-tooltip="{content: 'QQ'}" style="color: rgb(0, 82, 217);background-color: rgba(0, 82, 217, .15);">
+            <i class="nexmoefont icon-QQ"></i>
+        </a><a class="mdui-ripple" href="https://blog.csdn.net/xiapi3" target="_blank" mdui-tooltip="{content: 'CSDN'}" style="color: rgb(217, 46, 46);background-color: rgba(217, 46, 46, .15);">
+            <i class="nexmoefont icon-rss"></i>
+        </a>
+    </div>
+</div>
+  
+  
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Tagcloud</h3>
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud">
+      <a href="/tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="/tags/Guide/" style="font-size: 15px;">Guide</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/RPC/" style="font-size: 10px;">RPC</a> <a href="/tags/mobx/" style="font-size: 10px;">mobx</a> <a href="/tags/nodejs/" style="font-size: 15px;">nodejs</a> <a href="/tags/npm/" style="font-size: 15px;">npm</a> <a href="/tags/springboot/" style="font-size: 15px;">springboot</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">测试</a>
+    </div>
+    
+  </div>
+  <style>
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+1) {
+    background-color: rgba(255,78,106,0.15);
+    color: rgba(255,78,106,0.8);
+    }
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+2) {
+    background-color: rgba(255,170,115,0.15);
+    color: #ffaa73;
+    }
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+3) {
+    background-color: rgba(254,212,102,0.15);
+    color: #fed466;
+    }
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+4) {
+    background-color: rgba(60,220,130,0.15);
+    color: #3cdc82;
+    }
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+5) {
+    background-color: rgba(100,220,240,0.15);
+    color: #64dcf0;
+    }
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+6) {
+    background-color: rgba(100,185,255,0.15);
+    color: #64b9ff;
+    }
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+7) {
+    background-color: rgba(180,180,255,0.15);
+    color: #b4b4ff;
+    }
+
+    
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta {
+    margin: 25px 0px;
+    font-size: 0;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a {
+    border-radius: 20px;
+    padding: 10px 18px;
+    color: #fff;
+    font-size: 14px;
+    display: inline-block;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a .nexmoefont {
+    font-size: 14px;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:before,
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta i:before {
+    margin-right: 5px;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+1) {
+    background-color: rgba(255,78,106,0.15);
+    color: #ff4e6a;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+2) {
+    background-color: rgba(255,170,115,0.15);
+    color: #ffaa73;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+3) {
+    background-color: rgba(254,212,102,0.15);
+    color: #fed466;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+4) {
+    background-color: rgba(60,220,130,0.15);
+    color: #3cdc82;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+5) {
+    background-color: rgba(100,220,240,0.15);
+    color: #64dcf0;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+6) {
+    background-color: rgba(100,185,255,0.15);
+    color: #64b9ff;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+7) {
+    background-color: rgba(180,180,255,0.15);
+    color: #b4b4ff;
+    }
+  </style>
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Archive</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2020 xiaopi3
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+  
+      <div class="nexmoe-post-cover" style="padding-bottom: 56.27009646302251%;"> 
+          <img data-src="/img/0007.jpg" data-sizes="auto" alt="mobx快速入门" class="lazyload">
+          <h1>mobx快速入门</h1>
+      </div>
+  
+  
+  <div class="nexmoe-post-meta" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2020年03月15日</a>
+    <a><i class="nexmoefont icon-areachart"></i>2k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 9 分钟</a>
+</div>
+
+  <div class="nexmoe-post-right">
+    
+      <div class="nexmoe-fixed">
+        <div class="nexmoe-valign">
+            <div class="nexmoe-toc">
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#mobx"><span class="toc-number">1.</span> <span class="toc-text">mobx</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用"><span class="toc-number">1.1.</span> <span class="toc-text">使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mobx-quickstart"><span class="toc-number">1.2.</span> <span class="toc-text">mobx quickstart</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mobx声明"><span class="toc-number">1.3.</span> <span class="toc-text">mobx声明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-使用函数封装："><span class="toc-number">1.3.1.</span> <span class="toc-text">1. 使用函数封装：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-使用修饰器"><span class="toc-number">1.3.2.</span> <span class="toc-text">2. 使用修饰器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#computed"><span class="toc-number">1.4.</span> <span class="toc-text">computed</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#autorun"><span class="toc-number">1.5.</span> <span class="toc-text">autorun</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#when"><span class="toc-number">1.6.</span> <span class="toc-text">when</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reaction"><span class="toc-number">1.7.</span> <span class="toc-text">reaction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#action"><span class="toc-number">1.8.</span> <span class="toc-text">action</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#runInAction"><span class="toc-number">1.9.</span> <span class="toc-text">runInAction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#observer"><span class="toc-number">1.10.</span> <span class="toc-text">observer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Provider"><span class="toc-number">1.11.</span> <span class="toc-text">Provider</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#inject"><span class="toc-number">1.12.</span> <span class="toc-text">inject</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考示例"><span class="toc-number">1.13.</span> <span class="toc-text">参考示例</span></a></li></ol></li></ol>
+            </div>
+        </div>
+      </div>
+    
+  </div>
+
+  <article>
+    <h1 id="mobx"><a href="#mobx" class="headerlink" title="mobx"></a>mobx</h1><p>mobx是啥：是一个用来管理状态的库，如果被观测组件发生改变，会自动渲染有关页面，告别setState。</p>
+<p>mbox编程的3个重点：</p>
+<ol>
+<li>observer观测器：带有观测器的react组件或者属性被mobx实时观测</li>
+<li>observable可观测对象：由mobx建立的可观测对象</li>
+<li>action更新事件：标识观测对象的改变事件</li>
+</ol>
+<blockquote>
+<p>Actions：一段可以改变观测变量状态的代码，类似于setState，严格模式下，只有在动作中才可以修改状态</p>
+</blockquote>
+<a id="more"></a>
+
+<p>mobx编程的4个概念：</p>
+<ol>
+<li>State：状态：相当于有数据的表格</li>
+<li>Derivations：驱动</li>
+<li>computed value：计算值</li>
+<li>reactions：反应</li>
+</ol>
+<blockquote>
+<p>计算值和反应的区别：计算值会产生新的可观测量，反应为所有变量包括可观测变量的一系列运算，并不产生新的可观测量</p>
+<p>computed value可以看作一个包含各种计算的变量，计算属性本质是方法，只是在使用这些计算属性的时候，把他们的名称直接当作属性来使用，并不会把计算属性当作方法去调用，不需要加小括号()调用。</p>
+<p>此计算属性的方法内部所用到的任何data中的数据，依赖响应属性只要发生改变，就会立即重新计算，即触发这个计算属性的重新求值；否则不会重新计算求值。</p>
+<p>计算属性的求值结果会被缓存起来，方便下次直接使用（多次调用只要内部数据不改变就不会重新求值，改变了也只会计算一次，虽然有多个地方引用此属性）。</p>
+<p>计算属性的方法内部无论如何都要return出去一个值。</p>
+</blockquote>
+<p><img data-sizes="auto" data-src="/archives/d395dd70/001.jpg" alt="pic" class="lazyload"></p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>若使用create-react-app工具创建的工程，<strong>首先需要npm run eject</strong>，然后在package.json中输入：</p>
+<pre><code class="json">&quot;babel&quot;: {
+    &quot;plugins&quot;: [
+      [
+        &quot;@babel/plugin-proposal-decorators&quot;,
+        {
+          &quot;legacy&quot;: true
+        }
+      ]
+    ],
+    &quot;presets&quot;: [
+      &quot;react-app&quot;
+    ]
+  }</code></pre>
+<p>以支持装饰器语法。</p>
+<p>最后需要导入的包：mobx和mobx-react，可以使用<code>npm install mobx,mobx-react --save</code>来导入</p>
+<h2 id="mobx-quickstart"><a href="#mobx-quickstart" class="headerlink" title="mobx quickstart"></a>mobx quickstart</h2><pre><code class="js">import React from &#39;react&#39;;
+import ReactDOM from &#39;react-dom&#39;
+import {observable,action} from &#39;mobx&#39;;
+import {observer} from &#39;mobx-react&#39;;
+var appState = observable({
+    timer: 0
+});
+appState.resetTimer = action(function reset() {
+  appState.timer = 0;
+});
+setInterval(action(function tick() {
+  appState.timer += 1;
+}), 1000);
+
+@observer
+class TimerView extends React.Component {
+    render() {
+        return (
+            &lt;button onClick={this.onReset.bind(this)}&gt;
+                Seconds passed: {this.props.appState.timer}
+            &lt;/button&gt;
+        );
+    }
+    onReset() {
+        this.props.appState.resetTimer();
+    }
+};
+ReactDOM.render(&lt;TimerView appState={appState} /&gt;, document.body);</code></pre>
+<h2 id="mobx声明"><a href="#mobx声明" class="headerlink" title="mobx声明"></a>mobx声明</h2><h3 id="1-使用函数封装："><a href="#1-使用函数封装：" class="headerlink" title="1. 使用函数封装："></a>1. 使用函数封装：</h3><p>类型：Array/Object/Map：</p>
+<ul>
+<li>声明：var arr = observable([1,2,3])</li>
+<li>取值：arr[0]</li>
+<li>赋值：arr[0]=4</li>
+</ul>
+<p>类型：其他需要使用box封装：</p>
+<ul>
+<li>声明：var num = observable.box(20)</li>
+<li>取值：num.get()</li>
+<li>赋值：num.set(4)</li>
+</ul>
+<p>注意：只会对声明observable时的已有属性进行观察，新加入的属性不会监视，需要用extendObservable()来处理</p>
+<p>建议的最佳实践：在程序初始化时就声明出所有会被使用的属性</p>
+<h3 id="2-使用修饰器"><a href="#2-使用修饰器" class="headerlink" title="2. 使用修饰器"></a>2. 使用修饰器</h3><p>修饰器只能修饰类和类属性，修饰器统一使用@observable来修饰，无需使用box</p>
+<p>如：</p>
+<pre><code class="js">class Store{
+
+    @observable array=[];
+
+    @observable obj={};
+
+    @observable map=new Map();
+
+    @observable string=&#39;abc&#39;;
+
+    @observable number=20;
+
+    @observable bool=false;
+
+}</code></pre>
+<p>注意：获取和赋值都与正常一样，但是在取值时取得值是mobx的observable类型，可以使用mobx提供的<code>toJS()</code>方法来将该类型转换为普通的js类型。</p>
+<h2 id="computed"><a href="#computed" class="headerlink" title="computed"></a>computed</h2><p>前提：</p>
+<pre><code class="js">class Store{
+    @observable string=&#39;a&#39;;
+    @observable num=12;
+}
+var store=new Store();</code></pre>
+<p><strong>computed</strong>：组合观察数据形成一个新观测值，接受一个无参数的函数，必须有返回值，且使用get()方法来获取计算值</p>
+<p>使用函数：</p>
+<pre><code class="js">// 注入store
+// 定义foo变量，表示string和num的计算值
+var foo=computed(function(){return store.string+&#39;/&#39;+store.num}); 
+// 当foo变化时调用指定的函数执行操作 foo.observe(函数)
+foo.observe(function(change){console.log(change);}) //可以用来观察监测值，如果有改动就调用函数</code></pre>
+<p>使用注解：</p>
+<pre><code class="js">// 若使用注解，则必须在store类中事先定义好计算值
+@computed
+get mixed(){return store.string+&#39;/&#39;+store.num}}; 
+// 调用autorun方法，接受一个函数，当函数内部的可观测数据变化时执行函数，此处由于没有使用mixed计算值，则string或者num变化都会输出
+autorun(()=&gt;{console.log(return store.string+&#39;/&#39;+store.num);});
+// 使用mixed计算值，只有该值变化才输出
+autorun(()=&gt;{console.log(store.mixed);})</code></pre>
+<h2 id="autorun"><a href="#autorun" class="headerlink" title="autorun"></a>autorun</h2><p>autorun中的可观察数据如果发生改变，则自动运行一次，注意：<strong>第一次定义autorun也会运行一次</strong>，接收一个无参函数</p>
+<h2 id="when"><a href="#when" class="headerlink" title="when"></a>when</h2><p>接收两个函数作为参数，当第一个函数返回true，就会执行一次第二个函数，<strong>且全局只执行一次</strong>，不再被触发</p>
+<pre><code class="js">when(()=&gt;stroe.bool,()=&gt;console.log(&#39;it is true&#39;));</code></pre>
+<p><strong>注意：第一个函数必须根据可观察数据来计算返回值，不能是普通不可观察变量</strong></p>
+<h2 id="reaction"><a href="#reaction" class="headerlink" title="reaction"></a>reaction</h2><p>接收两个函数作为参数，第一个函数中的可观察值变化时执行第二个函数，相当于when的循环版</p>
+<h2 id="action"><a href="#action" class="headerlink" title="action"></a>action</h2><p>该装饰器保证在其内部修改的变量会等待函数运行结束后再同时触发反应。使用方式：</p>
+<pre><code class="js">action(&quot;xxx&quot;,()=&gt;{…})</code></pre>
+<p>action 包装/装饰器只会对当前运行的函数作出反应，而不会对当前运行函数所调用的函数（不包含在当前函数之内）作出反应！</p>
+<p>这意味着如果 action 中存在 setTimeout、promise 的 then 或 async 语句，并且在回调函数中某些状态改变了，那么这些回调函数也应该包装在 action 中。可以使用<strong>runInAction</strong>解决。</p>
+<p><strong>@action</strong>：修饰的函数必须注意，如果其内部调用了非<strong>@action.bound</strong>修饰的异步回调函数，会报错，因为回调函数不在当前上下文环境中，导致this指向错误！可以使用<strong>action</strong>或者<strong>runInAction</strong>包裹代码来解决。</p>
+<p><strong>@action.bound</strong>：该装饰器将函数上下文绑定了，可以放在其他上下文中依然正确执行，这种写法在将方法传给callback时非常有用</p>
+<pre><code class="js">var run = dStore.run
+run()</code></pre>
+<h2 id="runInAction"><a href="#runInAction" class="headerlink" title="runInAction"></a>runInAction</h2><p>随时定义匿名的action然后运行，接收一个无参函数</p>
+<p><strong>注意：在异步或者回调函数中，@action范围在仅仅在代码块，直到第一个await，如果后续还有其他的await，需要使用runInAction包裹！</strong></p>
+<h2 id="observer"><a href="#observer" class="headerlink" title="observer"></a>observer</h2><p>属于mobx-react包，与react结合使用，在会调用函数导致改变mobx状态的react组件上注解</p>
+<h2 id="Provider"><a href="#Provider" class="headerlink" title="Provider"></a>Provider</h2><p>属于mobx-react包，如果当前react项目需要启用mobx管理状态，则必须在根节点上使用Provider标签包裹，同时传递注入对象</p>
+<p>在store.js中汇总所有待管理store</p>
+<pre><code class="js">import test from &#39;./test&#39;
+import mast from &#39;./mast&#39;
+const stores = {
+    test,
+    mast,
+}
+export default stores</code></pre>
+<p>在App.jsx中</p>
+<pre><code class="js">import { Provider } from &quot;mobx-react&quot;
+import stores from &#39;./store&#39;
+import {configure} from &#39;mobx&#39;; // 开启严格模式
+configure({enforceActions: true}) // 开启严格模式
+
+class App extends Component{
+    render(){
+        return(
+            &lt;Provider store={...store}&gt;
+                &lt;ToDoApp/&gt;
+            &lt;/Provider&gt;
+        )
+    }
+}</code></pre>
+<p><code>configure</code> 代表开启了严格模式，因为非严格模式下，组件是直接可以通过<code>props.action</code>改变state数据的，当项目复杂的时候这样是非常危险的。所以要设置唯一改变state方式是通过action</p>
+<h2 id="inject"><a href="#inject" class="headerlink" title="inject"></a>inject</h2><p>属于mobx-react包，对当前的react组件进行注入store，以便访问可观察值，注入的值在<code>this.props</code>中</p>
+<pre><code class="js">@inject(&#39;todoList&#39;)
+class ToDoApp extends Component{
+    render(){
+        return (
+            &lt;div&gt;
+                &lt;TodoListView todoList={this.props.todoList}/&gt;
+            &lt;/div&gt;
+        );
+    }
+}</code></pre>
+<h2 id="参考示例"><a href="#参考示例" class="headerlink" title="参考示例"></a>参考示例</h2><pre><code class="js">import { observable, autorun, computed, when ,reaction, action, runInAction} from &#39;mobx&#39;;
+class DemoStore{
+    @observable age = 0;
+    @observable name = &#39;pp&#39;;
+    @observable number = 0;
+    @computed get lucky(){
+        return this.age+this.number;
+    }
+    @action run(){
+        this.age=111;
+        this.name=&#39;gaga&#39;;
+        this.number=222;
+    }
+    @action.bound runOut(){
+        this.age=222;
+        this.name=&#39;jjj&#39;;
+        this.number=this.age+this.number;
+    }
+}
+var dStore = new DemoStore();
+autorun(()=&gt;{
+    console.log(&quot;autorun:&quot;+dStore.lucky)
+})
+when(()=&gt;dStore.age&gt;18,()=&gt;{console.log(&quot;when:你可以看了&quot;+dStore.age);})
+reaction(()=&gt;[dStore.age,dStore.name],()=&gt;console.log(&quot;reaction:age+name=&quot;+dStore.age+dStore.name))
+dStore.name=&#39;abc&#39;;
+dStore.number=20;
+dStore.age=20;
+dStore.run()
+var runOut=dStore.runOut;
+runOut();
+runOut();
+runInAction(&#39;abc&#39;,()=&gt;{
+    dStore.age=9;
+    dStore.name=&#39;qqq&#39;;
+    dStore.number=6;
+})</code></pre>
+
+  </article>
+
+  <div class="nexmoe-post-meta">
+    
+    
+        <a class="nexmoefont icon-tag-fill -link" href="/tags/mobx/" rel="tag">mobx</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a>
+    
+</div>
+
+  <div class="nexmoe-post-footer">
+    
+      
+  <div class="nexmoe-post-copyright">
+    <strong>Author：</strong>xiaopi3<br>
+    <strong>Link：</strong><a href="https://xiaopi3.gitee.io/archives/d395dd70.html" title="https:&#x2F;&#x2F;xiaopi3.gitee.io&#x2F;archives&#x2F;d395dd70.html" target="_blank" rel="noopener">https:&#x2F;&#x2F;xiaopi3.gitee.io&#x2F;archives&#x2F;d395dd70.html</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
+
+
+    
+    <section class="nexmoe-comment">
+    <div class="valine"></div>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js'></script>
+<script>
+    // 使用方法 https://valine.js.org/quickstart.html
+    new Valine({
+        el: '.valine',
+        appId: 'rRk6BFhmQH4vssFy1nmrAk4q-gzGzoHsz',
+        appKey: 'VAePGgqfPCi9xvsBz7DRzxrk'
+    })
+</script>
+</section>
+  </div>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js,gh/nexmoe/nexmoe.github.io@latest/js/app.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<!--<script src="/js/app.js?v=1584628063056"></script>-->
+
+
+    <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+
+
+ 
+<script> 
+!function(e,t,a){function n(){c(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"),o(),r()}function r(){for(var e=0;e<d.length;e++)d[e].alpha<=0?(t.body.removeChild(d[e].el),d.splice(e,1)):(d[e].y--,d[e].scale+=.004,d[e].alpha-=.013,d[e].el.style.cssText="left:"+d[e].x+"px;top:"+d[e].y+"px;opacity:"+d[e].alpha+";transform:scale("+d[e].scale+","+d[e].scale+") rotate(45deg);background:"+d[e].color+";z-index:99999");requestAnimationFrame(r)}function o(){var t="function"==typeof e.onclick&&e.onclick;e.onclick=function(e){t&&t(),i(e)}}function i(e){var a=t.createElement("div");a.className="heart",d.push({el:a,x:e.clientX-5,y:e.clientY-5,scale:1,alpha:1,color:s()}),t.body.appendChild(a)}function c(e){var a=t.createElement("style");a.type="text/css";try{a.appendChild(t.createTextNode(e))}catch(t){a.styleSheet.cssText=e}t.getElementsByTagName("head")[0].appendChild(a)}function s(){return"rgb("+~~(255*Math.random())+","+~~(255*Math.random())+","+~~(255*Math.random())+")"}var d=[];e.requestAnimationFrame=function(){return e.requestAnimationFrame||e.webkitRequestAnimationFrame||e.mozRequestAnimationFrame||e.oRequestAnimationFrame||e.msRequestAnimationFrame||function(e){setTimeout(e,1e3/60)}}(),n()}(window,document);
+</script>
+
+  
+
+
+
+
+
+</body>
+
+</html>

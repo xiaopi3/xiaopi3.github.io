@@ -4,7 +4,7 @@
 
 <head>
   
-  <title>Tags：前端技术 - 天落枫阁</title>
+  <title>npm与npx - 天落枫阁</title>
   <meta charset="UTF-8">
   <meta name="description" content="this is a personal blog, about java javascript python and other compute tech">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
@@ -12,22 +12,22 @@
   
 
   <link rel="shortcut icon" href="/img/avatar.jpg" type="image/png" />
-  <meta name="description" content="this is a personal blog, about java javascript python and other compute tech">
-<meta property="og:type" content="website">
-<meta property="og:title" content="天落枫阁">
-<meta property="og:url" content="https://xiaopi3.gitee.io/tags/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/index.html">
+  <meta name="description" content="npxnpx是一个工具，npm v5.2.0引入的一条命令（npx），一个npm包执行器，旨在提高从npm注册表使用软件包的体验 ，npm使得它非常容易地安装和管理托管在注册表上的依赖项，npx使得使用CLI工具和其他托管在注册表。它大大简化了一些事情。 就像npm极大地提升了我们安装和管理包依赖的体验，在npm的基础之上，npx让npm包中的命令行工具和其他可执行文件在使用上变得更加简单。它极大">
+<meta property="og:type" content="article">
+<meta property="og:title" content="npm与npx">
+<meta property="og:url" content="https://xiaopi3.gitee.io/archives/a7d54fb6.html">
 <meta property="og:site_name" content="天落枫阁">
-<meta property="og:description" content="this is a personal blog, about java javascript python and other compute tech">
+<meta property="og:description" content="npxnpx是一个工具，npm v5.2.0引入的一条命令（npx），一个npm包执行器，旨在提高从npm注册表使用软件包的体验 ，npm使得它非常容易地安装和管理托管在注册表上的依赖项，npx使得使用CLI工具和其他托管在注册表。它大大简化了一些事情。 就像npm极大地提升了我们安装和管理包依赖的体验，在npm的基础之上，npx让npm包中的命令行工具和其他可执行文件在使用上变得更加简单。它极大">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-03-15T08:50:50.000Z">
+<meta property="article:modified_time" content="2020-03-15T08:50:50.000Z">
 <meta property="article:author" content="xiaopi3">
-<meta property="article:tag" content="blog">
-<meta property="article:tag" content="java">
-<meta property="article:tag" content="js">
-<meta property="article:tag" content="python">
+<meta property="article:tag" content="nodejs">
+<meta property="article:tag" content="npm">
 <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/gh/nexmoe/nexmoe.github.io@latest/css/style.css,npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css" crossorigin>
   
-  <!--<link rel="stylesheet" href="/css/style.css?v=1584010938513">-->
+  <!--<link rel="stylesheet" href="/css/style.css?v=1584628063046">-->
 
    
     <style>
@@ -61,8 +61,8 @@
         </a>
     </div>
     <div class="nexmoe-count">
-        <div><span>Articles</span>4</div>
-        <div><span>Tags</span>3</div>
+        <div><span>Articles</span>14</div>
+        <div><span>Tags</span>10</div>
         <div><span>Categories</span>0</div>
     </div>
     <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
@@ -132,7 +132,7 @@
   <div class="nexmoe-widget-wrap">
     <h3 class="nexmoe-widget-title">Tagcloud</h3>
     <div id="randomtagcloud" class="nexmoe-widget tagcloud">
-      <a href="/tags/Guide/" style="font-size: 20px;">Guide</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/" style="font-size: 10px;">前端技术</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">测试</a>
+      <a href="/tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="/tags/Guide/" style="font-size: 15px;">Guide</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/RPC/" style="font-size: 10px;">RPC</a> <a href="/tags/mobx/" style="font-size: 10px;">mobx</a> <a href="/tags/nodejs/" style="font-size: 15px;">nodejs</a> <a href="/tags/npm/" style="font-size: 15px;">npm</a> <a href="/tags/springboot/" style="font-size: 15px;">springboot</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">测试</a>
     </div>
     
   </div>
@@ -238,73 +238,111 @@
   </div>
   <div id="nexmoe-content">
     <div class="nexmoe-primary">
-        
-<section class="nexmoe-archives">
+        <div class="nexmoe-post">
+  
+      <div class="nexmoe-post-cover" style="padding-bottom: 56.188925081433226%;"> 
+          <img data-src="/img/0005.jpeg" data-sizes="auto" alt="npm与npx" class="lazyload">
+          <h1>npm与npx</h1>
+      </div>
+  
+  
+  <div class="nexmoe-post-meta" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2020年03月15日</a>
+    <a><i class="nexmoefont icon-areachart"></i>694 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 3 分钟</a>
+</div>
 
-    <article>
-        
+  <div class="nexmoe-post-right">
+    
+      <div class="nexmoe-fixed">
+        <div class="nexmoe-valign">
+            <div class="nexmoe-toc">
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#npx"><span class="toc-number">1.</span> <span class="toc-text">npx</span></a></li></ol>
+            </div>
+        </div>
+      </div>
+    
+  </div>
 
-        
-            <h2>2020</h2>
-            <ul>
-            
-                <li><span>03-10</span><a href="/archives/e5dfb256.html" >SpringBoott环境搭建</a></li>
-            
-            </ul>
-        
-    </article>
+  <article>
+    <h1 id="npx"><a href="#npx" class="headerlink" title="npx"></a>npx</h1><p>npx是一个工具，npm v5.2.0引入的一条命令（npx），一个npm包执行器，旨在提高从npm注册表使用软件包的体验 ，npm使得它非常容易地安装和管理托管在注册表上的依赖项，npx使得使用CLI工具和其他托管在注册表。它大大简化了一些事情。</p>
+<p>就像npm极大地提升了我们安装和管理包依赖的体验，在npm的基础之上，npx让npm包中的命令行工具和其他可执行文件在使用上变得更加简单。它极大地简化了我们之前使用纯粹的npm时所需要的大量步骤。</p>
+<a id="more"></a>
+
+<p>举例</p>
+<p>使用create-react-app创建一个react项目。</p>
+<p>npm：</p>
+<pre><code class="shell">npm install -g create-react-app
+create-react-app my-app</code></pre>
+<p>npx：</p>
+<pre><code class="shell">npx create-react-app my-app</code></pre>
+<p>这条命令会临时安装 create-react-app 包，命令完成后create-react-app 会删掉，不会出现在 global 中。下次再执行，还是会重新临时安装。</p>
+<p>npx 会帮你执行依赖包里的二进制文件。</p>
+<p>举例来说，之前我们可能会写这样的命令：</p>
+<pre><code class="shell">npm i -D webpack
+./node_modules/.bin/webpack -v</code></pre>
+<p>如果你对 bash 比较熟，可能会写成这样：</p>
+<pre><code class="shell">npm i -D webpack 
+npm bin/webpack -v</code></pre>
+<p>有了 npx，你只需要这样：</p>
+<pre><code class="shell">npm i -D webpack
+npx webpack -v</code></pre>
+<p>也就是说 npx 会自动查找当前依赖包中的可执行文件，如果找不到，就会去 PATH 里找。如果依然找不到，就会帮你安装！</p>
+<p>npx 甚至支持运行远程仓库的可执行文件：</p>
+<pre><code class="shell">npx github:piuccio/cowsay hello</code></pre>
+<p>再比如 npx http-server 可以一句话帮你开启一个静态服务器！（第一次运行会稍微慢一些）</p>
+<pre><code class="shell">npx http-server</code></pre>
+<p>指定node版本来运行npm scripts：</p>
+<pre><code class="shell">npx -p node@8 npm run build</code></pre>
+<p>主要特点：<br>1、临时安装可执行依赖包，不用全局安装，不用担心长期的污染。<br>2、可以执行依赖包中的命令，安装完成自动运行。<br>3、自动加载node_modules中依赖包，不用指定$PATH。<br>4、可以指定node版本、命令的版本，解决了不同项目使用不同版本的命令的问题。</p>
+<p>来自 <a href="http://itxw.net/article/7.html" target="_blank" rel="noopener">http://itxw.net/article/7.html</a></p>
+<p>一些简写：<br>npm install=npm i</p>
+<p>在git clone项目的时候，项目文件中并没有 node_modules文件夹，项目的依赖文件可能很大。直接执行，npm会根据package.json配置文件中的依赖配置下载安装。</p>
+<p>-global=-g，全局安装，安装后的包位于系统预设目录下</p>
+<p>–save=-S，安装的包将写入package.json里面的dependencies，dependencies：生产环境需要依赖的库</p>
+<p>–save-dev=-D，安装的包将写入packege.json里面的devDependencies，devdependencies：只有开发环境下需要依赖的库</p>
+
+  </article>
+
+  <div class="nexmoe-post-meta">
+    
+    
+        <a class="nexmoefont icon-tag-fill -link" href="/tags/nodejs/" rel="tag">nodejs</a> <a class="nexmoefont icon-tag-fill -link" href="/tags/npm/" rel="tag">npm</a>
+    
+</div>
+
+  <div class="nexmoe-post-footer">
+    
+      
+  <div class="nexmoe-post-copyright">
+    <strong>Author：</strong>xiaopi3<br>
+    <strong>Link：</strong><a href="https://xiaopi3.gitee.io/archives/a7d54fb6.html" title="https:&#x2F;&#x2F;xiaopi3.gitee.io&#x2F;archives&#x2F;a7d54fb6.html" target="_blank" rel="noopener">https:&#x2F;&#x2F;xiaopi3.gitee.io&#x2F;archives&#x2F;a7d54fb6.html</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
+
+
+    
+    <section class="nexmoe-comment">
+    <div class="valine"></div>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js'></script>
+<script>
+    // 使用方法 https://valine.js.org/quickstart.html
+    new Valine({
+        el: '.valine',
+        appId: 'rRk6BFhmQH4vssFy1nmrAk4q-gzGzoHsz',
+        appKey: 'VAePGgqfPCi9xvsBz7DRzxrk'
+    })
+</script>
 </section>
-
-<style>
-.nexmoe-archives article > *:first-child {
-    margin-top: 0;
-}
-.nexmoe-archives article > *:last-child {
-    margin-bottom: 0;
-}
-.nexmoe-archives ul {
-    list-style: none;
-    padding-left: 0!important;
-}
-.nexmoe-archives li {
-    position: relative;
-    padding: 10px 0;
-}
-.nexmoe-archives li::before {
-    content: "";
-    width: 14px;
-    height: 14px;
-    background: #ff4e6a;
-    display: inline-block;
-    vertical-align: middle;
-    margin-top: -2px;
-    margin-right: 11px;
-    border-radius: 100%;
-    border: 3px solid #fff;
-    z-index: 100;
-    position: relative;
-}
-.nexmoe-archives li::after {
-    content: "";
-    height: 100%;
-    width: 2px;
-    background: rgba(255, 78, 106, 0.2);
-    position: absolute;
-    left: 6px;
-    top: 20px;
-}
-.nexmoe-archives li:last-child:after {
-    display: none;
-}
-.nexmoe-archives span {
-    margin-right: 15px;
-}
-</style>
+  </div>
+</div>
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js,gh/nexmoe/nexmoe.github.io@latest/js/app.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-<!--<script src="/js/app.js?v=1584010938516"></script>-->
+<!--<script src="/js/app.js?v=1584628063050"></script>-->
 
 
     <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
