@@ -4,7 +4,7 @@
 
 <head>
   
-  <title>ESLint学习笔记 - 天落枫阁</title>
+  <title>webpack4.0快速上手 - 天落枫阁</title>
   <meta charset="UTF-8">
   <meta name="description" content="this is a personal blog, about java javascript python and other compute tech">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
@@ -12,21 +12,21 @@
   
 
   <link rel="shortcut icon" href="/img/avatar.jpg" type="image/png" />
-  <meta name="description" content="一、安装并使用Eslint本地项目安装： &#x2F;&#x2F; 放在开发依赖中 npm install eslint -D向导配置： npx eslint --init运行eslint检测： npx eslint xxx.js &#x2F;&#x2F; 可以使用通配符 npx eslint .&#x2F;src&#x2F;*.js 为了方便，可以在packages.json中配置执行脚本 &quot;scripts&quot;:{     &quot;">
+  <meta name="description" content="即将学习。。。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ESLint学习笔记">
-<meta property="og:url" content="https://xiaopi3.gitee.io/archives/d70b794b.html">
+<meta property="og:title" content="webpack4.0快速上手">
+<meta property="og:url" content="https://xiaopi3.gitee.io/archives/dae84e08.html">
 <meta property="og:site_name" content="天落枫阁">
-<meta property="og:description" content="一、安装并使用Eslint本地项目安装： &#x2F;&#x2F; 放在开发依赖中 npm install eslint -D向导配置： npx eslint --init运行eslint检测： npx eslint xxx.js &#x2F;&#x2F; 可以使用通配符 npx eslint .&#x2F;src&#x2F;*.js 为了方便，可以在packages.json中配置执行脚本 &quot;scripts&quot;:{     &quot;">
+<meta property="og:description" content="即将学习。。。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-03-16T02:41:43.000Z">
-<meta property="article:modified_time" content="2020-03-16T02:41:43.000Z">
+<meta property="article:published_time" content="2020-03-21T12:38:05.000Z">
+<meta property="article:modified_time" content="2020-03-21T12:38:05.000Z">
 <meta property="article:author" content="xiaopi3">
-<meta property="article:tag" content="ESLint">
+<meta property="article:tag" content="webpack">
 <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/gh/nexmoe/nexmoe.github.io@latest/css/style.css,npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css" crossorigin>
   
-  <!--<link rel="stylesheet" href="/css/style.css?v=1584795069478">-->
+  <!--<link rel="stylesheet" href="/css/style.css?v=1584795069459">-->
 
    
     <style>
@@ -239,16 +239,16 @@
     <div class="nexmoe-primary">
         <div class="nexmoe-post">
   
-      <div class="nexmoe-post-cover" style="padding-bottom: 56.2037037037037%;"> 
-          <img data-src="/img/0010.jpg" data-sizes="auto" alt="ESLint学习笔记" class="lazyload">
-          <h1>ESLint学习笔记</h1>
+      <div class="nexmoe-post-cover" style="padding-bottom: 59.30493273542601%;"> 
+          <img data-src="/img/0014.jpg" data-sizes="auto" alt="webpack4.0快速上手" class="lazyload">
+          <h1>webpack4.0快速上手</h1>
       </div>
   
   
   <div class="nexmoe-post-meta" style="margin:10px 0!important;">
-    <a><i class="nexmoefont icon-calendar-fill"></i>2020年03月16日</a>
-    <a><i class="nexmoefont icon-areachart"></i>1k 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 4 分钟</a>
+    <a><i class="nexmoefont icon-calendar-fill"></i>2020年03月21日</a>
+    <a><i class="nexmoefont icon-areachart"></i>4 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 1 分钟</a>
 </div>
 
   <div class="nexmoe-post-right">
@@ -256,7 +256,7 @@
       <div class="nexmoe-fixed">
         <div class="nexmoe-valign">
             <div class="nexmoe-toc">
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、安装并使用Eslint"><span class="toc-number">1.</span> <span class="toc-text">一、安装并使用Eslint</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#console错误"><span class="toc-number">1.1.</span> <span class="toc-text">console错误</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#错误重现"><span class="toc-number">1.1.1.</span> <span class="toc-text">错误重现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决"><span class="toc-number">1.1.2.</span> <span class="toc-text">解决</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、解读Eslint配置"><span class="toc-number">2.</span> <span class="toc-text">二、解读Eslint配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#env"><span class="toc-number">2.1.</span> <span class="toc-text">env</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#globals"><span class="toc-number">2.2.</span> <span class="toc-text">globals</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rules"><span class="toc-number">2.3.</span> <span class="toc-text">rules</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#extends"><span class="toc-number">2.4.</span> <span class="toc-text">extends</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、不同目录自定义配置规则"><span class="toc-number">3.</span> <span class="toc-text">三、不同目录自定义配置规则</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四、在项目中配置Eslint"><span class="toc-number">4.</span> <span class="toc-text">四、在项目中配置Eslint</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#五、Eslint插件配置"><span class="toc-number">5.</span> <span class="toc-text">五、Eslint插件配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#六、Glob路径匹配"><span class="toc-number">6.</span> <span class="toc-text">六、Glob路径匹配</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#七、在提交代码时运行检测"><span class="toc-number">7.</span> <span class="toc-text">七、在提交代码时运行检测</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#即将学习。。。"><span class="toc-number">1.</span> <span class="toc-text">即将学习。。。</span></a></li></ol>
             </div>
         </div>
       </div>
@@ -264,116 +264,13 @@
   </div>
 
   <article>
-    <h1 id="一、安装并使用Eslint"><a href="#一、安装并使用Eslint" class="headerlink" title="一、安装并使用Eslint"></a>一、安装并使用Eslint</h1><p>本地项目安装：</p>
-<pre><code>// 放在开发依赖中
-npm install eslint -D</code></pre><p>向导配置：</p>
-<pre><code>npx eslint --init</code></pre><p>运行eslint检测：</p>
-<pre><code class="shell">npx eslint xxx.js
-// 可以使用通配符
-npx eslint ./src/*.js</code></pre>
-<p>为了方便，可以在packages.json中配置执行脚本</p>
-<pre><code class="json">&quot;scripts&quot;:{
-    &quot;eslint&quot;:&quot;eslint ./src/*.js&quot;
-}
-
-// 在命令行中，执行该命令
-yarn eslint</code></pre>
-<p>注意：eslint ./src/<em>.js只检测src下的js文件，不进入目录，若想检测src下*</em>所有文件和目录里的文件**：</p>
-<pre><code class="json">&quot;scripts&quot;:{
-    &quot;eslint&quot;:&quot;eslint src&quot;
-}</code></pre>
-<h2 id="console错误"><a href="#console错误" class="headerlink" title="console错误"></a>console错误</h2><h3 id="错误重现"><a href="#错误重现" class="headerlink" title="错误重现"></a>错误重现</h3><pre><code class="shell">mkdir proj
-cd proj
-yarn init -y &amp;&amp; yarn add eslint &amp;&amp; code .</code></pre>
-<p>创建文件：src/index.js</p>
-<pre><code class="js">console.log(&quot;hello&quot;);</code></pre>
-<p>运行eslint配置向导。。。参考above，然后执行检测</p>
-<pre><code class="shell">npx eslint ./src/*.js</code></pre>
-<p><strong>报错！！！</strong></p>
-<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>由于使用了默认配置，默认配置不允许console，所以打开eslintrc.json文件，新增一条规则：</p>
-<pre><code class="json">&quot;rules&quot;:{
-    &quot;no-console&quot;:&quot;off&quot;
-}</code></pre>
-<h1 id="二、解读Eslint配置"><a href="#二、解读Eslint配置" class="headerlink" title="二、解读Eslint配置"></a>二、解读Eslint配置</h1><h2 id="env"><a href="#env" class="headerlink" title="env"></a>env</h2><p>当前eslint运行的环境，每套环境都包括一套全局变量</p>
-<p>比如，window全局变量只在env=browser中，global全局变量只在env=node中，$()只在env=jquery中</p>
-<p>相关规则在nodemodule中的globals里</p>
-<p>相关变量可以查看文档</p>
-<p>也可以通过注释指定环境：<code>/* eslint-env node, mocha */</code></p>
-<h2 id="globals"><a href="#globals" class="headerlink" title="globals"></a>globals</h2><p>这里放的是能额外访问的全局变量</p>
-<p>在某个页面上当使用全局变量时会检测报错：使用未定义变量</p>
-<p>解决方法：</p>
-<ol>
-<li><p>使用注释声明变量为全局变量：<code>/* global xxx */</code></p>
-</li>
-<li><p>在eslint配置文件中声明变量</p>
-<pre><code class="json">&quot;globals&quot;: {
-    &quot;xxx&quot;: &quot;readonly&quot;
-}</code></pre>
-<p>readonly字段也可以为true和false（同readonly）</p>
-</li>
-</ol>
-<h2 id="rules"><a href="#rules" class="headerlink" title="rules"></a>rules</h2><p>制定的检测规则</p>
-<p>在使用单个属性修改时：<code>&quot;no-console&quot;:&quot;off&quot;</code>这样的为修改！</p>
-<p>在使用[]赋值时：<code>&quot;semi&quot;:[&quot;error&quot;,&quot;always&quot;]</code>为覆盖！</p>
-<h2 id="extends"><a href="#extends" class="headerlink" title="extends"></a>extends</h2><p>设定使用的是规则样板中的哪一种，即<strong>继承</strong>哪一种，在eslint文档中，打勾的表示recommend配置</p>
-<p>配合rules属性，可以自定义当前配置：继承extends配置，然后并修改</p>
-<p>更详细配置：<a href="http://eslint.cn/" target="_blank" rel="noopener">http://eslint.cn/</a></p>
-<h1 id="三、不同目录自定义配置规则"><a href="#三、不同目录自定义配置规则" class="headerlink" title="三、不同目录自定义配置规则"></a>三、不同目录自定义配置规则</h1><p>在需要作用的目录下创建.eslintrc.js文件，则eslint会在规则匹配时默认使用距离最近的规则</p>
-<p>同时，如果package.json和eslintrc同时存在则会优先使用eslintrc</p>
-<p>如果只有eslintrc，且与父目录中的package.json配置冲突，则会优先使用子文件中的eslintrc规则</p>
-<h1 id="四、在项目中配置Eslint"><a href="#四、在项目中配置Eslint" class="headerlink" title="四、在项目中配置Eslint"></a>四、在项目中配置Eslint</h1><ul>
-<li>JS配置文件</li>
-<li>YML配置文件</li>
-<li>JSON配置文件</li>
-<li>package.json文件中配置</li>
-</ul>
-<p>前三种使用向导进行配置即可，最后一种在package.json中添加一个字段，然后将配置文件copy过来即可：</p>
-<pre><code class="json">&quot;eslintConfig&quot;: {
-    &quot;env&quot;: {
-        ...
-    },
-    ...
-},
-&quot;eslintIgnore&quot;: [&quot;hello.js&quot;]</code></pre>
-<p>注意：可以使用注释为某个文件单独配置</p>
-<p>注释格式：<code>/* eslint no-console: &quot;off&quot; */</code>，多个配置使用逗号分隔</p>
-<p>如果不想检查本文件，在文件开头加上：<code>/* eslint-disable */</code></p>
-<h1 id="五、Eslint插件配置"><a href="#五、Eslint插件配置" class="headerlink" title="五、Eslint插件配置"></a>五、Eslint插件配置</h1><p>插件在extends字段中进行配置</p>
-<h1 id="六、Glob路径匹配"><a href="#六、Glob路径匹配" class="headerlink" title="六、Glob路径匹配"></a>六、Glob路径匹配</h1><p>用于按路径改写规则</p>
-<p>如前面定义了规则，在下面加入overrides字段可以按照路径来覆盖前面的规则</p>
-<pre><code class="json">&quot;rules&quot;:{
-    &quot;quotes&quot;:[&quot;error&quot;,&quot;double&quot;]
-},
-&quot;overrides&quot;:[
-    {
-        &quot;files&quot;:[&#39;*.test.js&#39;,&#39;test/**.js&#39;],
-        &quot;excludeFiles&quot;:[&#39;test/*/*.js&#39;],
-        &quot;rules&quot;:{
-            &quot;quotes&quot;:[&quot;error&quot;,&quot;double&quot;]
-        }
-    }
-]</code></pre>
-<p>以上将结尾为.test.js的和test目录下的所有包括子目录的js引号改为双引号验证规则，这个规则不包括test目录下的子目录里的js文件</p>
-<h1 id="七、在提交代码时运行检测"><a href="#七、在提交代码时运行检测" class="headerlink" title="七、在提交代码时运行检测"></a>七、在提交代码时运行检测</h1><p>git的特性，在提交前进行处理，然后再配置文件package.json中：</p>
-<p>pre-commit插件</p>
-<pre><code class="json">&quot;scripts&quot;:{
-    &quot;lint&quot;:&quot;eslint src&quot;,
-},
-&quot;pre-commit&quot;:[&quot;lint&quot;]</code></pre>
-<p>husky插件</p>
-<pre><code class="json">&quot;husky&quot;:{
-    &quot;hooks&quot;:{
-        &quot;pre-commit&quot;:&quot;npm run lint&quot;
-    }
-}</code></pre>
-<p>该插件可以在git的多个阶段来执行</p>
-
+    <h1 id="即将学习。。。"><a href="#即将学习。。。" class="headerlink" title="即将学习。。。"></a>即将学习。。。</h1>
   </article>
 
   <div class="nexmoe-post-meta">
     
     
-        <a class="nexmoefont icon-tag-fill -link" href="/tags/ESLint/" rel="tag">ESLint</a>
+        <a class="nexmoefont icon-tag-fill -link" href="/tags/webpack/" rel="tag">webpack</a>
     
 </div>
 
@@ -382,7 +279,7 @@ yarn init -y &amp;&amp; yarn add eslint &amp;&amp; code .</code></pre>
       
   <div class="nexmoe-post-copyright">
     <strong>Author：</strong>xiaopi3<br>
-    <strong>Link：</strong><a href="https://xiaopi3.gitee.io/archives/d70b794b.html" title="https:&#x2F;&#x2F;xiaopi3.gitee.io&#x2F;archives&#x2F;d70b794b.html" target="_blank" rel="noopener">https:&#x2F;&#x2F;xiaopi3.gitee.io&#x2F;archives&#x2F;d70b794b.html</a><br>
+    <strong>Link：</strong><a href="https://xiaopi3.gitee.io/archives/dae84e08.html" title="https:&#x2F;&#x2F;xiaopi3.gitee.io&#x2F;archives&#x2F;dae84e08.html" target="_blank" rel="noopener">https:&#x2F;&#x2F;xiaopi3.gitee.io&#x2F;archives&#x2F;dae84e08.html</a><br>
     
       <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
     
@@ -408,7 +305,7 @@ yarn init -y &amp;&amp; yarn add eslint &amp;&amp; code .</code></pre>
   </div>
   <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js,gh/nexmoe/nexmoe.github.io@latest/js/app.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-<!--<script src="/js/app.js?v=1584795069484"></script>-->
+<!--<script src="/js/app.js?v=1584795069465"></script>-->
 
 
     <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
