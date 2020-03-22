@@ -27,7 +27,7 @@
 <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/gh/nexmoe/nexmoe.github.io@latest/css/style.css,npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css" crossorigin>
   
-  <!--<link rel="stylesheet" href="/css/style.css?v=1584795069551">-->
+  <!--<link rel="stylesheet" href="/css/style.css?v=1584883376951">-->
 
    
     <style>
@@ -252,13 +252,18 @@
 
         <div class="nexmoe-post-meta">
             <a><i class="nexmoefont icon-calendar-fill"></i>2020年03月21日</a>
-            <a><i class="nexmoefont icon-areachart"></i>4 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 1 分钟</a>
+            <a><i class="nexmoefont icon-areachart"></i>1.9k 字</a>
+            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 9 分钟</a>
         </div>
 
         <article>
             
-                <h1 id="即将学习。。。"><a href="#即将学习。。。" class="headerlink" title="即将学习。。。"></a>即将学习。。。</h1>
+                <p>webpack常用来处理前端工程化问题：包括自动化打包、es6转换、图片处理、css样式压缩等</p>
+<p>[toc]</p>
+<h1 id="一、webpack快速上手之基础篇"><a href="#一、webpack快速上手之基础篇" class="headerlink" title="一、webpack快速上手之基础篇"></a>一、webpack快速上手之基础篇</h1><h2 id="安装webpack"><a href="#安装webpack" class="headerlink" title="安装webpack"></a>安装webpack</h2><p>两种方式：全局和本地</p>
+<h3 id="全局安装"><a href="#全局安装" class="headerlink" title="全局安装"></a>全局安装</h3><pre><code class="shell">npm intall -g webpack webpack-cli
+// or
+yarn global add webpack webpack-cli</code></pre>
             
         </article>
     </div>
@@ -354,103 +359,6 @@ npm install eslint -D</code></pre><p>向导配置：</p>
 <pre><code class="shell">npx eslint xxx.js
 // 可以使用通配符
 npx eslint ./src/*.js</code></pre>
-<p>为了方便，可以在packages.json中配置执行脚本</p>
-<pre><code class="json">&quot;scripts&quot;:{
-    &quot;eslint&quot;:&quot;eslint ./src/*.js&quot;
-}
-
-// 在命令行中，执行该命令
-yarn eslint</code></pre>
-<p>注意：eslint ./src/<em>.js只检测src下的js文件，不进入目录，若想检测src下*</em>所有文件和目录里的文件**：</p>
-<pre><code class="json">&quot;scripts&quot;:{
-    &quot;eslint&quot;:&quot;eslint src&quot;
-}</code></pre>
-<h2 id="console错误"><a href="#console错误" class="headerlink" title="console错误"></a>console错误</h2><h3 id="错误重现"><a href="#错误重现" class="headerlink" title="错误重现"></a>错误重现</h3><pre><code class="shell">mkdir proj
-cd proj
-yarn init -y &amp;&amp; yarn add eslint &amp;&amp; code .</code></pre>
-<p>创建文件：src/index.js</p>
-<pre><code class="js">console.log(&quot;hello&quot;);</code></pre>
-<p>运行eslint配置向导。。。参考above，然后执行检测</p>
-<pre><code class="shell">npx eslint ./src/*.js</code></pre>
-<p><strong>报错！！！</strong></p>
-<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>由于使用了默认配置，默认配置不允许console，所以打开eslintrc.json文件，新增一条规则：</p>
-<pre><code class="json">&quot;rules&quot;:{
-    &quot;no-console&quot;:&quot;off&quot;
-}</code></pre>
-<h1 id="二、解读Eslint配置"><a href="#二、解读Eslint配置" class="headerlink" title="二、解读Eslint配置"></a>二、解读Eslint配置</h1><h2 id="env"><a href="#env" class="headerlink" title="env"></a>env</h2><p>当前eslint运行的环境，每套环境都包括一套全局变量</p>
-<p>比如，window全局变量只在env=browser中，global全局变量只在env=node中，$()只在env=jquery中</p>
-<p>相关规则在nodemodule中的globals里</p>
-<p>相关变量可以查看文档</p>
-<p>也可以通过注释指定环境：<code>/* eslint-env node, mocha */</code></p>
-<h2 id="globals"><a href="#globals" class="headerlink" title="globals"></a>globals</h2><p>这里放的是能额外访问的全局变量</p>
-<p>在某个页面上当使用全局变量时会检测报错：使用未定义变量</p>
-<p>解决方法：</p>
-<ol>
-<li><p>使用注释声明变量为全局变量：<code>/* global xxx */</code></p>
-</li>
-<li><p>在eslint配置文件中声明变量</p>
-<pre><code class="json">&quot;globals&quot;: {
-    &quot;xxx&quot;: &quot;readonly&quot;
-}</code></pre>
-<p>readonly字段也可以为true和false（同readonly）</p>
-</li>
-</ol>
-<h2 id="rules"><a href="#rules" class="headerlink" title="rules"></a>rules</h2><p>制定的检测规则</p>
-<p>在使用单个属性修改时：<code>&quot;no-console&quot;:&quot;off&quot;</code>这样的为修改！</p>
-<p>在使用[]赋值时：<code>&quot;semi&quot;:[&quot;error&quot;,&quot;always&quot;]</code>为覆盖！</p>
-<h2 id="extends"><a href="#extends" class="headerlink" title="extends"></a>extends</h2><p>设定使用的是规则样板中的哪一种，即<strong>继承</strong>哪一种，在eslint文档中，打勾的表示recommend配置</p>
-<p>配合rules属性，可以自定义当前配置：继承extends配置，然后并修改</p>
-<p>更详细配置：<a href="http://eslint.cn/" target="_blank" rel="noopener">http://eslint.cn/</a></p>
-<h1 id="三、不同目录自定义配置规则"><a href="#三、不同目录自定义配置规则" class="headerlink" title="三、不同目录自定义配置规则"></a>三、不同目录自定义配置规则</h1><p>在需要作用的目录下创建.eslintrc.js文件，则eslint会在规则匹配时默认使用距离最近的规则</p>
-<p>同时，如果package.json和eslintrc同时存在则会优先使用eslintrc</p>
-<p>如果只有eslintrc，且与父目录中的package.json配置冲突，则会优先使用子文件中的eslintrc规则</p>
-<h1 id="四、在项目中配置Eslint"><a href="#四、在项目中配置Eslint" class="headerlink" title="四、在项目中配置Eslint"></a>四、在项目中配置Eslint</h1><ul>
-<li>JS配置文件</li>
-<li>YML配置文件</li>
-<li>JSON配置文件</li>
-<li>package.json文件中配置</li>
-</ul>
-<p>前三种使用向导进行配置即可，最后一种在package.json中添加一个字段，然后将配置文件copy过来即可：</p>
-<pre><code class="json">&quot;eslintConfig&quot;: {
-    &quot;env&quot;: {
-        ...
-    },
-    ...
-},
-&quot;eslintIgnore&quot;: [&quot;hello.js&quot;]</code></pre>
-<p>注意：可以使用注释为某个文件单独配置</p>
-<p>注释格式：<code>/* eslint no-console: &quot;off&quot; */</code>，多个配置使用逗号分隔</p>
-<p>如果不想检查本文件，在文件开头加上：<code>/* eslint-disable */</code></p>
-<h1 id="五、Eslint插件配置"><a href="#五、Eslint插件配置" class="headerlink" title="五、Eslint插件配置"></a>五、Eslint插件配置</h1><p>插件在extends字段中进行配置</p>
-<h1 id="六、Glob路径匹配"><a href="#六、Glob路径匹配" class="headerlink" title="六、Glob路径匹配"></a>六、Glob路径匹配</h1><p>用于按路径改写规则</p>
-<p>如前面定义了规则，在下面加入overrides字段可以按照路径来覆盖前面的规则</p>
-<pre><code class="json">&quot;rules&quot;:{
-    &quot;quotes&quot;:[&quot;error&quot;,&quot;double&quot;]
-},
-&quot;overrides&quot;:[
-    {
-        &quot;files&quot;:[&#39;*.test.js&#39;,&#39;test/**.js&#39;],
-        &quot;excludeFiles&quot;:[&#39;test/*/*.js&#39;],
-        &quot;rules&quot;:{
-            &quot;quotes&quot;:[&quot;error&quot;,&quot;double&quot;]
-        }
-    }
-]</code></pre>
-<p>以上将结尾为.test.js的和test目录下的所有包括子目录的js引号改为双引号验证规则，这个规则不包括test目录下的子目录里的js文件</p>
-<h1 id="七、在提交代码时运行检测"><a href="#七、在提交代码时运行检测" class="headerlink" title="七、在提交代码时运行检测"></a>七、在提交代码时运行检测</h1><p>git的特性，在提交前进行处理，然后再配置文件package.json中：</p>
-<p>pre-commit插件</p>
-<pre><code class="json">&quot;scripts&quot;:{
-    &quot;lint&quot;:&quot;eslint src&quot;,
-},
-&quot;pre-commit&quot;:[&quot;lint&quot;]</code></pre>
-<p>husky插件</p>
-<pre><code class="json">&quot;husky&quot;:{
-    &quot;hooks&quot;:{
-        &quot;pre-commit&quot;:&quot;npm run lint&quot;
-    }
-}</code></pre>
-<p>该插件可以在git的多个阶段来执行</p>
-
             
         </article>
     </div>
@@ -627,7 +535,7 @@ yarn init -y &amp;&amp; yarn add eslint &amp;&amp; code .</code></pre>
   </div>
   <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js,gh/nexmoe/nexmoe.github.io@latest/js/app.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-<!--<script src="/js/app.js?v=1584795069556"></script>-->
+<!--<script src="/js/app.js?v=1584883376959"></script>-->
 
 
     <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>

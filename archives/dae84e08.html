@@ -12,12 +12,12 @@
   
 
   <link rel="shortcut icon" href="/img/avatar.jpg" type="image/png" />
-  <meta name="description" content="即将学习。。。">
+  <meta name="description" content="webpack常用来处理前端工程化问题：包括自动化打包、es6转换、图片处理、css样式压缩等 [toc] 一、webpack快速上手之基础篇安装webpack两种方式：全局和本地 全局安装npm intall -g webpack webpack-cli &#x2F;&#x2F; or yarn global add webpack webpack-cli">
 <meta property="og:type" content="article">
 <meta property="og:title" content="webpack4.0快速上手">
 <meta property="og:url" content="https://xiaopi3.gitee.io/archives/dae84e08.html">
 <meta property="og:site_name" content="天落枫阁">
-<meta property="og:description" content="即将学习。。。">
+<meta property="og:description" content="webpack常用来处理前端工程化问题：包括自动化打包、es6转换、图片处理、css样式压缩等 [toc] 一、webpack快速上手之基础篇安装webpack两种方式：全局和本地 全局安装npm intall -g webpack webpack-cli &#x2F;&#x2F; or yarn global add webpack webpack-cli">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-03-21T12:38:05.000Z">
 <meta property="article:modified_time" content="2020-03-21T12:38:05.000Z">
@@ -26,7 +26,7 @@
 <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/gh/nexmoe/nexmoe.github.io@latest/css/style.css,npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css" crossorigin>
   
-  <!--<link rel="stylesheet" href="/css/style.css?v=1584795069459">-->
+  <!--<link rel="stylesheet" href="/css/style.css?v=1584883376809">-->
 
    
     <style>
@@ -247,8 +247,8 @@
   
   <div class="nexmoe-post-meta" style="margin:10px 0!important;">
     <a><i class="nexmoefont icon-calendar-fill"></i>2020年03月21日</a>
-    <a><i class="nexmoefont icon-areachart"></i>4 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 1 分钟</a>
+    <a><i class="nexmoefont icon-areachart"></i>1.9k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 9 分钟</a>
 </div>
 
   <div class="nexmoe-post-right">
@@ -256,7 +256,7 @@
       <div class="nexmoe-fixed">
         <div class="nexmoe-valign">
             <div class="nexmoe-toc">
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#即将学习。。。"><span class="toc-number">1.</span> <span class="toc-text">即将学习。。。</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、webpack快速上手之基础篇"><span class="toc-number">1.</span> <span class="toc-text">一、webpack快速上手之基础篇</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装webpack"><span class="toc-number">1.1.</span> <span class="toc-text">安装webpack</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#全局安装"><span class="toc-number">1.1.1.</span> <span class="toc-text">全局安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#本地安装"><span class="toc-number">1.1.2.</span> <span class="toc-text">本地安装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置webpack"><span class="toc-number">1.2.</span> <span class="toc-text">配置webpack</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Entry"><span class="toc-number">1.2.1.</span> <span class="toc-text">Entry</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output"><span class="toc-number">1.2.2.</span> <span class="toc-text">Output</span></a></li></ol></li></ol></li></ol>
             </div>
         </div>
       </div>
@@ -264,7 +264,281 @@
   </div>
 
   <article>
-    <h1 id="即将学习。。。"><a href="#即将学习。。。" class="headerlink" title="即将学习。。。"></a>即将学习。。。</h1>
+    <p>webpack常用来处理前端工程化问题：包括自动化打包、es6转换、图片处理、css样式压缩等</p>
+<p>[toc]</p>
+<h1 id="一、webpack快速上手之基础篇"><a href="#一、webpack快速上手之基础篇" class="headerlink" title="一、webpack快速上手之基础篇"></a>一、webpack快速上手之基础篇</h1><h2 id="安装webpack"><a href="#安装webpack" class="headerlink" title="安装webpack"></a>安装webpack</h2><p>两种方式：全局和本地</p>
+<h3 id="全局安装"><a href="#全局安装" class="headerlink" title="全局安装"></a>全局安装</h3><pre><code class="shell">npm intall -g webpack webpack-cli
+// or
+yarn global add webpack webpack-cli</code></pre>
+<a id="more"></a>
+
+<p>使用：</p>
+<p>使用webpack对文件进行编译，如当前目录存在index.js文件：</p>
+<pre><code class="sh">webpack index.js
+// or
+webpack index.js --mode development
+// or
+webpack index.js --mode production</code></pre>
+<p>注意：webpack默认查找路径为项目根路径下的src</p>
+<!--more-->
+
+<h3 id="本地安装"><a href="#本地安装" class="headerlink" title="本地安装"></a>本地安装</h3><p>全局安装模式下，当项目放到其他环境时无法通过npm install安装项目所需依赖，因为依赖在全局环境中，没有写入package.json文件中</p>
+<p>本地安装解决以上问题</p>
+<pre><code class="sh">// 初始化package.json
+npm init -y
+// 安装webpack
+yarn add -D webpack webpack-cli</code></pre>
+<p>修改package.json文件：</p>
+<pre><code class="json">&quot;scripts&quot;:{
+    &quot;build&quot;:&quot;webpack&quot;
+}</code></pre>
+<p>项目目录：web01/src/index.js</p>
+<p>启动打包</p>
+<pre><code class="sh">yarn build
+// or
+npm run build</code></pre>
+<p>注意：此时会有提示没有设置mode，可以在package.json中设置，也可以单独配置（配置文件中的mode字段）</p>
+<pre><code class="json">&quot;scripts&quot;:{
+    &quot;build&quot;:&quot;webpack --mode production&quot;
+}</code></pre>
+<h2 id="配置webpack"><a href="#配置webpack" class="headerlink" title="配置webpack"></a>配置webpack</h2><p>需求引入：不光是main.js，如果需要连同html一起生成，则必须通过webpack的配置才行</p>
+<p>需要生成你html文件，必须安装htmlwebpackplugin插件</p>
+<pre><code class="sh">npm install -D html-webpack-plugin</code></pre>
+<p>然后配置：web01/webpack.config.js</p>
+<pre><code class="js">const HtmlWebpackPlugin = require(&#39;html-webpack-plugin&#39;)
+
+module.exports={
+    entry: &quot;./src/index.js&quot;,/* 以配置文件开始 */
+    plugins:[
+        new HtmlWebpackPlugin()
+    ]
+}</code></pre>
+<p>然后打包，即可看到index.html</p>
+<p>一个完整的webpack.config.js包括：</p>
+<pre><code class="js">const path = require(&#39;path&#39;);
+
+module.exports = {
+  mode: &quot;production&quot;, // &quot;production&quot; | &quot;development&quot; | &quot;none&quot;  // Chosen mode tells webpack to use its built-in optimizations accordingly.
+
+  entry: &quot;./app/entry&quot;, // string | object | array  // 这里应用程序开始执行
+  // webpack 开始打包
+
+  output: {
+    // webpack 如何输出结果的相关选项
+
+    path: path.resolve(__dirname, &quot;dist&quot;), // string
+    // 所有输出文件的目标路径
+    // 必须是绝对路径（使用 Node.js 的 path 模块）
+
+    filename: &quot;bundle.js&quot;, // string    // 「入口分块(entry chunk)」的文件名模板（出口分块？）
+
+    publicPath: &quot;/assets/&quot;, // string    // 输出解析文件的目录，url 相对于 HTML 页面
+
+    library: &quot;MyLibrary&quot;, // string,
+    // 导出库(exported library)的名称
+
+    libraryTarget: &quot;umd&quot;, // 通用模块定义    // 导出库(exported library)的类型
+
+    /* 高级输出配置（点击显示） */  },
+
+  module: {
+    // 关于模块配置
+
+    rules: [
+      // 模块规则（配置 loader、解析器等选项）
+
+      {
+        test: /\.jsx?$/,
+        include: [
+          path.resolve(__dirname, &quot;app&quot;)
+        ],
+        exclude: [
+          path.resolve(__dirname, &quot;app/demo-files&quot;)
+        ],
+        // 这里是匹配条件，每个选项都接收一个正则表达式或字符串
+        // test 和 include 具有相同的作用，都是必须匹配选项
+        // exclude 是必不匹配选项（优先于 test 和 include）
+        // 最佳实践：
+        // - 只在 test 和 文件名匹配 中使用正则表达式
+        // - 在 include 和 exclude 中使用绝对路径数组
+        // - 尽量避免 exclude，更倾向于使用 include
+
+        issuer: { test, include, exclude },
+        // issuer 条件（导入源）
+
+        enforce: &quot;pre&quot;,
+        enforce: &quot;post&quot;,
+        // 标识应用这些规则，即使规则覆盖（高级选项）
+
+        loader: &quot;babel-loader&quot;,
+        // 应该应用的 loader，它相对上下文解析
+        // 为了更清晰，`-loader` 后缀在 webpack 2 中不再是可选的
+        // 查看 webpack 1 升级指南。
+
+        options: {
+          presets: [&quot;es2015&quot;]
+        },
+        // loader 的可选项
+      },
+
+      {
+        test: /\.html$/,
+        test: &quot;\.html$&quot;
+
+        use: [
+          // 应用多个 loader 和选项
+          &quot;htmllint-loader&quot;,
+          {
+            loader: &quot;html-loader&quot;,
+            options: {
+              /* ... */
+            }
+          }
+        ]
+      },
+
+      { oneOf: [ /* rules */ ] },
+      // 只使用这些嵌套规则之一
+
+      { rules: [ /* rules */ ] },
+      // 使用所有这些嵌套规则（合并可用条件）
+
+      { resource: { and: [ /* 条件 */ ] } },
+      // 仅当所有条件都匹配时才匹配
+
+      { resource: { or: [ /* 条件 */ ] } },
+      { resource: [ /* 条件 */ ] },
+      // 任意条件匹配时匹配（默认为数组）
+
+      { resource: { not: /* 条件 */ } }
+      // 条件不匹配时匹配
+    ],
+
+    /* 高级模块配置（点击展示） */  },
+
+  resolve: {
+    // 解析模块请求的选项
+    // （不适用于对 loader 解析）
+
+    modules: [
+      &quot;node_modules&quot;,
+      path.resolve(__dirname, &quot;app&quot;)
+    ],
+    // 用于查找模块的目录
+
+    extensions: [&quot;.js&quot;, &quot;.json&quot;, &quot;.jsx&quot;, &quot;.css&quot;],
+    // 使用的扩展名
+
+    alias: {
+      // 模块别名列表
+
+      &quot;module&quot;: &quot;new-module&quot;,
+      // 起别名：&quot;module&quot; -&gt; &quot;new-module&quot; 和 &quot;module/path/file&quot; -&gt; &quot;new-module/path/file&quot;
+
+      &quot;only-module$&quot;: &quot;new-module&quot;,
+      // 起别名 &quot;only-module&quot; -&gt; &quot;new-module&quot;，但不匹配 &quot;only-module/path/file&quot; -&gt; &quot;new-module/path/file&quot;
+
+      &quot;module&quot;: path.resolve(__dirname, &quot;app/third/module.js&quot;),
+      // 起别名 &quot;module&quot; -&gt; &quot;./app/third/module.js&quot; 和 &quot;module/file&quot; 会导致错误
+      // 模块别名相对于当前上下文导入
+    },
+    /* 可供选择的别名语法（点击展示） */
+    /* 高级解析选项（点击展示） */  },
+
+  performance: {
+    hints: &quot;warning&quot;, // 枚举    maxAssetSize: 200000, // 整数类型（以字节为单位）
+    maxEntrypointSize: 400000, // 整数类型（以字节为单位）
+    assetFilter: function(assetFilename) {
+      // 提供资源文件名的断言函数
+      return assetFilename.endsWith(&#39;.css&#39;) || assetFilename.endsWith(&#39;.js&#39;);
+    }
+  },
+
+  devtool: &quot;source-map&quot;, // enum  // 通过在浏览器调试工具(browser devtools)中添加元信息(meta info)增强调试
+  // 牺牲了构建速度的 `source-map&#39; 是最详细的。
+
+  context: __dirname, // string（绝对路径！）
+  // webpack 的主目录
+  // entry 和 module.rules.loader 选项
+  // 相对于此目录解析
+
+  target: &quot;web&quot;, // 枚举  // 包(bundle)应该运行的环境
+  // 更改 块加载行为(chunk loading behavior) 和 可用模块(available module)
+
+  externals: [&quot;react&quot;, /^@angular\//],  // 不要遵循/打包这些模块，而是在运行时从环境中请求他们
+
+  stats: &quot;errors-only&quot;,  // 精确控制要显示的 bundle 信息
+
+  devServer: {
+    proxy: { // proxy URLs to backend development server
+      &#39;/api&#39;: &#39;http://localhost:3000&#39;
+    },
+    contentBase: path.join(__dirname, &#39;public&#39;), // boolean | string | array, static file location
+    compress: true, // enable gzip compression
+    historyApiFallback: true, // true for index.html upon 404, object for multiple paths
+    hot: true, // hot module replacement. Depends on HotModuleReplacementPlugin
+    https: false, // true for self-signed, object for cert authority
+    noInfo: true, // only errors &amp; warns on hot reload
+    // ...
+  },
+
+  plugins: [
+    // ...
+  ],
+  // 附加插件列表
+
+
+  /* 高级配置（点击展示） */}</code></pre>
+<p><a href="https://www.webpackjs.com/configuration/" target="_blank" rel="noopener">https://www.webpackjs.com/configuration/</a></p>
+<h3 id="Entry"><a href="#Entry" class="headerlink" title="Entry"></a>Entry</h3><p>入口文件，可以是单一入口，和多入口：string，array，object</p>
+<p>多入口可以拆分代码将每个页面需要的js分离出来，<strong>使用对象作为entry时可以规定输出文件的名字！</strong></p>
+<pre><code class="js">// 可以是如下值
+entry: &quot;./app/entry&quot;, 
+entry: [&quot;./app/entry1&quot;, &quot;./app/entry2&quot;],
+entry: {
+  a: &quot;./app/entry-a&quot;,
+  b: [&quot;./app/entry-b1&quot;, &quot;./app/entry-b2&quot;]
+},</code></pre>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>指定输出文件的名字和其他属性</p>
+<pre><code class="js">  output: {
+    // webpack 如何输出结果的相关选项
+
+    path: path.resolve(__dirname, &quot;dist&quot;), // string
+    // 所有输出文件的目标路径
+    // 必须是绝对路径（使用 Node.js 的 path 模块）
+
+    filename: &quot;bundle.js&quot;, // string
+    filename: &quot;[name]xxx.js&quot;, // 用于多个入口点(entry point)（按照entry定义的名字输出）
+    filename: &quot;[chunkhash].js&quot;, // 用于长效缓存
+
+    // 「入口分块(entry chunk)」的文件名模板（出口分块？）
+
+    publicPath: &quot;/assets/&quot;, // string
+    publicPath: &quot;&quot;,
+    publicPath: &quot;https://cdn.example.com/&quot;,
+    // 输出解析文件的目录，url 相对于 HTML 页面
+
+    library: &quot;MyLibrary&quot;, // string,
+    // 导出库(exported library)的名称
+
+    libraryTarget: &quot;umd&quot;, // 通用模块定义，或：
+    // 导出库(exported library)的类型
+
+    /* 高级输出配置（点击显示） */
+  },</code></pre>
+<p><code>filename: &quot;[hash:4].js</code>指定4位哈希码，可以解决浏览器缓存不更新文件的情况，如果改变文件内容（此处hash会将entry中入口的文件组合在一起hash），会导致编译出来的hash码不相同，同一次编码出来的hash相同。</p>
+<p>path字段要求必须是绝对路径，所以可以引入node的path模块：</p>
+<pre><code class="js">const path = require(&quot;path&quot;)
+module.exports = {
+    entry:{...},
+    output:{
+        filename:xxxx,
+        path:path.join(__dirname,&#39;output&#39;)
+    }
+}</code></pre>
+<p>此处<code>path.join(__dirname,&#39;output&#39;)</code>相当于将输出放在根目录下的output文件夹中</p>
+<p>publicPath字段：在开发时有可能使用本地路径的图片，而生产环境中可能需要使用cdn加速来获取图片，该字段可以在编译输出文件时自动替换url</p>
+
   </article>
 
   <div class="nexmoe-post-meta">
@@ -305,7 +579,7 @@
   </div>
   <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js,gh/nexmoe/nexmoe.github.io@latest/js/app.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-<!--<script src="/js/app.js?v=1584795069465"></script>-->
+<!--<script src="/js/app.js?v=1584883376819"></script>-->
 
 
     <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
