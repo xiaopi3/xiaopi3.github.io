@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+
+<html lang="zh_CN">
+
+<head>
+  
+  <title>Git常用操作 - 天落枫阁</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="this is a personal blog, about java javascript python and other compute tech">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  
+  
+
+  <link rel="shortcut icon" href="/img/avatar.jpg" type="image/png" />
+  <meta name="description" content="Git工作流中有三个重要点：  Remote远程仓库，是push的目的地  Repository本地仓库，是commit目的地  workspace工作区，是当前编辑区">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git常用操作">
+<meta property="og:url" content="https://xiaopi3.gitee.io/archives/b8d84677.html">
+<meta property="og:site_name" content="天落枫阁">
+<meta property="og:description" content="Git工作流中有三个重要点：  Remote远程仓库，是push的目的地  Repository本地仓库，是commit目的地  workspace工作区，是当前编辑区">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiaopi3.gitee.io/archives/b8d84677/1.png">
+<meta property="og:image" content="https://xiaopi3.gitee.io/archives/b8d84677/2.png">
+<meta property="og:image" content="https://xiaopi3.gitee.io/archives/b8d84677/3.png">
+<meta property="og:image" content="https://xiaopi3.gitee.io/archives/b8d84677/4.png">
+<meta property="og:image" content="https://xiaopi3.gitee.io/archives/b8d84677/5.png">
+<meta property="og:image" content="https://xiaopi3.gitee.io/archives/b8d84677/6.png">
+<meta property="article:published_time" content="2020-03-23T11:24:15.685Z">
+<meta property="article:modified_time" content="2020-03-23T11:24:15.685Z">
+<meta property="article:author" content="xiaopi3">
+<meta property="article:tag" content="git">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaopi3.gitee.io/archives/b8d84677/1.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/gh/nexmoe/nexmoe.github.io@latest/css/style.css,npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css" crossorigin>
+  
+  <!--<link rel="stylesheet" href="/css/style.css?v=1584969402515">-->
+
+   
+    <style>
+      .nexmoe-avatar img:hover {
+        -webkit-transform: rotateZ(360deg);
+        -moz-transform: rotateZ(360deg);
+        transform: rotateZ(360deg);
+      }	
+    </style>
+  
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(/img/985.jpg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="xiaopi3" class="mdui-btn mdui-btn-icon"><img src="/img/avatar.jpg" alt="xiaopi3"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="xiaopi3">
+            <img src="/img/avatar.jpg" alt="xiaopi3" alt="xiaopi3">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>Articles</span>16</div>
+        <div><span>Tags</span>12</div>
+        <div><span>Categories</span>0</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/archives" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=" onsubmit="return search();">
+            <label><input id="search_value" name="q" type="search" placeholder="Search"></label>
+        </form>
+    </div>
+</div>
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Social</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/8391083" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/xiaopi3/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a><a class="mdui-ripple" href="mailto:447560484@qq.com" target="_blank" mdui-tooltip="{content: 'Email'}" style="color: rgb(34, 184, 221);background-color: rgba(34, 184, 221, .15);">
+            <i class="nexmoefont icon-mail-fill"></i>
+        </a><a class="mdui-ripple" href="https://weibo.com/u/1500580691" target="_blank" mdui-tooltip="{content: '微博'}" style="color: rgb(255, 165, 76);background-color: rgba(255, 165, 76, .15);">
+            <i class="nexmoefont icon-weibo"></i>
+        </a><a class="mdui-ripple" href="http://wpa.qq.com/msgrd?v=3&uin=447560484&site=qq&menu=yes" target="_blank" mdui-tooltip="{content: 'QQ'}" style="color: rgb(0, 82, 217);background-color: rgba(0, 82, 217, .15);">
+            <i class="nexmoefont icon-QQ"></i>
+        </a><a class="mdui-ripple" href="https://blog.csdn.net/xiapi3" target="_blank" mdui-tooltip="{content: 'CSDN'}" style="color: rgb(217, 46, 46);background-color: rgba(217, 46, 46, .15);">
+            <i class="nexmoefont icon-rss"></i>
+        </a>
+    </div>
+</div>
+  
+  
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Tagcloud</h3>
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud">
+      <a href="/tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="/tags/Guide/" style="font-size: 15px;">Guide</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/RPC/" style="font-size: 10px;">RPC</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/mobx/" style="font-size: 10px;">mobx</a> <a href="/tags/nodejs/" style="font-size: 15px;">nodejs</a> <a href="/tags/npm/" style="font-size: 15px;">npm</a> <a href="/tags/springboot/" style="font-size: 15px;">springboot</a> <a href="/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">测试</a>
+    </div>
+    
+  </div>
+  <style>
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+1) {
+    background-color: rgba(255,78,106,0.15);
+    color: rgba(255,78,106,0.8);
+    }
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+2) {
+    background-color: rgba(255,170,115,0.15);
+    color: #ffaa73;
+    }
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+3) {
+    background-color: rgba(254,212,102,0.15);
+    color: #fed466;
+    }
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+4) {
+    background-color: rgba(60,220,130,0.15);
+    color: #3cdc82;
+    }
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+5) {
+    background-color: rgba(100,220,240,0.15);
+    color: #64dcf0;
+    }
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+6) {
+    background-color: rgba(100,185,255,0.15);
+    color: #64b9ff;
+    }
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+7) {
+    background-color: rgba(180,180,255,0.15);
+    color: #b4b4ff;
+    }
+
+    
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta {
+    margin: 25px 0px;
+    font-size: 0;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a {
+    border-radius: 20px;
+    padding: 10px 18px;
+    color: #fff;
+    font-size: 14px;
+    display: inline-block;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a .nexmoefont {
+    font-size: 14px;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:before,
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta i:before {
+    margin-right: 5px;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+1) {
+    background-color: rgba(255,78,106,0.15);
+    color: #ff4e6a;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+2) {
+    background-color: rgba(255,170,115,0.15);
+    color: #ffaa73;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+3) {
+    background-color: rgba(254,212,102,0.15);
+    color: #fed466;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+4) {
+    background-color: rgba(60,220,130,0.15);
+    color: #3cdc82;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+5) {
+    background-color: rgba(100,220,240,0.15);
+    color: #64dcf0;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+6) {
+    background-color: rgba(100,185,255,0.15);
+    color: #64b9ff;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+7) {
+    background-color: rgba(180,180,255,0.15);
+    color: #b4b4ff;
+    }
+  </style>
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Archive</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2020 xiaopi3
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+  
+      <div class="nexmoe-post-cover" style="padding-bottom: 100%;"> 
+          <img data-src="/img/0015.jpg" data-sizes="auto" alt="Git常用操作" class="lazyload">
+          <h1>Git常用操作</h1>
+      </div>
+  
+  
+  <div class="nexmoe-post-meta" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2020年03月23日</a>
+    <a><i class="nexmoefont icon-areachart"></i>1.8k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 8 分钟</a>
+</div>
+
+  <div class="nexmoe-post-right">
+    
+      <div class="nexmoe-fixed">
+        <div class="nexmoe-valign">
+            <div class="nexmoe-toc">
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git初始化"><span class="toc-number">1.</span> <span class="toc-text">Git初始化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Git配置"><span class="toc-number">2.</span> <span class="toc-text">Git配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#init"><span class="toc-number">3.</span> <span class="toc-text">init</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#clone"><span class="toc-number">4.</span> <span class="toc-text">clone</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#commit"><span class="toc-number">5.</span> <span class="toc-text">commit</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#branch"><span class="toc-number">6.</span> <span class="toc-text">branch</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#push"><span class="toc-number">7.</span> <span class="toc-text">push</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#checkout"><span class="toc-number">8.</span> <span class="toc-text">checkout</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#merge"><span class="toc-number">9.</span> <span class="toc-text">merge</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#log"><span class="toc-number">10.</span> <span class="toc-text">log</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#reset"><span class="toc-number">11.</span> <span class="toc-text">reset</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#–hard"><span class="toc-number">11.1.</span> <span class="toc-text">–hard</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#rebase"><span class="toc-number">12.</span> <span class="toc-text">rebase</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#应用场景"><span class="toc-number">12.1.</span> <span class="toc-text">应用场景</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#其他操作"><span class="toc-number">13.</span> <span class="toc-text">其他操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#git-status"><span class="toc-number">13.1.</span> <span class="toc-text">git status</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-diff"><span class="toc-number">13.2.</span> <span class="toc-text">git diff</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-remote"><span class="toc-number">13.3.</span> <span class="toc-text">git remote</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-keygen"><span class="toc-number">13.4.</span> <span class="toc-text">git-keygen</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#典型应用场景"><span class="toc-number">14.</span> <span class="toc-text">典型应用场景</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-新建本地分支，修改代码，提交到远程同名分支"><span class="toc-number">14.1.</span> <span class="toc-text">1.新建本地分支，修改代码，提交到远程同名分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-重命名本地分支，删除远程分支，并提交到远程"><span class="toc-number">14.2.</span> <span class="toc-text">2.重命名本地分支，删除远程分支，并提交到远程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-重置本地仓库"><span class="toc-number">14.3.</span> <span class="toc-text">3.重置本地仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-拉取远程最新分支，并与本地分支合并"><span class="toc-number">14.4.</span> <span class="toc-text">4.拉取远程最新分支，并与本地分支合并</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-报错内容出现upstream-branch与current-branch不匹配"><span class="toc-number">14.5.</span> <span class="toc-text">5.报错内容出现upstream branch与current branch不匹配</span></a></li></ol></li></ol>
+            </div>
+        </div>
+      </div>
+    
+  </div>
+
+  <article>
+    <p>Git工作流中有三个重要点：</p>
+<ol>
+<li><p>Remote远程仓库，是push的目的地</p>
+</li>
+<li><p>Repository本地仓库，是commit目的地</p>
+</li>
+<li><p>workspace工作区，是当前编辑区</p>
+</li>
+</ol>
+<p><img data-sizes="auto" data-src="/archives/b8d84677/1.png" alt="git工作流" class="lazyload"></p>
+<a id="more"></a>
+
+<h1 id="Git初始化"><a href="#Git初始化" class="headerlink" title="Git初始化"></a>Git初始化</h1><pre><code class="sh"># 1. 在github上创建项目仓库
+# 2. 配置本地git
+git config --global user.name &quot;你的名字或昵称&quot;
+git config --global user.email &quot;你的邮箱&quot;
+# 3. 初始化本地仓库-提交-链接远程仓库
+git init
+git add .
+git commit -m &quot;first commit&quot;  （first commit 本次提交的内容）
+git remote add origin &lt;your project git url&gt;
+git push -u origin master 
+git push</code></pre>
+<h1 id="Git配置"><a href="#Git配置" class="headerlink" title="Git配置"></a>Git配置</h1><p>git配置基本上都在config配置文件中</p>
+<p>配置级别从顶层到底层：</p>
+<table>
+<thead>
+<tr>
+<th>system</th>
+<th>global</th>
+<th>local</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>系统</td>
+<td>用户</td>
+<td>当前仓库</td>
+</tr>
+</tbody></table>
+<p>底层配置会覆盖顶层配置</p>
+<pre><code class="sh">#  查看系统配置
+git config --system --list
+
+#  查看用户配置
+git config --global --list
+
+#  查看当前仓库的配置
+git config --local --list</code></pre>
+<p>可以通过命令来查看当前git的所有配置</p>
+<pre><code class="sh">#  检查当前config所有配置
+git config --list</code></pre>
+<p>git初始化配置用户信息</p>
+<pre><code class="sh">git config --global user.name &quot;xxx&quot;
+git config --global user.email &quot;xxx&quot;</code></pre>
+<h1 id="init"><a href="#init" class="headerlink" title="init"></a>init</h1><p>使用<code>git init</code>用于初始化本地仓库，一般流程为</p>
+<pre><code class="sh">git init
+git add .
+git commit -m &quot;initial commit&quot;</code></pre>
+<h1 id="clone"><a href="#clone" class="headerlink" title="clone"></a>clone</h1><p>使用<code>git clone</code>将远程仓库拉下来，一般流程为</p>
+<pre><code class="sh">#  将代码拉下来放在当前目录中
+git clone xxx链接
+
+#  将代码拉下来放到指定目录中
+git cloen xxx链接 xxx目录</code></pre>
+<h1 id="commit"><a href="#commit" class="headerlink" title="commit"></a>commit</h1><p>提交跟踪文件的改动，会将改动提交到当前所在的分支上，一般流程为</p>
+<pre><code class="sh">git add .
+git commit -m &quot;comment&quot;
+
+#  使用-a参数免去add操作，直接提交tracked文件，但是没有tracked的文件不会提交
+git commit -a &quot;comment&quot;</code></pre>
+<h1 id="branch"><a href="#branch" class="headerlink" title="branch"></a>branch</h1><p>用于查看分支，新建分支和修改分支</p>
+<pre><code class="sh">#  查看所有分支
+git branch -a
+
+#  新建本地分支
+git branch xxx
+
+#  修改本地分支名
+git branch -m oldxxx newxxx</code></pre>
+<h1 id="push"><a href="#push" class="headerlink" title="push"></a>push</h1><p>用于将本地暂存区推送到远程、修改远程分支等操作</p>
+<pre><code class="sh">#  推送分支
+git push origin 本地名:远程名
+#  如果推送到远程同名分支可以简写，不存在会被创建
+git push origin xxx
+
+#  删除远程某个分支（本地空分支推送）
+git push origin :远程名
+#  等同于
+git push origin --delete 远程名
+
+#  将当前分支推送到远程origin主机对应分支
+git push origin
+#  可以通过-u指定远程主机，这样之后就不用指定origin
+git push -u origin 分支名
+#  若远程主机被-u指定后，可以简写
+git push</code></pre>
+<h1 id="checkout"><a href="#checkout" class="headerlink" title="checkout"></a>checkout</h1><p><code>git checkout</code>命令用于切换分支或恢复工作树文件。<code>git checkout</code>是git最常用的命令之一，同时也是一个<strong>很危险的命令</strong>，因为这条命令会重写工作区。</p>
+<p>从分支中迁出一个分支的HEAD版本：</p>
+<pre><code class="sh">git branch -a
+git checkout 分支名</code></pre>
+<h1 id="merge"><a href="#merge" class="headerlink" title="merge"></a>merge</h1><p>合并两个或者多个分支的内容，一般流程</p>
+<pre><code class="sh">#  将xxx合并到本分支，并自动提交合并分支
+git merge xxx</code></pre>
+<h1 id="log"><a href="#log" class="headerlink" title="log"></a>log</h1><p>查看提交记录</p>
+<pre><code class="sh"># 查看提交日志，以下三种都可以
+git log  #  详细
+git log --pretty=oneline  #  简单
+git reflog  # 操作记录
+# 回滚本地记录
+git reset --hard xxxid
+# 回滚远程记录
+git push -f [origin xxx]</code></pre>
+<h1 id="reset"><a href="#reset" class="headerlink" title="reset"></a>reset</h1><p><code>git reset</code>命令用于将当前分支的<code>HEAD</code>复位到指定状态。一般用于撤消之前的一些操作(如：<code>git add</code>,<code>git commit</code>等)。<strong>该命令不会改变工作区的内容！</strong></p>
+<p><code>HEAD</code>表示当前分支最新的提交</p>
+<pre><code class="sh">git reset [--hard|soft|mixed|merge|keep] [&lt;commit&gt;或HEAD]</code></pre>
+<p>将当前分支重置到指定commit，默认为HEAD</p>
+<h2 id="–hard"><a href="#–hard" class="headerlink" title="–hard"></a>–hard</h2><p>从commit之后的任何改动都被丢弃，并将HEAD指向commit</p>
+<pre><code class="sh">#  第一次提交：add test1.c
+#  第二次提交：add test2.c
+#  第三次提交：add test3.c ---&gt; HEAD
+
+#  将HEAD往过去挪一步：此时抛弃了test3.c，只保留了前两个，但是不改变工作区内容
+git reset --hard HEAD~1</code></pre>
+<pre><code class="sh">#  撤销最近一次commit，将其挪回工作区
+git reset head~1</code></pre>
+<h1 id="rebase"><a href="#rebase" class="headerlink" title="rebase"></a>rebase</h1><p>用于将一个分支的修改，合并到当前分支</p>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>使用情形：同一个分支上，A和B都做了commit，其中一个人做了push，另一个人push时就会失败</p>
+<p>此时几种办法：</p>
+<p>pull：直接拉取会出现冲突，解决冲突后可以提交，等价于merge</p>
+<p>merge：将远端代码拉下来与本地代码merge，然后解决冲突，再add、commit、push</p>
+<p>rebase：将当前的commit存为patch，然后拉取最新代码，然后自动合并</p>
+<p>图解：</p>
+<p>origin和mywork在C2的基础上往右前进两个commit：</p>
+<p><img src="/archives/b8d84677/2.png" alt></p>
+<p>如果采用merge，此时工作流为：</p>
+<p><img src="/archives/b8d84677/3.png" alt></p>
+<p>如果采用rebase，将改动放置到临时区，然后拉取最新代码，然后合并：</p>
+<p><img src="/archives/b8d84677/4.png" alt></p>
+<p><img src="/archives/b8d84677/5.png" alt></p>
+<p><img src="/archives/b8d84677/6.png" alt></p>
+<h1 id="其他操作"><a href="#其他操作" class="headerlink" title="其他操作"></a>其他操作</h1><h2 id="git-status"><a href="#git-status" class="headerlink" title="git status"></a>git status</h2><p>查看当前项目的跟踪情况</p>
+<h2 id="git-diff"><a href="#git-diff" class="headerlink" title="git diff"></a>git diff</h2><p>比较工作区和暂存区文件差异</p>
+<pre><code class="sh">git diff &lt;file&gt; #  比较当前文件和暂存区文件差异 git diff
+
+git diff &lt;id1&gt; &lt;id2&gt; #  比较两次提交之间的差异
+
+git diff &lt;branch1&gt; &lt;branch2&gt; #  在两个分支之间比较
+
+git diff --staged #  比较暂存区和版本库差异
+
+git diff --cached #  比较暂存区和版本库差异
+
+git diff --stat #  仅仅比较统计信息</code></pre>
+<h2 id="git-remote"><a href="#git-remote" class="headerlink" title="git remote"></a>git remote</h2><pre><code class="sh">#  去除本地缓存的远程主机不存在的分支
+git remote prune origin
+
+# 将本地仓库关联远程仓库
+git remote add origin xxxurl</code></pre>
+<h2 id="git-keygen"><a href="#git-keygen" class="headerlink" title="git-keygen"></a>git-keygen</h2><p>生成ssh密钥，设置好用户名和邮箱后</p>
+<pre><code class="sh">ssh-keygen -t rsa -C &quot;邮箱&quot;</code></pre>
+<p>连续三个回车即可，将生成的两个文件中的pub后缀的拷贝到github ssh设置中即可</p>
+<h1 id="典型应用场景"><a href="#典型应用场景" class="headerlink" title="典型应用场景"></a>典型应用场景</h1><h2 id="1-新建本地分支，修改代码，提交到远程同名分支"><a href="#1-新建本地分支，修改代码，提交到远程同名分支" class="headerlink" title="1.新建本地分支，修改代码，提交到远程同名分支"></a>1.新建本地分支，修改代码，提交到远程同名分支</h2><pre><code class="sh"># 切换到基础分支
+git checkout abc
+
+# 在该分支上进行coding，结束
+
+# 查看所有分支
+git branch -a
+
+# 新建本地分支
+git branch xxx
+
+# 切换到分支
+git checkout xxx
+
+# 提交修改到暂存区
+git add .
+git commit -m &quot;xxx&quot;
+
+# 提交代码到远程分支
+git push origin abc</code></pre>
+<h2 id="2-重命名本地分支，删除远程分支，并提交到远程"><a href="#2-重命名本地分支，删除远程分支，并提交到远程" class="headerlink" title="2.重命名本地分支，删除远程分支，并提交到远程"></a>2.重命名本地分支，删除远程分支，并提交到远程</h2><pre><code class="sh"># 查看当前分支
+git branch -a
+# 重命名原来本地分支
+git branch -m oldxxx newxxx
+# 切换到分支
+git checkout xxx
+# 提交修改到暂存区
+git add .
+git commit -m &quot;xxx&quot;
+# 删除远程原来分支
+git push origin --delete oldxxx
+# 提交代码到远程分支
+git push origin newxxx</code></pre>
+<p>–delete可以写成-d</p>
+<h2 id="3-重置本地仓库"><a href="#3-重置本地仓库" class="headerlink" title="3.重置本地仓库"></a>3.重置本地仓库</h2><p>有时候我会把本地的代码彻底搞乱，因此需要放弃本地修改，选择从远端仓库拉取代码覆盖，具体操作如下</p>
+<pre><code class="sh">git fetch --all
+
+git reset --hard origin/[branch-name]
+
+git pull</code></pre>
+<h2 id="4-拉取远程最新分支，并与本地分支合并"><a href="#4-拉取远程最新分支，并与本地分支合并" class="headerlink" title="4.拉取远程最新分支，并与本地分支合并"></a>4.拉取远程最新分支，并与本地分支合并</h2><p>由于某个分支上有人push了最新的代码，我们在push代码时如果需要防止与其冲突或者某个分支新增了功能，我们当前分支需要使用，则需要将其分支与我们的进行合并</p>
+<pre><code class="sh"># 切换到分支a
+git checkout a
+# 将a分支最新代码拉下来
+git pull
+# 切换回分支b
+git checkout b
+# 合并
+git merge a
+# 推送合并分支到b
+git push</code></pre>
+<h2 id="5-报错内容出现upstream-branch与current-branch不匹配"><a href="#5-报错内容出现upstream-branch与current-branch不匹配" class="headerlink" title="5.报错内容出现upstream branch与current branch不匹配"></a>5.报错内容出现upstream branch与current branch不匹配</h2><pre><code class="sh">git push -u origin currentxxx</code></pre>
+
+  </article>
+
+  <div class="nexmoe-post-meta">
+    
+    
+        <a class="nexmoefont icon-tag-fill -link" href="/tags/git/" rel="tag">git</a>
+    
+</div>
+
+  <div class="nexmoe-post-footer">
+    
+      
+  <div class="nexmoe-post-copyright">
+    <strong>Author：</strong>xiaopi3<br>
+    <strong>Link：</strong><a href="https://xiaopi3.gitee.io/archives/b8d84677.html" title="https:&#x2F;&#x2F;xiaopi3.gitee.io&#x2F;archives&#x2F;b8d84677.html" target="_blank" rel="noopener">https:&#x2F;&#x2F;xiaopi3.gitee.io&#x2F;archives&#x2F;b8d84677.html</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
+
+
+    
+    <section class="nexmoe-comment">
+    <div class="valine"></div>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js'></script>
+<script>
+    // 使用方法 https://valine.js.org/quickstart.html
+    new Valine({
+        el: '.valine',
+        appId: 'rRk6BFhmQH4vssFy1nmrAk4q-gzGzoHsz',
+        appKey: 'VAePGgqfPCi9xvsBz7DRzxrk'
+    })
+</script>
+</section>
+  </div>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js,gh/nexmoe/nexmoe.github.io@latest/js/app.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<!--<script src="/js/app.js?v=1584969402520"></script>-->
+
+
+    <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+
+
+ 
+<script> 
+!function(e,t,a){function n(){c(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"),o(),r()}function r(){for(var e=0;e<d.length;e++)d[e].alpha<=0?(t.body.removeChild(d[e].el),d.splice(e,1)):(d[e].y--,d[e].scale+=.004,d[e].alpha-=.013,d[e].el.style.cssText="left:"+d[e].x+"px;top:"+d[e].y+"px;opacity:"+d[e].alpha+";transform:scale("+d[e].scale+","+d[e].scale+") rotate(45deg);background:"+d[e].color+";z-index:99999");requestAnimationFrame(r)}function o(){var t="function"==typeof e.onclick&&e.onclick;e.onclick=function(e){t&&t(),i(e)}}function i(e){var a=t.createElement("div");a.className="heart",d.push({el:a,x:e.clientX-5,y:e.clientY-5,scale:1,alpha:1,color:s()}),t.body.appendChild(a)}function c(e){var a=t.createElement("style");a.type="text/css";try{a.appendChild(t.createTextNode(e))}catch(t){a.styleSheet.cssText=e}t.getElementsByTagName("head")[0].appendChild(a)}function s(){return"rgb("+~~(255*Math.random())+","+~~(255*Math.random())+","+~~(255*Math.random())+")"}var d=[];e.requestAnimationFrame=function(){return e.requestAnimationFrame||e.webkitRequestAnimationFrame||e.mozRequestAnimationFrame||e.oRequestAnimationFrame||e.msRequestAnimationFrame||function(e){setTimeout(e,1e3/60)}}(),n()}(window,document);
+</script>
+
+  
+
+
+
+
+
+</body>
+
+</html>
