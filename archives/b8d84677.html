@@ -33,7 +33,7 @@
 <meta name="twitter:image" content="https://xiaopi3.gitee.io/archives/b8d84677/1.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/gh/nexmoe/nexmoe.github.io@latest/css/style.css,npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css" crossorigin>
   
-  <!--<link rel="stylesheet" href="/css/style.css?v=1584970360848">-->
+  <!--<link rel="stylesheet" href="/css/style.css?v=1585056407395">-->
 
    
     <style>
@@ -247,15 +247,15 @@
         <div class="nexmoe-post">
   
       <div class="nexmoe-post-cover" style="padding-bottom: 100%;"> 
-          <img data-src="/img/0015.jpg" data-sizes="auto" alt="Git常用操作" class="lazyload">
+          <img data-src="/img/0015.JPG" data-sizes="auto" alt="Git常用操作" class="lazyload">
           <h1>Git常用操作</h1>
       </div>
   
   
   <div class="nexmoe-post-meta" style="margin:10px 0!important;">
     <a><i class="nexmoefont icon-calendar-fill"></i>2020年03月23日</a>
-    <a><i class="nexmoefont icon-areachart"></i>1.8k 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 8 分钟</a>
+    <a><i class="nexmoefont icon-areachart"></i>2.2k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 9 分钟</a>
 </div>
 
   <div class="nexmoe-post-right">
@@ -263,7 +263,7 @@
       <div class="nexmoe-fixed">
         <div class="nexmoe-valign">
             <div class="nexmoe-toc">
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git初始化"><span class="toc-number">1.</span> <span class="toc-text">Git初始化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Git配置"><span class="toc-number">2.</span> <span class="toc-text">Git配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#init"><span class="toc-number">3.</span> <span class="toc-text">init</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#clone"><span class="toc-number">4.</span> <span class="toc-text">clone</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#commit"><span class="toc-number">5.</span> <span class="toc-text">commit</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#branch"><span class="toc-number">6.</span> <span class="toc-text">branch</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#push"><span class="toc-number">7.</span> <span class="toc-text">push</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#checkout"><span class="toc-number">8.</span> <span class="toc-text">checkout</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#merge"><span class="toc-number">9.</span> <span class="toc-text">merge</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#log"><span class="toc-number">10.</span> <span class="toc-text">log</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#reset"><span class="toc-number">11.</span> <span class="toc-text">reset</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#–hard"><span class="toc-number">11.1.</span> <span class="toc-text">–hard</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#rebase"><span class="toc-number">12.</span> <span class="toc-text">rebase</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#应用场景"><span class="toc-number">12.1.</span> <span class="toc-text">应用场景</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#其他操作"><span class="toc-number">13.</span> <span class="toc-text">其他操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#git-status"><span class="toc-number">13.1.</span> <span class="toc-text">git status</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-diff"><span class="toc-number">13.2.</span> <span class="toc-text">git diff</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-remote"><span class="toc-number">13.3.</span> <span class="toc-text">git remote</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-keygen"><span class="toc-number">13.4.</span> <span class="toc-text">git-keygen</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#典型应用场景"><span class="toc-number">14.</span> <span class="toc-text">典型应用场景</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-新建本地分支，修改代码，提交到远程同名分支"><span class="toc-number">14.1.</span> <span class="toc-text">1.新建本地分支，修改代码，提交到远程同名分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-重命名本地分支，删除远程分支，并提交到远程"><span class="toc-number">14.2.</span> <span class="toc-text">2.重命名本地分支，删除远程分支，并提交到远程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-重置本地仓库"><span class="toc-number">14.3.</span> <span class="toc-text">3.重置本地仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-拉取远程最新分支，并与本地分支合并"><span class="toc-number">14.4.</span> <span class="toc-text">4.拉取远程最新分支，并与本地分支合并</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-报错内容出现upstream-branch与current-branch不匹配"><span class="toc-number">14.5.</span> <span class="toc-text">5.报错内容出现upstream branch与current branch不匹配</span></a></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git初始化"><span class="toc-number">1.</span> <span class="toc-text">Git初始化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Git配置"><span class="toc-number">2.</span> <span class="toc-text">Git配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#init"><span class="toc-number">3.</span> <span class="toc-text">init</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#clone"><span class="toc-number">4.</span> <span class="toc-text">clone</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#commit"><span class="toc-number">5.</span> <span class="toc-text">commit</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#branch"><span class="toc-number">6.</span> <span class="toc-text">branch</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#push"><span class="toc-number">7.</span> <span class="toc-text">push</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pull"><span class="toc-number">8.</span> <span class="toc-text">pull</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#checkout"><span class="toc-number">9.</span> <span class="toc-text">checkout</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#merge"><span class="toc-number">10.</span> <span class="toc-text">merge</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#log"><span class="toc-number">11.</span> <span class="toc-text">log</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#reset"><span class="toc-number">12.</span> <span class="toc-text">reset</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#–hard"><span class="toc-number">12.1.</span> <span class="toc-text">–hard</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#rebase"><span class="toc-number">13.</span> <span class="toc-text">rebase</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#应用场景"><span class="toc-number">13.1.</span> <span class="toc-text">应用场景</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#其他操作"><span class="toc-number">14.</span> <span class="toc-text">其他操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#git-status"><span class="toc-number">14.1.</span> <span class="toc-text">git status</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-fetch"><span class="toc-number">14.2.</span> <span class="toc-text">git fetch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-diff"><span class="toc-number">14.3.</span> <span class="toc-text">git diff</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-remote"><span class="toc-number">14.4.</span> <span class="toc-text">git remote</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-keygen"><span class="toc-number">14.5.</span> <span class="toc-text">git-keygen</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#典型应用场景"><span class="toc-number">15.</span> <span class="toc-text">典型应用场景</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-新建本地分支，修改代码，提交到远程同名分支"><span class="toc-number">15.1.</span> <span class="toc-text">1.新建本地分支，修改代码，提交到远程同名分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-重命名本地分支，删除远程分支，并提交到远程"><span class="toc-number">15.2.</span> <span class="toc-text">2.重命名本地分支，删除远程分支，并提交到远程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-重置本地仓库"><span class="toc-number">15.3.</span> <span class="toc-text">3.重置本地仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-拉取远程最新分支，并与本地分支合并"><span class="toc-number">15.4.</span> <span class="toc-text">4.拉取远程最新分支，并与本地分支合并</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-报错内容出现upstream-branch与current-branch不匹配"><span class="toc-number">15.5.</span> <span class="toc-text">5.报错内容出现upstream branch与current branch不匹配</span></a></li></ol></li></ol>
             </div>
         </div>
       </div>
@@ -367,6 +367,24 @@ git push origin
 git push -u origin 分支名
 #  若远程主机被-u指定后，可以简写
 git push</code></pre>
+<h1 id="pull"><a href="#pull" class="headerlink" title="pull"></a>pull</h1><p>拉取远程分支到本地，操作其实是两步：拉到本地远程分支，合并本地远程与本地分支：</p>
+<p>origin dev—&gt;origin/dev—&gt;dev</p>
+<p><strong>注意：此处的合并会将commit记录合并了，不会产生merge的commit</strong></p>
+<pre><code class="sh"># 将远程主机的某个分支拉到本地的某个分支上合并
+git pull 远程主机 远程分支:本地分支
+git pull origin dev:xiaopi3
+
+# 如果与当前分支合并，可以省略本地分支
+# 拉远程dev与当前本地分支合并
+git pull origin dev
+# 等同于
+git fetch origin
+git merge origin/dev
+
+# 拉取本地分支对应的远程分支并合并
+git pull
+# 可以采用rebase模式
+git pull --rebase origin dev:xiaopi3</code></pre>
 <h1 id="checkout"><a href="#checkout" class="headerlink" title="checkout"></a>checkout</h1><p><code>git checkout</code>命令用于切换分支或恢复工作树文件。<code>git checkout</code>是git最常用的命令之一，同时也是一个<strong>很危险的命令</strong>，因为这条命令会重写工作区。</p>
 <p>从分支中迁出一个分支的HEAD版本：</p>
 <pre><code class="sh">git branch -a
@@ -412,6 +430,19 @@ git reset head~1</code></pre>
 <p><img src="/archives/b8d84677/5.png" alt></p>
 <p><img src="/archives/b8d84677/6.png" alt></p>
 <h1 id="其他操作"><a href="#其他操作" class="headerlink" title="其他操作"></a>其他操作</h1><h2 id="git-status"><a href="#git-status" class="headerlink" title="git status"></a>git status</h2><p>查看当前项目的跟踪情况</p>
+<h2 id="git-fetch"><a href="#git-fetch" class="headerlink" title="git fetch"></a>git fetch</h2><p>将远程分支拉取到本地远程分支上</p>
+<p>本地仓库分为本地分支和本地远程分支：本地远程分支前面加了origin</p>
+<p>该命令将远程分支拉到本地远程分支上，但是不会与本地分支合并</p>
+<p><em>git fetch</em>：相当于是从远程获取最新版本到本地，不会自动合并。</p>
+<pre><code class="shell">$ git fetch origin master
+$ git log -p master..origin/master
+$ git merge origin/master</code></pre>
+<p>以上命令的含义：</p>
+<ul>
+<li>首先从远程的<code>origin</code>的<code>master</code>主分支下载最新的版本到<code>origin/master</code>分支上</li>
+<li>然后比较本地的<code>master</code>分支和<code>origin/master</code>分支的差别</li>
+<li>最后进行合并</li>
+</ul>
 <h2 id="git-diff"><a href="#git-diff" class="headerlink" title="git diff"></a>git diff</h2><p>比较工作区和暂存区文件差异</p>
 <pre><code class="sh">git diff &lt;file&gt; #  比较当前文件和暂存区文件差异 git diff
 
@@ -525,7 +556,7 @@ git push</code></pre>
   </div>
   <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js,gh/nexmoe/nexmoe.github.io@latest/js/app.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-<!--<script src="/js/app.js?v=1584970360854"></script>-->
+<!--<script src="/js/app.js?v=1585056407399"></script>-->
 
 
     <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
