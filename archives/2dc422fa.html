@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+
+<html lang="zh_CN">
+
+<head>
+  
+  <title>OKHttp 快速开始 - 天落枫阁</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="this is a personal blog, about java javascript python and other compute tech">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  
+  
+
+  <link rel="shortcut icon" href="/img/avatar.jpg" type="image/png" />
+  <meta name="description" content="OKHttp 快速开始官方网址：https:&#x2F;&#x2F;square.github.io&#x2F;okhttp&#x2F; 代码仓库：https:&#x2F;&#x2F;github.com&#x2F;square&#x2F;okhttp 该库是一个第三方库，用于请求网络，支持同步和异步两种请求方式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OKHttp 快速开始">
+<meta property="og:url" content="https://xiaopi3.gitee.io/archives/2dc422fa.html">
+<meta property="og:site_name" content="天落枫阁">
+<meta property="og:description" content="OKHttp 快速开始官方网址：https:&#x2F;&#x2F;square.github.io&#x2F;okhttp&#x2F; 代码仓库：https:&#x2F;&#x2F;github.com&#x2F;square&#x2F;okhttp 该库是一个第三方库，用于请求网络，支持同步和异步两种请求方式">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiaopi3.gitee.io/archives/2dc422fa/interceptor.jpg">
+<meta property="article:published_time" content="2020-03-30T11:47:26.701Z">
+<meta property="article:modified_time" content="2020-03-30T11:47:26.701Z">
+<meta property="article:author" content="xiaopi3">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaopi3.gitee.io/archives/2dc422fa/interceptor.jpg">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/gh/nexmoe/nexmoe.github.io@latest/css/style.css,npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css" crossorigin>
+  
+  <!--<link rel="stylesheet" href="/css/style.css?v=1585660792273">-->
+
+   
+    <style>
+      .nexmoe-avatar img:hover {
+        -webkit-transform: rotateZ(360deg);
+        -moz-transform: rotateZ(360deg);
+        transform: rotateZ(360deg);
+      }	
+    </style>
+  
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(/img/985.jpg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="xiaopi3" class="mdui-btn mdui-btn-icon"><img src="/img/avatar.jpg" alt="xiaopi3"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="xiaopi3">
+            <img src="/img/avatar.jpg" alt="xiaopi3" alt="xiaopi3">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>Articles</span>17</div>
+        <div><span>Tags</span>12</div>
+        <div><span>Categories</span>0</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/archives" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=" onsubmit="return search();">
+            <label><input id="search_value" name="q" type="search" placeholder="Search"></label>
+        </form>
+    </div>
+</div>
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Social</h3>
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/8391083" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/xiaopi3/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a><a class="mdui-ripple" href="mailto:447560484@qq.com" target="_blank" mdui-tooltip="{content: 'Email'}" style="color: rgb(34, 184, 221);background-color: rgba(34, 184, 221, .15);">
+            <i class="nexmoefont icon-mail-fill"></i>
+        </a><a class="mdui-ripple" href="https://weibo.com/u/1500580691" target="_blank" mdui-tooltip="{content: '微博'}" style="color: rgb(255, 165, 76);background-color: rgba(255, 165, 76, .15);">
+            <i class="nexmoefont icon-weibo"></i>
+        </a><a class="mdui-ripple" href="http://wpa.qq.com/msgrd?v=3&uin=447560484&site=qq&menu=yes" target="_blank" mdui-tooltip="{content: 'QQ'}" style="color: rgb(0, 82, 217);background-color: rgba(0, 82, 217, .15);">
+            <i class="nexmoefont icon-QQ"></i>
+        </a><a class="mdui-ripple" href="https://blog.csdn.net/xiapi3" target="_blank" mdui-tooltip="{content: 'CSDN'}" style="color: rgb(217, 46, 46);background-color: rgba(217, 46, 46, .15);">
+            <i class="nexmoefont icon-rss"></i>
+        </a>
+    </div>
+</div>
+  
+  
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Tagcloud</h3>
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud">
+      <a href="/tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="/tags/Guide/" style="font-size: 15px;">Guide</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/RPC/" style="font-size: 10px;">RPC</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/mobx/" style="font-size: 10px;">mobx</a> <a href="/tags/nodejs/" style="font-size: 15px;">nodejs</a> <a href="/tags/npm/" style="font-size: 15px;">npm</a> <a href="/tags/springboot/" style="font-size: 15px;">springboot</a> <a href="/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">测试</a>
+    </div>
+    
+  </div>
+  <style>
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+1) {
+    background-color: rgba(255,78,106,0.15);
+    color: rgba(255,78,106,0.8);
+    }
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+2) {
+    background-color: rgba(255,170,115,0.15);
+    color: #ffaa73;
+    }
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+3) {
+    background-color: rgba(254,212,102,0.15);
+    color: #fed466;
+    }
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+4) {
+    background-color: rgba(60,220,130,0.15);
+    color: #3cdc82;
+    }
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+5) {
+    background-color: rgba(100,220,240,0.15);
+    color: #64dcf0;
+    }
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+6) {
+    background-color: rgba(100,185,255,0.15);
+    color: #64b9ff;
+    }
+    #nexmoe-header .nexmoe-widget-wrap .tagcloud a:nth-child(7n+7) {
+    background-color: rgba(180,180,255,0.15);
+    color: #b4b4ff;
+    }
+
+    
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta {
+    margin: 25px 0px;
+    font-size: 0;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a {
+    border-radius: 20px;
+    padding: 10px 18px;
+    color: #fff;
+    font-size: 14px;
+    display: inline-block;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a .nexmoefont {
+    font-size: 14px;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:before,
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta i:before {
+    margin-right: 5px;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+1) {
+    background-color: rgba(255,78,106,0.15);
+    color: #ff4e6a;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+2) {
+    background-color: rgba(255,170,115,0.15);
+    color: #ffaa73;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+3) {
+    background-color: rgba(254,212,102,0.15);
+    color: #fed466;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+4) {
+    background-color: rgba(60,220,130,0.15);
+    color: #3cdc82;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+5) {
+    background-color: rgba(100,220,240,0.15);
+    color: #64dcf0;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+6) {
+    background-color: rgba(100,185,255,0.15);
+    color: #64b9ff;
+    }
+    #nexmoe-content .nexmoe-post .nexmoe-post-meta a:nth-child(7n+7) {
+    background-color: rgba(180,180,255,0.15);
+    color: #b4b4ff;
+    }
+  </style>
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">Archive</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2020 xiaopi3
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://nexmoe.com/hexo-theme-nexmoe.html" target="_blank">Nexmoe</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+  
+      <div class="nexmoe-post-cover" style="padding-bottom: 62.5%;"> 
+          <img data-src="/img/0013.jpg" data-sizes="auto" alt="OKHttp 快速开始" class="lazyload">
+          <h1>OKHttp 快速开始</h1>
+      </div>
+  
+  
+  <div class="nexmoe-post-meta" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2020年03月30日</a>
+    <a><i class="nexmoefont icon-areachart"></i>2.5k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 12 分钟</a>
+</div>
+
+  <div class="nexmoe-post-right">
+    
+      <div class="nexmoe-fixed">
+        <div class="nexmoe-valign">
+            <div class="nexmoe-toc">
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#OKHttp-快速开始"><span class="toc-number">1.</span> <span class="toc-text">OKHttp 快速开始</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#同步请求"><span class="toc-number">1.1.</span> <span class="toc-text">同步请求</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#get"><span class="toc-number">1.1.1.</span> <span class="toc-text">get</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#异步请求"><span class="toc-number">1.2.</span> <span class="toc-text">异步请求</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#get-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">get</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#post"><span class="toc-number">1.2.2.</span> <span class="toc-text">post</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置请求头"><span class="toc-number">1.3.</span> <span class="toc-text">设置请求头</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#下载文件"><span class="toc-number">1.4.</span> <span class="toc-text">下载文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#封装"><span class="toc-number">1.5.</span> <span class="toc-text">封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#拦截器"><span class="toc-number">1.6.</span> <span class="toc-text">拦截器</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#应用拦截器"><span class="toc-number">1.6.0.0.0.1.</span> <span class="toc-text">应用拦截器</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#网络连接器"><span class="toc-number">1.6.0.0.0.2.</span> <span class="toc-text">网络连接器</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol>
+            </div>
+        </div>
+      </div>
+    
+  </div>
+
+  <article>
+    <h1 id="OKHttp-快速开始"><a href="#OKHttp-快速开始" class="headerlink" title="OKHttp 快速开始"></a>OKHttp 快速开始</h1><p>官方网址：<a href="https://square.github.io/okhttp/" target="_blank" rel="noopener">https://square.github.io/okhttp/</a></p>
+<p>代码仓库：<a href="https://github.com/square/okhttp" target="_blank" rel="noopener">https://github.com/square/okhttp</a></p>
+<p>该库是一个第三方库，用于请求网络，支持同步和异步两种请求方式</p>
+<a id="more"></a>
+
+<h2 id="同步请求"><a href="#同步请求" class="headerlink" title="同步请求"></a>同步请求</h2><h3 id="get"><a href="#get" class="headerlink" title="get"></a>get</h3><p>对于同步请求在请求时需要开启子线程，请求成功后需要跳转到UI线程修改UI。</p>
+<pre><code class="java">public void getDatasync(){
+    new Thread(new Runnable() {
+        @Override
+        public void run() {
+            try {
+                OkHttpClient client = new OkHttpClient();//创建OkHttpClient对象
+                Request request = new Request.Builder()
+                        .url(&quot;http://www.baidu.com&quot;)//请求接口。如果需要传参拼接到接口后面。
+                        .build();//创建Request 对象
+                Response response = null;
+                response = client.newCall(request).execute();//得到Response 对象
+                if (response.isSuccessful()) {
+                Log.d(&quot;kwwl&quot;,&quot;response.code()==&quot;+response.code());
+                Log.d(&quot;kwwl&quot;,&quot;response.message()==&quot;+response.message());
+                Log.d(&quot;kwwl&quot;,&quot;res==&quot;+response.body().string());
+                //此时的代码执行在子线程，修改UI的操作请使用handler跳转到UI线程。
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }).start();
+}</code></pre>
+<p>此时打印结果如下：<br>response.code()==200；<br>response.message()OK；<br>res{“code”:200,“message”:success};</p>
+<p>注意事项：</p>
+<ol>
+<li><code>Response.code</code>是http响应行中的code，如果访问成功则返回200.这个不是服务器设置的，而是http协议中自带的。res中的code才是服务器设置的。注意二者的区别。</li>
+<li><code>response.body().string()</code>本质是输入流的读操作，所以它还是网络请求的一部分，所以这行代码必须放在子线程。</li>
+<li><code>response.body().string()</code><strong>只能调用一次</strong>，在第一次时有返回值，第二次再调用时将会返回null。原因是：<code>response.body().string()</code>的本质是输入流的读操作，必须有服务器的输出流的写操作时客户端的读操作才能得到数据。而服务器的写操作只执行一次，所以客户端的读操作也只能执行一次，第二次将返回null。</li>
+</ol>
+<h2 id="异步请求"><a href="#异步请求" class="headerlink" title="异步请求"></a>异步请求</h2><h3 id="get-1"><a href="#get-1" class="headerlink" title="get"></a>get</h3><p>这种方式不用再次开启子线程，但回调方法是执行在子线程中，所以在更新UI时还要跳转到UI线程中。<br>使用示例如下：</p>
+<pre><code class="java">private void getDataAsync() {
+    OkHttpClient client = new OkHttpClient();
+    Request request = new Request.Builder()
+            .url(&quot;http://www.baidu.com&quot;)
+            .build();
+    client.newCall(request).enqueue(new Callback() {
+        @Override
+        public void onFailure(Call call, IOException e) {
+        }
+        @Override
+        public void onResponse(Call call, Response response) throws IOException {
+            if(response.isSuccessful()){//回调的方法执行在子线程。
+                Log.d(&quot;kwwl&quot;,&quot;获取数据成功了&quot;);
+                Log.d(&quot;kwwl&quot;,&quot;response.code()==&quot;+response.code());
+                Log.d(&quot;kwwl&quot;,&quot;response.body().string()==&quot;+response.body().string());
+            }
+        }
+    });
+}</code></pre>
+<p>异步请求的打印结果与注意事项与同步请求时相同。最大的不同点就是异步请求不需要开启子线程，enqueue方法会自动将网络请求部分放入子线程中执行。</p>
+<p>注意事项：</p>
+<ol>
+<li>回调接口的onFailure方法和onResponse执行在子线程。</li>
+<li><code>response.body().string()</code>方法也必须放在子线程中。当执行这行代码得到结果后，再跳转到UI线程修改UI。</li>
+</ol>
+<h3 id="post"><a href="#post" class="headerlink" title="post"></a>post</h3><pre><code class="java">private void postDataWithParame() {
+    OkHttpClient client = new OkHttpClient();//创建OkHttpClient对象。
+    FormBody.Builder formBody = new FormBody.Builder();//创建表单请求体
+    formBody.add(&quot;username&quot;,&quot;zhangsan&quot;);//传递键值对参数
+    Request request = new Request.Builder()//创建Request 对象。
+            .url(&quot;http://www.baidu.com&quot;)
+            .post(formBody.build())//传递请求体
+            .build();
+    client.newCall(request).enqueue(new Callback() {。。。});//回调方法的使用与get异步请求相同，此时略。
+}</code></pre>
+<p>注意：request.post接受的是一个requestbody对象，只要是该对象的子类，都可以作为参数传递，而formbody就是该对象的一个子类</p>
+<blockquote>
+<p>传参总结：</p>
+<ol>
+<li><p>字符串key value对：</p>
+<p>参考上面的表单体</p>
+</li>
+<li><p>json串：</p>
+<pre><code class="java">OkHttpClient client = new OkHttpClient();//创建OkHttpClient对象。
+MediaType mediaType = MediaType.parse(&quot;application/json; charset=utf-8&quot;);//数据类型为json格式，
+String jsonStr = &quot;{\&quot;username\&quot;:\&quot;lisi\&quot;,\&quot;nickname\&quot;:\&quot;李四\&quot;}&quot;;//json数据.
+RequestBody body = RequestBody.create(mediaType, josnStr);
+Request request = new Request.Builder()
+        .url(&quot;http://www.baidu.com&quot;)
+        .post(body)
+        .build();
+client.newCall(request).enqueue(new Callback() {。。。});//此处省略回调方法。</code></pre>
+</li>
+<li><p>文件对象：</p>
+<pre><code class="java">OkHttpClient client = new OkHttpClient();//创建OkHttpClient对象。
+MediaType fileType = MediaType.parse(&quot;File/*&quot;);//数据类型为json格式，
+File file = new File(&quot;path&quot;);//file对象.
+RequestBody body = RequestBody.create(fileType , file );
+Request request = new Request.Builder()
+        .url(&quot;http://www.baidu.com&quot;)
+        .post(body)
+        .build();
+client.newCall(request).enqueue(new Callback() {。。。});//此处省略回调方法。</code></pre>
+</li>
+<li><p>混合对象：</p>
+<pre><code class="java">OkHttpClient client = new OkHttpClient();
+MultipartBody multipartBody =new MultipartBody.Builder()
+        .setType(MultipartBody.FORM)
+        .addFormDataPart(&quot;groupId&quot;,&quot;&quot;+groupId)//添加键值对参数
+        .addFormDataPart(&quot;title&quot;,&quot;title&quot;)
+     .addFormDataPart(&quot;file&quot;, file.getName(), RequestBody.create(MediaType.parse(&quot;file/*&quot;), file))//添加文件
+        .build();
+final Request request = new Request.Builder()
+        .url(URLContant.CHAT_ROOM_SUBJECT_IMAGE)
+        .post(multipartBody)
+        .build();
+client.newCall(request).enqueue(new Callback() {。。。});</code></pre>
+<p>注意：addFormDataPart和addPart并无区别，只是多了一层封装</p>
+<pre><code class="java">/** Add a form data part to the body. */
+public Builder addFormDataPart(String name, String value) {
+    return addPart(Part.createFormData(name, value));
+}
+
+/** Add a form data part to the body. */
+public Builder addFormDataPart(String name, String filename, RequestBody body) {
+    return addPart(Part.createFormData(name, filename, body));
+}
+
+public static Part createFormData(String name, String value) {
+    return createFormData(name, null, RequestBody.create(null, value));
+}
+
+public static Part createFormData(String name, String filename, RequestBody body) {
+    if (name == null) {
+        throw new NullPointerException(&quot;name == null&quot;);
+    }
+    StringBuilder disposition = new StringBuilder(&quot;form-data; name=&quot;);
+    appendQuotedString(disposition, name);
+
+    if (filename != null) {
+        disposition.append(&quot;; filename=&quot;);
+        appendQuotedString(disposition, filename);
+    }
+
+    return create(Headers.of(&quot;Content-Disposition&quot;, disposition.toString()), body);
+}</code></pre>
+</li>
+<li><p>流对象：</p>
+<pre><code class="java">RequestBody body = new RequestBody() {
+    @Override
+    public MediaType contentType() {
+        return null;
+    }
+
+    @Override
+    public void writeTo(BufferedSink sink) throws IOException {//重写writeTo方法
+        FileInputStream fio= new FileInputStream(new File(&quot;fileName&quot;));
+        byte[] buffer = new byte[1024*8];
+        if(fio.read(buffer) != -1){
+             sink.write(buffer);
+        }
+    }
+};
+
+OkHttpClient client = new OkHttpClient();//创建OkHttpClient对象。
+Request request = new Request.Builder()
+        .url(&quot;http://www.baidu.com&quot;)
+        .post(body)
+        .build();
+client.newCall(request).enqueue(new Callback() {。。。});
+</code></pre>
+<p>以上代码的与众不同就是body对象，这个body对象重写了write方法，里面有个sink对象。这个是OKio包中的输出流，有write方法。使用这个方法我们可以实现上传流的功能。</p>
+</li>
+</ol>
+</blockquote>
+<p>使用RequestBody上传文件时，并没有实现断点续传的功能。我可以使用这种方法结合RandomAccessFile类实现断点续传的功能</p>
+<h2 id="设置请求头"><a href="#设置请求头" class="headerlink" title="设置请求头"></a>设置请求头</h2><pre><code class="java">Request request = new Request.Builder()
+                .url(&quot;http://www.baidu.com&quot;)
+                .header(&quot;User-Agent&quot;, &quot;OkHttp Headers.java&quot;)
+                .addHeader(&quot;token&quot;, &quot;myToken&quot;)
+                .build();</code></pre>
+<h2 id="下载文件"><a href="#下载文件" class="headerlink" title="下载文件"></a>下载文件</h2><p>在OKHttp中并没有提供下载文件的功能，但是在Response中可以获取流对象，有了流对象我们就可以自己实现文件的下载。代码如下：<br>这段代码写在回调接口CallBack的<code>onResponse</code>方法中：</p>
+<pre><code class="java">try{
+    InputStream  is = response.body().byteStream();//从服务器得到输入流对象
+    long sum = 0;
+    File dir = new File(mDestFileDir);
+    if (!dir.exists()){
+        dir.mkdirs();
+    }
+    File file = new File(dir, mdestFileName);//根据目录和文件名得到file对象
+    FileOutputStream  fos = new FileOutputStream(file);
+    byte[] buf = new byte[1024*8];
+    int len = 0;
+    while ((len = is.read(buf)) != -1){
+        fos.write(buf, 0, len);
+    }
+    fos.flush();
+    return file;
+
+}</code></pre>
+<p>文件下载的另外一个例子：</p>
+<pre><code class="java">OkHttpClient client = new OkHttpClient();
+Request request = new Request.Builder()
+    .url(url)
+    .build();
+client.newCall(request).enqueue(new Callback() {
+    @Override
+    public void onFailure(Call call, IOException e) {
+        e.printStackTrace();
+    }
+
+    @Override
+    public void onResponse(Call call, Response response) throws IOException {
+        if (response.isSuccessful()){
+            downlodefile(response, Environment.getExternalStorageDirectory().getAbsolutePath(),&quot;text.txt&quot;);
+        }
+    }
+});
+
+private void downlodefile(Response response, String url, String fileName) {
+    InputStream is = null;
+    byte[] buf = new byte[2048];
+    int len = 0;
+    FileOutputStream fos = null;
+    try {
+        is = response.body().byteStream();
+        //文件大小
+        long total = response.body().contentLength();
+        File file = new File(url, fileName);
+        fos = new FileOutputStream(file);
+        long sum = 0;
+        while ((len = is.read(buf)) != -1) {
+            fos.write(buf, 0, len);
+            //                进度条
+            //                sum += len;
+            //                int progress = (int) (sum * 1.0f / total * 100);
+        }
+        fos.flush();
+        Log.e(&quot;xxxxxxxx&quot;, &quot;下载成功&quot;);
+    } catch (Exception e) {
+    } finally {
+        try {
+            if (is != null)
+                is.close();
+        } catch (IOException e) {
+        }
+        try {
+            if (fos != null)
+                fos.close();
+        } catch (IOException e) {
+        }
+    }
+}</code></pre>
+<h2 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h2><p>对于OKHttp的封装首推的就是hongyang大神的OKHttpUtils</p>
+<h2 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h2><p><a href="https://link.jianshu.com?t=https://github.com/square/okhttp/wiki/Interceptors" target="_blank" rel="noopener">Interceptors</a>是Okhttp中的拦截器，官方介绍拦截器是一个强大的监听器，可以重写，重试请求(calls)详细了解可以看下<a href="https://www.jianshu.com/p/2710ed1e6b48" target="_blank" rel="noopener">Okhttp-wiki 之 Interceptors 拦截器</a>，这篇文章可以算是中文版。</p>
+<pre><code class="java">  Response getResponseWithInterceptorChain() throws IOException {
+    // Build a full stack of interceptors.
+    List&lt;Interceptor&gt; interceptors = new ArrayList&lt;&gt;();
+    interceptors.addAll(client.interceptors());
+    interceptors.add(retryAndFollowUpInterceptor);
+    interceptors.add(new BridgeInterceptor(client.cookieJar()));
+    interceptors.add(new CacheInterceptor(client.internalCache()));
+    interceptors.add(new ConnectInterceptor(client));
+    if (!forWebSocket) {
+      interceptors.addAll(client.networkInterceptors());
+    }
+    interceptors.add(new CallServerInterceptor(forWebSocket));
+
+    Interceptor.Chain chain = new RealInterceptorChain(
+        interceptors, null, null, null, 0, originalRequest);
+    return chain.proceed(originalRequest);
+  }</code></pre>
+<p>从这可以发现okhttp在处理网络响应时采用的是拦截器机制。okhttp用ArrayList对interceptors进行管理，interceptors将依次被调用。</p>
+<p><img src="/archives/2dc422fa/interceptor.jpg" alt></p>
+<p>如上图：</p>
+<ol>
+<li><p>橙色框内是okhttp自带的Interceptors的实现类，它们都是在call.getResponseWithInterceptorChain()中被添加入 InterceptorChain中，实际上这几个Interceptor都是在okhttp3后才被引入，它们非常重要，负责了<strong>重连、组装请求头部、读/写缓存、建立socket连接、向服务器发送请求/接收响应的全部过程。</strong></p>
+</li>
+<li><p>在okhttp3之前，这些行为都封装在HttpEngine类中。okhttp3之后，HttpEngine已经被删去，取而代之的是这5个Interceptor，可以说一次网络请求中的细节被解耦放在不同的Interceptor中，不同Interceptor只负责自己的那一环节工作（对Request或者Response进行获取/处理），使得拦截器模式完全贯穿整个网络请求。</p>
+</li>
+<li><p>用户可以添加自定义的Interceptor，okhttp把拦截器分为应用拦截器和网络拦截器</p>
+</li>
+</ol>
+<pre><code class="php"> public class OkHttpClient implements Cloneable, Call.Factory {
+  final List&lt;Interceptor&gt; interceptors;
+  final List&lt;Interceptor&gt; networkInterceptors;
+  ......
+  }</code></pre>
+<ul>
+<li>调用OkHttpClient.Builder的addInterceptor()可以添加应用拦截器，只会被调用一次，可以处理网络请求回来的最终Response</li>
+<li>调用addNetworkInterceptor()可以添加network拦截器，处理所有的网络响应（一次请求如果发生了redirect ，那么这个拦截器的逻辑可能会被调用两次）</li>
+</ul>
+<ol start="4">
+<li>Application interceptors与Network Interceptors</li>
+</ol>
+<h6 id="应用拦截器"><a href="#应用拦截器" class="headerlink" title="应用拦截器"></a>应用拦截器</h6><blockquote>
+<p>不需要担心中间过程的响应,如重定向和重试.<br>总是只调用一次,即使HTTP响应是从缓存中获取.<br>观察应用程序的初衷. 不关心OkHttp注入的头信息如: If-None-Match.<br>允许短路而不调用 Chain.proceed(),即中止调用.<br>允许重试,使 Chain.proceed()调用多次.</p>
+</blockquote>
+<h6 id="网络连接器"><a href="#网络连接器" class="headerlink" title="网络连接器"></a>网络连接器</h6><blockquote>
+<p>能够操作中间过程的响应,如重定向和重试.<br>当网络短路而返回缓存响应时不被调用.<br>只观察在网络上传输的数据.<br>携带请求来访问连接.</p>
+</blockquote>
+<hr>
+<p>CopyFrom：</p>
+<p><a href="https://blog.csdn.net/fightingxia/article/details/70947701" target="_blank" rel="noopener">https://blog.csdn.net/fightingxia/article/details/70947701</a></p>
+<p><a href="https://www.jianshu.com/p/f5320b1e0287" target="_blank" rel="noopener">https://www.jianshu.com/p/f5320b1e0287</a></p>
+<p>Reference：</p>
+<p> <a href="https://www.jianshu.com/p/57c0b069452b" target="_blank" rel="noopener">OkHttp源码解析——HTTP请求的逻辑流程</a><br> <a href="https://www.jianshu.com/p/2710ed1e6b48" target="_blank" rel="noopener">Okhttp-wiki 之 Interceptors 拦截器</a></p>
+
+  </article>
+
+  <div class="nexmoe-post-meta">
+    
+    
+        <a class="nexmoefont icon-tag-fill -link" href="/tags/Java/" rel="tag">Java</a>
+    
+</div>
+
+  <div class="nexmoe-post-footer">
+    
+      
+  <div class="nexmoe-post-copyright">
+    <strong>Author：</strong>xiaopi3<br>
+    <strong>Link：</strong><a href="https://xiaopi3.gitee.io/archives/2dc422fa.html" title="https:&#x2F;&#x2F;xiaopi3.gitee.io&#x2F;archives&#x2F;2dc422fa.html" target="_blank" rel="noopener">https:&#x2F;&#x2F;xiaopi3.gitee.io&#x2F;archives&#x2F;2dc422fa.html</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
+
+
+    
+    <section class="nexmoe-comment">
+    <div class="valine"></div>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js'></script>
+<script>
+    // 使用方法 https://valine.js.org/quickstart.html
+    new Valine({
+        el: '.valine',
+        appId: 'rRk6BFhmQH4vssFy1nmrAk4q-gzGzoHsz',
+        appKey: 'VAePGgqfPCi9xvsBz7DRzxrk'
+    })
+</script>
+</section>
+  </div>
+</div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js,gh/nexmoe/nexmoe.github.io@latest/js/app.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<!--<script src="/js/app.js?v=1585660792278"></script>-->
+
+
+    <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+
+
+ 
+<script> 
+!function(e,t,a){function n(){c(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"),o(),r()}function r(){for(var e=0;e<d.length;e++)d[e].alpha<=0?(t.body.removeChild(d[e].el),d.splice(e,1)):(d[e].y--,d[e].scale+=.004,d[e].alpha-=.013,d[e].el.style.cssText="left:"+d[e].x+"px;top:"+d[e].y+"px;opacity:"+d[e].alpha+";transform:scale("+d[e].scale+","+d[e].scale+") rotate(45deg);background:"+d[e].color+";z-index:99999");requestAnimationFrame(r)}function o(){var t="function"==typeof e.onclick&&e.onclick;e.onclick=function(e){t&&t(),i(e)}}function i(e){var a=t.createElement("div");a.className="heart",d.push({el:a,x:e.clientX-5,y:e.clientY-5,scale:1,alpha:1,color:s()}),t.body.appendChild(a)}function c(e){var a=t.createElement("style");a.type="text/css";try{a.appendChild(t.createTextNode(e))}catch(t){a.styleSheet.cssText=e}t.getElementsByTagName("head")[0].appendChild(a)}function s(){return"rgb("+~~(255*Math.random())+","+~~(255*Math.random())+","+~~(255*Math.random())+")"}var d=[];e.requestAnimationFrame=function(){return e.requestAnimationFrame||e.webkitRequestAnimationFrame||e.mozRequestAnimationFrame||e.oRequestAnimationFrame||e.msRequestAnimationFrame||function(e){setTimeout(e,1e3/60)}}(),n()}(window,document);
+</script>
+
+  
+
+
+
+
+
+</body>
+
+</html>

@@ -28,7 +28,7 @@
 <meta name="twitter:image" content="https://xiaopi3.gitee.io/archives/afae5a43/show.jpg">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/gh/nexmoe/nexmoe.github.io@latest/css/style.css,npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css" crossorigin>
   
-  <!--<link rel="stylesheet" href="/css/style.css?v=1585659282821">-->
+  <!--<link rel="stylesheet" href="/css/style.css?v=1585660792370">-->
 
    
     <style>
@@ -249,7 +249,7 @@
   
   <div class="nexmoe-post-meta" style="margin:10px 0!important;">
     <a><i class="nexmoefont icon-calendar-fill"></i>2020年03月12日</a>
-    <a><i class="nexmoefont icon-areachart"></i>535 字</a>
+    <a><i class="nexmoefont icon-areachart"></i>590 字</a>
     <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
 </div>
 
@@ -376,6 +376,16 @@ git checkout {branch/tags name}</code></pre><p>注意：如果有需要，把主
 > {% endraw %}
 <blockquote>
 <pre><code></code></pre></blockquote>
+{% endraw %}
+
+<blockquote>
+<p>hexo 归档有问题，与某个分页参数有影响，需要取消该参数：</p>
+<pre><code class="sh"># Pagination
+## Set per_page to 0 to disable pagination
+per_page: 0
+pagination_dir: page</code></pre>
+<p>实测不影响分页，同时归档显示不全问题解决</p>
+</blockquote>
 
   </article>
 
@@ -417,7 +427,7 @@ git checkout {branch/tags name}</code></pre><p>注意：如果有需要，把主
   </div>
   <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js,gh/nexmoe/nexmoe.github.io@latest/js/app.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-<!--<script src="/js/app.js?v=1585659282832"></script>-->
+<!--<script src="/js/app.js?v=1585660792375"></script>-->
 
 
     <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
