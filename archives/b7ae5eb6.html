@@ -26,7 +26,7 @@
 <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/gh/nexmoe/nexmoe.github.io@latest/css/style.css,npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/nexmoe/nexmoe.github.io@latest/lib/mdui_043tiny/css/mdui.css,gh/nexmoe/nexmoe.github.io@latest/lib/iconfont/iconfont.css" crossorigin>
   
-  <!--<link rel="stylesheet" href="/css/style.css?v=1585056407404">-->
+  <!--<link rel="stylesheet" href="/css/style.css?v=1585659282684">-->
 
    
     <style>
@@ -60,7 +60,7 @@
         </a>
     </div>
     <div class="nexmoe-count">
-        <div><span>Articles</span>16</div>
+        <div><span>Articles</span>17</div>
         <div><span>Tags</span>12</div>
         <div><span>Categories</span>0</div>
     </div>
@@ -247,8 +247,8 @@
   
   <div class="nexmoe-post-meta" style="margin:10px 0!important;">
     <a><i class="nexmoefont icon-calendar-fill"></i>2020年03月19日</a>
-    <a><i class="nexmoefont icon-areachart"></i>113 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 1 分钟</a>
+    <a><i class="nexmoefont icon-areachart"></i>684 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 3 分钟</a>
 </div>
 
   <div class="nexmoe-post-right">
@@ -256,7 +256,7 @@
       <div class="nexmoe-fixed">
         <div class="nexmoe-valign">
             <div class="nexmoe-toc">
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#快速开始"><span class="toc-number">1.</span> <span class="toc-text">快速开始</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#快速开始"><span class="toc-number">1.</span> <span class="toc-text">快速开始</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#发送https"><span class="toc-number">2.</span> <span class="toc-text">发送https</span></a></li></ol>
             </div>
         </div>
       </div>
@@ -279,6 +279,141 @@ String json = restTemplate.postForObject(&quot;http://abc.com/query&quot;,String
 
 <p>参考资料：</p>
 <p><a href="https://blog.csdn.net/itguangit/article/details/78825505" target="_blank" rel="noopener">https://blog.csdn.net/itguangit/article/details/78825505</a></p>
+<h1 id="发送https"><a href="#发送https" class="headerlink" title="发送https"></a>发送https</h1><p>restTemplate可以接受一个<code>public RestTemplate(ClientHttpRequestFactory requestFactory)</code>来初始化，可以自定义一个requestFactory类来实现发送https请求：</p>
+<p>MySimpleHttpClient.java</p>
+<pre><code class="java">public class MySimpleHttpClient extends SimpleClientHttpRequestFactory {
+
+    @Override
+    protected void prepareConnection(HttpURLConnection connection, String httpMethod) throws IOException {
+        try {
+            if (!(connection instanceof HttpsURLConnection)) {
+                throw new RuntimeException(&quot;需要https的connection&quot;);
+            }
+
+            HttpsURLConnection httpsConnection = (HttpsURLConnection) connection;
+
+            TrustManager[] trustAllCerts = new TrustManager[]{
+                    new X509TrustManager() {
+                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                            return null;
+                        }
+
+                        public void checkClientTrusted(X509Certificate[] certs, String authType) {
+                        }
+
+                        public void checkServerTrusted(X509Certificate[] certs, String authType) {
+                        }
+
+                    }
+            };
+            SSLContext sslContext = SSLContext.getInstance(&quot;TLS&quot;);
+            sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
+            httpsConnection.setSSLSocketFactory(new MyCustomSSLSocketFactory(sslContext.getSocketFactory()));
+
+            httpsConnection.setHostnameVerifier(new HostnameVerifier() {
+                @Override
+                public boolean verify(String s, SSLSession sslSession) {
+                    return true;
+                }
+            });
+
+            super.prepareConnection(httpsConnection, httpMethod);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+
+    private static class MyCustomSSLSocketFactory extends SSLSocketFactory{
+
+        private final SSLSocketFactory delegate;
+
+        public MyCustomSSLSocketFactory(SSLSocketFactory delegate) {
+            this.delegate = delegate;
+        }
+
+        @Override
+        public String[] getDefaultCipherSuites() {
+            return delegate.getDefaultCipherSuites();
+        }
+
+        @Override
+        public String[] getSupportedCipherSuites() {
+            return delegate.getSupportedCipherSuites();
+        }
+
+        @Override
+        public Socket createSocket(final Socket socket, final String host, final int port, final boolean autoClose) throws IOException {
+            final Socket underlyingSocket = delegate.createSocket(socket, host, port, autoClose);
+            return overrideProtocol(underlyingSocket);
+        }
+
+        @Override
+        public Socket createSocket(final String host, final int port) throws IOException {
+            final Socket underlyingSocket = delegate.createSocket(host, port);
+            return overrideProtocol(underlyingSocket);
+        }
+
+        @Override
+        public Socket createSocket(final String host, final int port, final InetAddress localAddress, final int localPort) throws
+                IOException {
+            final Socket underlyingSocket = delegate.createSocket(host, port, localAddress, localPort);
+            return overrideProtocol(underlyingSocket);
+        }
+
+        @Override
+        public Socket createSocket(final InetAddress host, final int port) throws IOException {
+            final Socket underlyingSocket = delegate.createSocket(host, port);
+            return overrideProtocol(underlyingSocket);
+        }
+
+        @Override
+        public Socket createSocket(final InetAddress host, final int port, final InetAddress localAddress, final int localPort) throws
+                IOException {
+            final Socket underlyingSocket = delegate.createSocket(host, port, localAddress, localPort);
+            return overrideProtocol(underlyingSocket);
+        }
+//
+        private Socket overrideProtocol(final Socket socket) {
+            if (!(socket instanceof SSLSocket)) {
+                throw new RuntimeException(&quot;An instance of SSLSocket is expected&quot;);
+            }
+            ((SSLSocket) socket).setEnabledProtocols(new String[]{&quot;TLSv1&quot;});
+            return socket;
+        }
+    }
+}</code></pre>
+<p>然后初始化restTemplate实例：</p>
+<pre><code class="java">RestTemplate https = new RestTemplate(new MySimpleHttpClient());</code></pre>
+<p>为了防止乱码，这里设置了字符编码格式：</p>
+<pre><code class="java">List&lt;HttpMessageConverter&lt;?&gt;&gt; converterList = https.getMessageConverters();
+converterList.remove(1); // 移除原来的转换器
+// 设置字符编码为utf-8
+HttpMessageConverter&lt;?&gt; converter = new StringHttpMessageConverter(StandardCharsets.UTF_8);
+converterList.add(1, converter); // 添加新的转换器(注:convert顺序错误会导致失败)
+https.setMessageConverters(converterList);</code></pre>
+<p>使用方式也很简单，和http一样：</p>
+<pre><code class="java">String result = https.getForObject(&quot;https://www.baidu.com&quot;,String.class);</code></pre>
+<blockquote>
+<p>当然，为了实现https请求，可以使用第三方工具类来实现，比springboot自带的restTemplate更简单高效！</p>
+<p>目前比较常用的是：httpclient和okhttp</p>
+<p><strong>httpclient</strong></p>
+<pre><code class="java">// get 方法
+public String getHttps() throws IOException {
+    CloseableHttpClient httpClient = HttpClients.createDefault();
+    HttpGet httpsGet = new HttpGet(&quot;https://www.baidu.com&quot;);
+    CloseableHttpResponse resp = httpClient.execute(httpsGet);
+    String result= EntityUtils.toString(resp.getEntity(),&quot;utf-8&quot;);
+    resp.close();
+    return result;
+}
+// post 方法
+// https://www.cnblogs.com/Mr-Rocker/p/6229652.html
+// https://www.cnblogs.com/ncy1/p/10668332.html</code></pre>
+<p><strong>okhttp</strong>：该部分内容过多，单独开一文写^_^</p>
+</blockquote>
 
   </article>
 
@@ -320,7 +455,7 @@ String json = restTemplate.postForObject(&quot;http://abc.com/query&quot;,String
   </div>
   <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js,gh/nexmoe/nexmoe.github.io@latest/js/app.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-<!--<script src="/js/app.js?v=1585056407408"></script>-->
+<!--<script src="/js/app.js?v=1585659282689"></script>-->
 
 
     <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
